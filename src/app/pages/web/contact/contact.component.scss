@@ -1,0 +1,26 @@
+.image--contact--banner{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: 100%;
+}
+
+@media (max-width: 992px) {
+  .image--contact--banner--mobile{
+    // height: 445px;
+  }
+  .bg-gris{
+    background-color: transparent !important;
+  }
+  .svg--phone path{
+    fill: #757575;
+  }
+  .text--contact p{
+    color: #423838 !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .image--contact--banner--mobile{
+    // height: 313px;
+  }
+}

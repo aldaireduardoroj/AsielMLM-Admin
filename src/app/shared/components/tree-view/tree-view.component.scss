@@ -1,0 +1,25 @@
+.item{
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-color:white;
+  overflow: hidden;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+  border-radius:50%;
+  cursor: pointer;
+  border: 3px solid #717171;
+}
+.tree{
+  position:relative;
+  display: flex;
+}
+.treeLink {
+	stroke: silver;
+  fill:transparent;
+}
+.wrapper{
+  position: relative;
+  margin: 0 auto;
+}

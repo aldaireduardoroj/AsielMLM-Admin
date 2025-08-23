@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-9 col-12 p-50 " style="padding-left: 10px !important;">
+        <p class="text-blue fs-18 d-none d-md-block"><b>Llevamos la peluquería a tu hogar</b></p>
+        <h1 class="mb-4 text-blue fs-40 ff-nobile fw-bold title--h1-mobile text-center">Mis Reservas: Aquí mira todos tus servicios reservados</h1>
+
+    </div>
+</div>
+<div class="row mb-4 d-none d-md-block">
+  <div class="col-md-8 col-12">
+    <section class="w-100 d-inline-flex filter-section align-items-center mb-2">
+      <div class="flex-grow-1 w-100">
+        <p class="mb-0 pe-4"><b>{{ reservationList.length }}</b> tipos de servicios listados in <b>Mobile accessory</b></p>
+      </div>
+      <div class="w-100 text-right d-inline-flex align-items-center justify-content-end">
+
+
+        <nz-select class="mb-0 select--short-h select--bold" nzShowSearch nzAllowClear nzPlaceHolder="Seleccionar el tipo de cabello" [(ngModel)]="sltHairSize" (ngModelChange)="onChangeTypeHair($event)">
+          <nz-option *ngFor="let h of hairSizeList" [nzLabel]="h.description + ' ' + h.field_1" [nzValue]="h.id"></nz-option>
+        </nz-select>
+
+        <nz-radio-group [(ngModel)]="rdFilter" nzButtonStyle="solid" class="ms-3 d-none d-md-inline-block radio-group--short-h" >
+          <label nz-radio-button [nzValue]="1">
+            <i nz-icon nzType="appstore" nzTheme="outline" style="color: #000;"></i>
+          </label>
+          <label nz-radio-button [nzValue]="2">
+            <i nz-icon nzType="unordered-list" nzTheme="outline" style="color: #000;"></i>
+          </label>
+        </nz-radio-group>
+      </div>
+
+
+    </section>
+  </div>
+
+</div>
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="d-flex align-items-center ">
+            <img [src]="avatarUrl" alt="" class="img-thumbnail rounded-circle border border-4" width="98px">
+            <!-- <span class="fs-18 ps-4">ID: 484504932</span> -->
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-12">
+      <ng-container *ngFor="let r of reservationList">
+        <app-card-reservation [orderService]="r" ></app-card-reservation>
+      </ng-container>
+
+
+    </div>
+    <div class="col-md-4 d-none d-md-block">
+        <div class="mb-3">
+          <app-carousel-images [fullWidth]="false"></app-carousel-images>
+        </div>
+    </div>
+</div>

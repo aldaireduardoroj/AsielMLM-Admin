@@ -1,0 +1,23 @@
+
+<image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="4 / 4"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+  ></image-cropper>
+
+  <div *nzModalFooter>
+    <div nz-row>
+        <div nz-col nzSpan="12" class="text-left">
+            <button nz-button nzType="primary" nzDanger (click)="handleCancel()">Cancelar</button>
+
+        </div>
+        <div nz-col nzSpan="12" class="text-right">
+            <button nz-button  nzType="primary" (click)="handleOk()" [nzLoading]="loadingSubmit"> Guardar</button>
+        </div>
+    </div>
+  </div>

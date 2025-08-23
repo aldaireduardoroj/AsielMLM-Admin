@@ -1,0 +1,11 @@
+.card-testimonial{
+    border-radius: 20px; 
+    border: 2px solid #55B76B; 
+    padding: 20px;
+    .card-image-testimonial{
+        width: 100px; 
+        border-radius: 50%; 
+        height: 100px; 
+        background-size: cover; 
+    }
+}

@@ -1,0 +1,77 @@
+<nz-card style="border: 0;" class="m-b-20">
+  <nz-row class="m-b-20"  >
+    <nz-col [nzLg]="8" [nzXs]="24" class="text-center p-l-10 p-r-10 border--in-mobile">
+      <h1 class="text-details">{{ usuarioTotal }}</h1>
+      <p class="m-0" style="color: #C4C4C4;">Personas totales en tu red</p>
+    </nz-col>
+    <nz-col [nzLg]="8" [nzXs]="24" class="text-center p-l-10 p-r-10" style="border-left: 1px solid #C4C4C4;">
+      <h1 class="text-details">{{ usuarioDirectos }}</h1>
+      <p class="m-0" style="color: #C4C4C4;">Directos</p>
+    </nz-col>
+    <nz-col [nzLg]="8" [nzXs]="24" class="text-center p-l-10 p-r-10" style="border-left: 1px solid #C4C4C4;">
+      <h1 class="text-details">{{ usuarioActivos }}</h1>
+      <p class="m-0" style="color: #C4C4C4;">Usuarios Activos</p>
+    </nz-col>
+  </nz-row>
+</nz-card>
+<nz-card style="border: 0;">
+  <nz-row class="m-b-20"  >
+    <nz-col [nzLg]="24" [nzXs]="24" class="position-relative p-t-30">
+      <p class="text-center m-0" style="color: #C4C4C4; font-size: 16px; line-height: 1.2;">Tu patrocinador es {{ userSponsor }}</p>
+      <p class="text-center"> ID: <b style="text-transform: uppercase;">{{ codeSponsor }}</b></p>
+
+      <div style="width: 200px; right: 0; top: 30px;" class="position-absolute d-none d-md-block">
+        <div class="d-flex align-items-center m-b-10"><span style="display: inline-block; width: 30px; height: 25px; border-radius: 5px; background-color: #00B517;"></span>&nbsp;&nbsp;Usuario Activo</div>
+        <div class="d-flex align-items-center"><span style="display: inline-block; width: 30px; height: 25px; border-radius: 5px; background-color: #C4C4C4;"></span>&nbsp;&nbsp;Usuario Desactivo</div>
+      </div>
+
+    </nz-col>
+
+    <nz-col [nzLg]="24" [nzXs]="24" class="p-b-30">
+      <div style="overflow-y: auto; width: 100%;">
+        <ng-container *ngIf="isChart">
+          <app-tree-view #treeView [data]="data" [template]="treeTemplate" >
+          </app-tree-view>
+          <ng-template #treeTemplate let-node>
+            <div class="item"
+            (click)="onSeletedUSer(node.data.id)">
+              <div class="text-name-node text-center">
+                <p class="m-0 line-height-1">{{node.data.name}}</p>
+              </div>
+              <ng-container *ngIf="node.data.admin">
+                <img [src]="node.data.photo" alt="" [nzFallback]="fallback" style="width: 100%; height: 100%; border-radius: 50%;">
+              </ng-container>
+              <ng-container *ngIf="!node.data.admin">
+                <svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 68 68" fill="none">
+                <path d="M33.7676 0.499023C52.0988 0.499023 66.9598 15.3593 66.96 33.6904C66.96 52.0218 52.0989 66.8828 33.7676 66.8828C15.4364 66.8827 0.576172 52.0217 0.576172 33.6904C0.576322 15.3594 15.4365 0.499174 33.7676 0.499023ZM33.7676 37.4023C25.0683 37.4023 17.5734 42.5551 14.167 49.9727L14.0332 50.2646L14.2432 50.5078C18.9679 55.9883 25.9625 59.4599 33.7676 59.46C41.5727 59.46 48.5682 55.9893 53.293 50.5088L53.502 50.2656L53.3682 49.9736C49.9618 42.5556 42.467 37.4023 33.7676 37.4023ZM33.7676 12.1338C28.8397 12.1339 24.8447 16.1287 24.8447 21.0566C24.8449 25.9844 28.8398 29.9793 33.7676 29.9795C38.6956 29.9795 42.6903 25.9845 42.6904 21.0566C42.6904 16.1286 38.6957 12.1338 33.7676 12.1338Z" fill="#6E7D96" stroke="#979797"/>
+                </svg>
+              </ng-container>
+              
+              <div class="item--flotating text-uppercase" [ngStyle]="node.isActive?{'background-color': '#00B517'}:null">
+                ID: {{ node.data.id }}
+              </div> 
+            </div>
+
+          </ng-template>
+        </ng-container>
+      </div>
+
+    </nz-col>
+
+    <nz-col [nzLg]="24" [nzXs]="24" class="d-md-block d-lg-none">
+      <div class="d-flex justify-content-center m-t-30">
+        <div style="width: 200px;" >
+          <div class="d-flex align-items-center m-b-10"><span style="display: inline-block; width: 30px; height: 25px; border-radius: 5px; background-color: #00B517;"></span>&nbsp;&nbsp;Usuario Activo</div>
+        <div class="d-flex align-items-center"><span style="display: inline-block; width: 30px; height: 25px; border-radius: 5px; background-color: #C4C4C4;"></span>&nbsp;&nbsp;Usuario Desactivo</div>
+        </div>
+
+      </div>
+    </nz-col>
+
+  </nz-row>
+</nz-card>
+
+
+
+
+

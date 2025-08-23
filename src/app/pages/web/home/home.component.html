@@ -1,0 +1,133 @@
+
+<div class="row mb-3 p-t-10" id="inicio-section">
+    <div class="col-12">
+        <section class="banner--home-section position-relative" >
+          <div class="row banner--home" style="background-image: url('assets/images/Imagen principal.jpg');">
+            <div class="col-md-12 banner--home--text text-center">
+              <h1 class="text-white text--title--banner ff-montserrat lh-1">Chayim MLM <span class="text-primary-color">Abundancia</span></h1>
+              <h1 class="text-white text--title--banner ff-montserrat lh-1 mb-3">A tu hogar</h1>
+              <h4 class="text-white fw-bold d-lg-block ff-roboto fs-20 mb-4">Somos una empresa <span class="fs-25 text-primary-color">Pionera</span> en la industria MLM, con 10 años de experiencia, Disfruta de nuestros productos y comisiones, línea Nutricional, línea Tópico e Higiene personal</h4>
+              <button class="btn btn-primary fs-24 banner--home--btn" (click)="onShowVideo()">Ver video&nbsp;&nbsp;<i nz-icon nzType="right-circle" nzTheme="outline"></i></button>
+              <ng-container *ngIf="showVideo">
+                <div class="pt-3">
+                  <video class="banner--video" controls autoplay>
+                    <source src="assets/images/video 2.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </ng-container>
+
+            </div>
+          </div>
+        </section>
+        <!-- <div class="text-center d-block d-md-none mt-4">
+          <a nz-button nzType="default" class="btn-image-wrapper mb-4" [routerLink]="'/auth/login'">
+            Crea o ingresa a tu cuenta
+          </a>
+        </div> -->
+
+    </div>
+</div>
+
+<div id="team-section" class="mb-5">
+
+  <div class="row p-50 text-center"  style="background: #B385B6; background: linear-gradient(90deg,rgba(179, 133, 182, 1) 0%, rgba(54, 109, 185, 1) 100%);">
+    <h1 class="text-white lh-1 mb-3 large-h1--title" >NUESTRO EQUIPO FUNDADOR</h1>
+    <h2 class="text-white large-h2--subtitle" >Llevamos la abundancia a tu hogar</h2>
+  </div>
+
+  <div class="row text-center planes--section--title" >
+    <h2 class="mb-5 title--planes" >~ Todo es Perfecto en tu vida ~</h2>
+    <h1 class="d-none d-md-block">Dedicados a formar equipos de élite</h1>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="row">
+        <ng-container *ngFor="let team of teamMember">
+          <div class="col-md-4 col-12 mb-2">
+            <app-card-image [data]="team"></app-card-image>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div> 
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="row">
+        <ng-container *ngFor="let team of productList">
+          <div class="col-md-3 col-12 mb-2">
+            <app-card-image [data]="team"></app-card-image>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="valores-section" class="mb-5">
+  <div class="row p-50 text-center mb-5"  style="background: #B385B6; background: linear-gradient(90deg,rgba(179, 133, 182, 1) 0%, rgba(54, 109, 185, 1) 100%);">
+    <h1 class="text-white lh-1 mb-3 large-h1--title" >UNA COMPAÑÍA CON VALORES Y LIDERAZGO</h1>
+    <h2 class="text-white large-h2--subtitle" >Testimonios de clientes nos respalda</h2>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center mb-4">
+      <h1 class="fs-36 ff-montserrat">Valores de Chayim MLM</h1>
+    </div>
+    <div class="col-12">
+      <div class="row justify-content-center ">
+        <div class="col-md-9 col-12">
+          <div class="row">
+            <div class="col-md-3 col-12 mb-2">
+              <div class="text-center">
+                <img src="assets/images/Group 7.png" alt="" style="width: 110px; margin-bottom: 10px;">
+                <p class="ff-montserrat fs-20 fw-bold">Misión Chayim</p>
+                <p class="lh-1 fs-16">Ayudar a millones de familias con ética, seguridad y eficiencia. Ayudar a que estas familias logren sus sueños y objetivos.</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-12 mb-2">
+              <div class="text-center">
+                <img src="assets/images/Group 8.png" alt="" style="width: 110px; margin-bottom: 10px;">
+                <p class="ff-montserrat fs-20 fw-bold">Visión Chayim</p>
+                <p class="lh-1 fs-16">Facilitar la vida de las personas con nuestras líneas de productos brindando un sistema educativo único y creando un legado de historia</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-12 mb-2">
+              <div class="text-center">
+                <img src="assets/images/Group 9.png" alt="" style="width: 110px; margin-bottom: 10px;">
+                <p class="ff-montserrat fs-20 fw-bold">Filosofía de la empresa</p>
+                <p class="lh-1 fs-16">Dios<br>Amor<br>Familia<br>Como motor de cambio</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-12 mb-2">
+              <div class="text-center">
+                <img src="assets/images/Group 10.png" alt="" style="width: 110px; margin-bottom: 10px;">
+                <p class="ff-montserrat fs-20 fw-bold">Ayuda Social ONG</p>
+                <p class="lh-1 fs-16">Ayuda a los más necesitados, brindando donaciones por cada paquete vendido.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="testimonial-section" class="mb-5">
+  <div class="row">
+    <div class="col-12 text-center mb-4">
+      <h1 class="fs-36 ff-montserrat">Nuestro Clientes nos respaldan</h1>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <ng-container *ngFor="let testimonial of testimonialList">
+          <div class="col-md-4 col-12 mb-2">
+            <app-card-testimonials [data]="testimonial"></app-card-testimonials>
+          </div>
+        </ng-container>
+        
+      </div>
+    </div>
+  </div>
+</div>
+

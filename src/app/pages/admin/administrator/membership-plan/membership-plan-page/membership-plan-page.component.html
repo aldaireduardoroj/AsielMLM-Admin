@@ -1,0 +1,35 @@
+<div class="p-30 text-center bg-primary ">
+  <h1 class="text-white">NUESTRO PLANES DE AFILIACIÓN:
+    INDUSTRIA NETWORKER</h1>
+    <h4 class="text-white">Llevamos la abundancia a tu hogar</h4>
+</div>
+
+<div class="text-center p-t-20">
+  <h1 class="m-b-40">Inicia tu negocio como franquiciante y gana</h1>
+  <nz-row class="m-b-20 justify-content-center">
+    <nz-col [nzLg]="24" [nzSm]="24" [nzXs]="24" class="m-b-10">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let plan of planList">
+          <ng-template carouselSlide [id]="plan.id">
+            <div>
+              <div class="mb-4">
+                <img [src]="env.hostUrl + '/storage/' + plan.file.path" alt="" class="img-fluid rounded">
+              </div>
+              <div class="text-center">
+                <button class="btn p-5 btn-primary bg-rojo btn-md" (click)="onPaymentPlan( plan )" >Comprar</button>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </nz-col>
+  </nz-row>
+  <nz-row class="m-b-20">
+    <nz-col [nzXs]="24" class="m-b-10">
+      <div class="text-center rounded-lg p-10" style="background-color: #F5F7FA;">
+        <h3 style="color: #717171;">Afíliate y gana a través Bono de venta directa, Bono flash, Bono de red de mercadeo, venta de reconsumo</h3>
+        <h2>Mar información +</h2>
+      </div>
+    </nz-col>
+  </nz-row>
+</div>
