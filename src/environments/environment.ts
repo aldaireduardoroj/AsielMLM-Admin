@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  hostUrl: 'https://api.chayimworld.com' ,// 'http://127.0.0.1:8000',
+  hostUrl: 'http://127.0.0.1:8000' ,// 'http://127.0.0.1:8000',
   serveUrl: "http://localhost:4203"
 };
 

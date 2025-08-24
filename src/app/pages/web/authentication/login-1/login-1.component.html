@@ -68,8 +68,8 @@
                   <nz-row class="m-b-20">
                     <nz-col [nzSm]="24" [nzXs]="24">
                       <nz-form-item>
-                        <nz-form-label nzFor="email"
-                          ><span style="color: #202224;">Correo Electrónico</span></nz-form-label
+                        <nz-form-label nzFor="dni"
+                          ><span style="color: #202224;">DNI</span></nz-form-label
                         >
                         <nz-form-control [nzErrorTip]="errorEmail">
 
@@ -90,13 +90,13 @@
                           <input
                             type="text"
                             nz-input
-                            formControlName="email"
+                            formControlName="dni"
                           />
                           <ng-template #errorEmail let-control>
                             <ng-container *ngIf="control.hasError('required')">Campo obligatorio.</ng-container>
-                            <ng-container *ngIf="control.hasError('email')">
+                            <!-- <ng-container *ngIf="control.hasError('email')">
                               Email incorrecto
-                            </ng-container>
+                            </ng-container> -->
                           </ng-template>
 
                         </nz-form-control>

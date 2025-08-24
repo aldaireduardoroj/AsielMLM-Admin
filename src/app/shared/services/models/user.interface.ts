@@ -5,6 +5,7 @@ export interface UserModel {
   id: number;
   name: string;
   email: string;
+  dni: string;
   uuid: string;
   address: string;
   phone: string;

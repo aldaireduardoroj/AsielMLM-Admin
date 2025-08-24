@@ -31,11 +31,11 @@
         <nz-row class="">
           <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-30">
             <nz-form-item>
-              <nz-form-label nzFor="address">Dirección de domicilio</nz-form-label>
+              <nz-form-label nzFor="dni">DNI</nz-form-label>
               <nz-form-control
                 nzErrorTip=""
               >
-                <input formControlName="address" id="address" nz-input class="input__h-50 bg--input"/>
+                <input formControlName="dni" id="dni" nz-input class="input__h-50 bg--input"/>
               </nz-form-control>
             </nz-form-item>
           </nz-col>
@@ -70,6 +70,28 @@
         <nz-row class="">
           <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-30">
             <nz-form-item>
+              <nz-form-label nzFor="address">Dirección de domicilio</nz-form-label>
+              <nz-form-control
+                nzErrorTip=""
+              >
+                <input formControlName="address" id="address" nz-input class="input__h-50 bg--input"/>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-30">
+            <nz-form-item>
+              <nz-form-label nzFor="country">País</nz-form-label>
+              <nz-form-control
+                nzErrorTip=""
+              >
+                <input formControlName="country" id="country" nz-input class="input__h-50 bg--input"/>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+        </nz-row>
+        <nz-row class="">
+          <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-30">
+            <nz-form-item>
               <nz-form-label nzFor="city">Ciudad</nz-form-label>
               <nz-form-control
                 nzErrorTip=""
@@ -91,16 +113,7 @@
           </nz-col>
         </nz-row>
         <nz-row class="">
-          <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-30">
-            <nz-form-item>
-              <nz-form-label nzFor="country">País</nz-form-label>
-              <nz-form-control
-                nzErrorTip=""
-              >
-                <input formControlName="country" id="country" nz-input class="input__h-50 bg--input"/>
-              </nz-form-control>
-            </nz-form-item>
-          </nz-col>
+          
           <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-30">
             <nz-form-item>
               <nz-form-label nzFor="gender">Sexo</nz-form-label>

@@ -6,40 +6,40 @@ export interface ICardImageData{
 
 export const teamMembers: Array<ICardImageData> = [
     {
-        image: "assets/images/Group 1000001907.jpg",
-        name: "Ángel Quinto",
+        image: "assets/images/Group 1000002315.jpg",
+        name: "Jean Berrios",
         subName: "CEO & Founder"
     },
     {
-        image: "assets/images/Group 3.jpg",
-        name: "Cristina Mean",
+        image: "assets/images/Group 1000002317.jpg",
+        name: "Víctor Gaytan",
         subName: "CEO & Founder"
     },
     {
-        image: "assets/images/Group 4.jpg",
-        name: "Carlos Choquepuma",
+        image: "assets/images/Group 1000002320.jpg",
+        name: "Yolanda Galindo",
         subName: "CEO & Founder"
     }
 ]
 
 export const productList: Array<ICardImageData> = [
     {
-        image: "assets/images/Group 1000001915.jpg",
-        name: "Lumora",
+        image: "assets/images/Group 1000002321.jpg",
+        name: "Colágeno Aziel",
         subName: "Colágeno Triple Acción"
     },
     {
-        image: "assets/images/Group 1000001916.jpg",
+        image: "assets/images/Group 1000002322.jpg",
         name: "Sacha Jergón",
         subName: "Suplemento Alimenticio"
     },
     {
-        image: "assets/images/Group 1000001917.jpg",
-        name: "Oryza Soap",
+        image: "assets/images/Group 1000002323.jpg",
+        name: "Capuccino Aziel",
         subName: "Belleza Personal"
     },
     {
-        image: "assets/images/Group 1000001918.jpg",
+        image: "assets/images/Group 1000002324.jpg",
         name: "Catálogo de Productos",
         subName: "Click para descargar PDF"
     }

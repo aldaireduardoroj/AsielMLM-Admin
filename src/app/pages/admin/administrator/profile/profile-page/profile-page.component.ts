@@ -59,7 +59,8 @@ export class ProfilePageComponent implements OnInit {
   ) {
     this.validateForm = this.fb.group({
       address: [null],
-      email: [{value: null , disabled: true}, [Validators.required, Validators.required]],
+      email: [{value: null , disabled: true}, [Validators.required]],
+      dni: [{value: null , disabled: true}, [Validators.required]],
       phoneNumber: [null],
       city: [null],
       country: [null],
@@ -103,6 +104,7 @@ export class ProfilePageComponent implements OnInit {
           city: response.data.city,
           gender: response.data.genger,
           country: response.data.country,
+          dni: response.data.dni
         });
         this.userCode = response.data.uuid;
 

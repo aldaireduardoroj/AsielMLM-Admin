@@ -46,6 +46,7 @@ export class RegisterComponent implements OnInit {
     this.frmRegister = this.fb.group({
       userName: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
+      dni: [null, [Validators.required]],
       password: [null, [Validators.required, Validators.minLength(8)]],
       repeatpassword: [null, [Validators.required]],
       terms: [null , [Validators.required]]
@@ -58,10 +59,11 @@ export class RegisterComponent implements OnInit {
   }
 
   private setCommad(): any{
-    const { userName , email, password, repeatpassword} = this.frmRegister.getRawValue();
+    const { userName , email, password, repeatpassword, dni} = this.frmRegister.getRawValue();
     return {
       name: userName,
       email: email,
+      dni: dni,
       password: password,
       password_confirmation: repeatpassword
     }
@@ -84,18 +86,7 @@ export class RegisterComponent implements OnInit {
         this.loadingSubmit = false;
       }
     )
-    // this.beautifulFastService.postAuthenticationRegister( this.setCommad() ).subscribe(
-    //   (res) => {
 
-    //     const {  phonenumber} = this.frmRegister.getRawValue();
-    //     this.loadingSubmit = false;
-
-    //     this.router.navigate(['/auth/validate-confirmation'] , { queryParams: { phonenumber: phonenumber } });
-    //   },(error) => {
-    //     this.modalService.error(error.message)
-    //     this.loadingSubmit = false;
-    //   }
-    // )
 
   }
 

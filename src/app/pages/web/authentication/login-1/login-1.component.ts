@@ -57,7 +57,7 @@ export class Login1Component implements OnInit{
 
     initForm(): void {
       this.frmLogin = this.fb.group({
-        email: [null, [Validators.required , Validators.email]],
+        dni: [null, [Validators.required]],
         password: [null, [Validators.required  ]],
         remember: [null],
         terms: [null]
@@ -70,7 +70,7 @@ export class Login1Component implements OnInit{
 
     private commnad(): any {
       return {
-        email: this.frmLogin.get('email')!.value,
+        dni: this.frmLogin.get('dni')!.value,
         password: this.frmLogin.get('password')!.value
       }
     }

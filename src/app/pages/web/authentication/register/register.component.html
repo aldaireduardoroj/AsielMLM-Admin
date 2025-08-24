@@ -99,6 +99,25 @@
                 <nz-row>
                   <nz-col [nzSm]="24" [nzXs]="24">
                     <nz-form-item>
+                      <nz-form-label nzRequired nzFor="dni"
+                        >DNI</nz-form-label
+                      >
+                      <nz-form-control [nzErrorTip]="errordni">
+
+                        <input type="text" nz-input placeholder="" formControlName="dni" />
+                        <ng-template #errordni let-control>
+                          <ng-container *ngIf="control.hasError('required')">Campo obligatorio.</ng-container>
+                          <!-- <ng-container *ngIf="control.hasError('dni')">
+                            Email incorrecto
+                          </ng-container> -->
+                        </ng-template>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </nz-col>
+                </nz-row>
+                <nz-row>
+                  <nz-col [nzSm]="24" [nzXs]="24">
+                    <nz-form-item>
                       <nz-form-label nzRequired nzFor="password"
                         >Contraseña</nz-form-label
                       >
