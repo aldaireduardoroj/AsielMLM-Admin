@@ -1,23 +1,26 @@
-<div class="p-30 text-center bg-primary ">
-  <h1 class="text-white">NUESTRO PLANES DE AFILIACIÓN:
+<div class="p-30 text-center">
+  
+    <h1 class="fs-20">NUESTRO PLANES DE AFILIACIÓN:<br>
     INDUSTRIA NETWORKER</h1>
-    <h4 class="text-white">Llevamos la abundancia a tu hogar</h4>
 </div>
 
 <div class="text-center p-t-20">
-  <h1 class="m-b-40">Inicia tu negocio como franquiciante y gana</h1>
-  <nz-row class="m-b-20 justify-content-center">
+  <!-- <h1 class="m-b-40">Inicia tu negocio como franquiciante y gana</h1> -->
+  <nz-row class="m-b-30 justify-content-center">
     <nz-col [nzLg]="24" [nzSm]="24" [nzXs]="24" class="m-b-10">
       <owl-carousel-o [options]="customOptions">
         <ng-container *ngFor="let plan of planList">
           <ng-template carouselSlide [id]="plan.id">
-            <div>
-              <div class="mb-4">
+            <div class="position-relative text-center p-t-20">
+              <h2 class="m-0 fs-25 text-center position-relative" style="z-index: 9;">{{ plan.title }}</h2>
+              <div class="m-b-10 " style="margin-top: -50px;">
                 <img [src]="env.hostUrl + '/storage/' + plan.file.path" alt="" class="img-fluid rounded">
               </div>
-              <div class="text-center">
-                <button class="btn p-5 btn-primary bg-rojo btn-md" (click)="onPaymentPlan( plan )" >Comprar</button>
-              </div>
+              <p style="margin-top: -50px;">Precio {{ plan.price | number: '1.2' }} PEN, Valor {{ plan.points }} Puntos</p>
+            </div>
+            <div class="text-center p-t-20">
+              <button class="btn p-5 btn-primary bg-rojo btn-md"  disabled >Comprar</button>
+              <!-- (click)="onPaymentPlan( plan )" -->
             </div>
           </ng-template>
         </ng-container>
@@ -25,9 +28,15 @@
     </nz-col>
   </nz-row>
   <nz-row class="m-b-20">
+    <nz-col [nzXs]="24" class="m-b-10 text-center">
+      <p style="font-weight: 600;">Número de cuenta BCP Soles de la empresa es 191585831150425.  Yape: +51 904 724 635</p>
+      <p style="font-weight: 600;">Mi número de cuenta interbancaria es 002191198583155042526.</p>
+    </nz-col>
+  </nz-row>
+  <nz-row class="m-b-20">
     <nz-col [nzXs]="24" class="m-b-10">
-      <div class="text-center rounded-lg p-10" style="background-color: #F5F7FA;">
-        <h3 style="color: #717171;">Afíliate y gana a través Bono de venta directa, Bono flash, Bono de red de mercadeo, venta de reconsumo</h3>
+      <div class="text-center rounded-lg p-20" style="background-color: #FFFFFF;">
+        <h3 style="color: #717171;">Afíliate y gana a través Bono de venta directa, Bono residual, Bono indirecta, Rangos, entre otros.</h3>
         <h2>Mar información +</h2>
       </div>
     </nz-col>

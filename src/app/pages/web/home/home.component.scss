@@ -157,12 +157,15 @@ p{
     padding: 10px 25px;
   }
   .text--title--banner{
-    padding-top: 7px;
+    padding-top: 0px;
     font-size: 25px;
     position: relative;
     z-index: 3;
     text-transform: capitalize;
     line-height: 1.1;
+  }
+  .banner--home--btn{
+    font-size: 20px;
   }
   .p-50{
     padding: 10px !important;

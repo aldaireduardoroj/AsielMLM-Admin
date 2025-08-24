@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  hostUrl: 'http://127.0.0.1:8000' ,// 'http://127.0.0.1:8000',
-  serveUrl: "http://localhost:4203"
+  hostUrl: 'https://api.asielnetwork.com' ,// 'http://127.0.0.1:8000',
+  serveUrl: "https://asielnetwork.com"
 };
 
 /*
