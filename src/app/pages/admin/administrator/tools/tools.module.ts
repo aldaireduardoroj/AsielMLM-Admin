@@ -10,6 +10,7 @@ import { ToolsUsersSponsorModalComponent } from './tools-users-page/tools-users-
 import { ToolsUsersResetModalComponent } from './tools-users-page/tools-users-reset-modal/tools-users-reset-modal.component';
 import { ToolsCashPageComponent } from './tools-cash-page/tools-cash-page.component';
 import { ToolsUsersReactiveModalComponent } from './tools-users-page/tools-users-reactive-modal/tools-users-reactive-modal.component';
+import { ToolsUserAddModalComponent } from './tools-users-page/tools-user-add-modal/tools-user-add-modal.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,7 @@ const routes: Routes = [
     ToolsUsersResetModalComponent,
     ToolsCashPageComponent,
     ToolsUsersReactiveModalComponent,
+    ToolsUserAddModalComponent,
   ],
   imports: [
     SharedModule,

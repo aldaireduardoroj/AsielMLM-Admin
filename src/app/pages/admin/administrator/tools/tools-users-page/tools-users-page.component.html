@@ -19,10 +19,12 @@
         </nz-input-group>
         <ng-template #suffixTemplateInfoName><i nz-icon nzType="search"></i></ng-template>
 
-        <nz-select [(ngModel)]="planSelected" nzPlaceHolder="Todos" class="select--filter m-b-10" style="min-width: 180px;" (ngModelChange)="onChangePlan($event)" [nzAllowClear]="true">
+        <nz-select [(ngModel)]="planSelected" nzPlaceHolder="Todos" class="select--filter m-b-10" style="min-width: 180px; margin-right: 10px;" (ngModelChange)="onChangePlan($event)" [nzAllowClear]="true">
           <nz-option nzValue="-1" nzLabel="Sin Plan"></nz-option>
           <nz-option [nzValue]="item.id" [nzLabel]="item.title" *ngFor="let item of planList"></nz-option>
         </nz-select>
+
+        <button nz-button nzType="primary" (click)="onAddUser()" style="margin-bottom: 10px;">Agregar Usuario</button>
       </div>
     </nz-col>
   </nz-row>

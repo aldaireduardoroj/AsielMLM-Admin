@@ -12,6 +12,7 @@ import { ModalService } from '@shared/utilities/modal-services';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { forkJoin } from 'rxjs';
+import { ToolsUserAddModalComponent } from './tools-user-add-modal/tools-user-add-modal.component';
 
 const titleModalGeneral = "Selecciona qué deseas modificar";
 
@@ -282,4 +283,17 @@ export class ToolsUsersPageComponent implements OnInit {
       }
     )
   }
+
+  onAddUser(): void{
+    const modal = this.nzModalService.create({
+      nzTitle: "Agregar Usuario",
+      nzContent: ToolsUserAddModalComponent,
+      nzFooter: null,
+      nzWidth: "550px",
+      nzComponentParams: {
+
+      },
+    });
+  }
+
 }
