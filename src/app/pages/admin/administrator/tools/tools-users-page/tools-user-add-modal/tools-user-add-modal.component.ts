@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { ApiService } from '@shared/services/api.service';
 import { PackModel } from '@shared/services/models/packs.interface';
 import { FormValidator } from '@shared/utilities/form-validator';
+import { ModalService } from '@shared/utilities/modal-services';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-tools-user-add-modal',
@@ -21,6 +24,9 @@ export class ToolsUserAddModalComponent implements OnInit {
     private router: Router,
     private apiService: ApiService,
     private formValidator: FormValidator,
+    private message: NzMessageService,
+    private nzModalService: NzModalService,
+    private modalService: ModalService
   ) {
     this.frmRegister = this.fb.group({
       userName: [null, [Validators.required]],
@@ -33,12 +39,34 @@ export class ToolsUserAddModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadPlans();
+    this.loadPlans(); 
   }
 
+  private command(): any {
+    return {
+      name: this.frmRegister.get('userName')?.value,
+      email: this.frmRegister.get('email')?.value,
+      dni: this.frmRegister.get('dni')?.value,
+      password: this.frmRegister.get('password')?.value,
+      sponsor: this.frmRegister.get('sponsor')?.value,
+      plan: this.frmRegister.get('plan')?.value,
+    }
+  }
 
   onSubmit():void{
-
+    if( this.formValidator.validForm( this.frmRegister ) ){
+      this.apiService.postUserCreate( this.command() ).subscribe(
+        (response) => {
+          console.log(response)
+          this.nzModalService.closeAll();
+          this.modalService.success("Se creo el usuario correctamente");
+        }, (error) => {
+          console.log(error)
+          this.nzModalService.closeAll();
+          this.modalService.error(error.message ?? "Ocurrio un error!!!");
+        }
+      )
+    }
   }
 
   loadPlans(): void{

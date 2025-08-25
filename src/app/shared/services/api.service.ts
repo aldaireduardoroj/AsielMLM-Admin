@@ -292,4 +292,9 @@ export class ApiService {
     return this.httpService.post<IResponse<any>>( '/users/invited-removed' , command ).pipe(tap( res => res ));
   }
 
+  public postUserCreate( command: any ): Observable<IResponse<any>>{
+    // let options = { contentType: false, mimeType: 'multiplart/form-data' };
+    return this.httpService.post<IResponse<any>>( '/users/create-user' , command ).pipe(tap( res => res ));
+  }
+
 }

@@ -294,6 +294,10 @@ export class ToolsUsersPageComponent implements OnInit {
 
       },
     });
+
+    modal.afterClose.subscribe( () => {
+      this.onSearch();
+    })
   }
 
 }
