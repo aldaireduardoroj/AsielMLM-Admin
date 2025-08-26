@@ -560,7 +560,9 @@ fieldset.scheduler-border > legend {
 }
 
 @media (max-width: 768px){
-
+  .ant-card-body{
+    padding: 0.5rem 0.5rem;
+  }
 }
 
 .navbar{

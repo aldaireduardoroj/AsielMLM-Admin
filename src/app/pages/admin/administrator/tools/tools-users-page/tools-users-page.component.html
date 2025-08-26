@@ -7,7 +7,7 @@
       </div>
     </nz-col>
     <nz-col [nzXs]="24" class="m-b-20">
-      <div class="d-flex align-items-center card--shadow p-20">
+      <div class="d-flex align-items-center card--shadow p-20 m-rows">
         <h4 class="m-0 p-r-20 m-b-10">All ({{ totalRecord }})</h4>
         <nz-input-group [nzPrefix]="suffixTemplateInfo" style="max-width: 300px; background-color: #F8F9FA; border-radius: 20px; border: 0; margin-right: 10px; margin-bottom: 10px;" >
           <input type="text" [(ngModel)]="codeUser" nz-input placeholder="Buscar usuario por ID" style="background-color: #F8F9FA;" appDelayedInput (delayedInput)="onSearch()"/>
