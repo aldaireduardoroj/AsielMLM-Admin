@@ -434,7 +434,9 @@ export class ECOTree {
       else node.prelim = 0;
     } else {
       const n = node._getChildrenCount();
-      for (let i = 0; i < n; i++) {
+      for (let i = 0; i < n; i++) 
+      // for (let i = n - 1; i >= 0; i--) 
+      {
         const iChild = node._getChildAt(i);
         this._firstWalk(tree, iChild, level + 1);
       }

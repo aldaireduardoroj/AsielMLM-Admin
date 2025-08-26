@@ -55,15 +55,18 @@ export class ToolsUserAddModalComponent implements OnInit {
 
   onSubmit():void{
     if( this.formValidator.validForm( this.frmRegister ) ){
+      this.loadingSubmit = true;
       this.apiService.postUserCreate( this.command() ).subscribe(
         (response) => {
           console.log(response)
           this.nzModalService.closeAll();
           this.modalService.success("Se creo el usuario correctamente");
+          this.loadingSubmit = false;
         }, (error) => {
           console.log(error)
           this.nzModalService.closeAll();
           this.modalService.error(error.message ?? "Ocurrio un error!!!");
+          this.loadingSubmit = false;
         }
       )
     }
