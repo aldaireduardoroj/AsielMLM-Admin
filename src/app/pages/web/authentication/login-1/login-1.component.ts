@@ -70,7 +70,7 @@ export class Login1Component implements OnInit{
 
     private commnad(): any {
       return {
-        dni: this.frmLogin.get('dni')!.value,
+        uuid: this.frmLogin.get('dni')!.value,
         password: this.frmLogin.get('password')!.value
       }
     }
