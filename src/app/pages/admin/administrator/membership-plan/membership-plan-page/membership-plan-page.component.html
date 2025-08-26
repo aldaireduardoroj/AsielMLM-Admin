@@ -19,8 +19,8 @@
               <p style="margin-top: -50px;">Precio {{ plan.price | number: '1.2' }} PEN, Valor {{ plan.points }} Puntos</p>
             </div>
             <div class="text-center p-t-20">
-              <button class="btn p-5 btn-primary bg-rojo btn-md"  disabled >Comprar</button>
-              <!-- (click)="onPaymentPlan( plan )" -->
+              <button nz-button nzType="primary" class="bg-rojo" (click)="onPaymentPlan( plan )">Comprar</button>
+              <!--  -->
             </div>
           </ng-template>
         </ng-container>

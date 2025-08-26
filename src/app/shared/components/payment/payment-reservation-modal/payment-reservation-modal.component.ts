@@ -62,8 +62,6 @@ export class PaymentReservationModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadOptions();
-    console.log(this.planSelected)
-    console.log(this.userModel)
     this.isReactivePlan = this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO;
   }
 

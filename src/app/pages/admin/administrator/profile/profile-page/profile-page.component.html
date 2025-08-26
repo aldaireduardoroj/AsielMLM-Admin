@@ -29,16 +29,6 @@
       <!-- <h3>Datos del Afiliado</h3> -->
       <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
         <nz-row class="">
-          <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-30">
-            <nz-form-item>
-              <nz-form-label nzFor="dni">DNI</nz-form-label>
-              <nz-form-control
-                nzErrorTip=""
-              >
-                <input formControlName="dni" id="dni" nz-input class="input__h-50 bg--input"/>
-              </nz-form-control>
-            </nz-form-item>
-          </nz-col>
 
           <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-10">
             <nz-form-item>
@@ -66,6 +56,23 @@
               </nz-form-control>
             </nz-form-item>
           </nz-col>
+
+          <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-30">
+            <nz-form-item>
+              <nz-form-label nzFor="gender">Sexo</nz-form-label>
+              <nz-form-control
+                nzErrorTip=""
+              >
+
+
+                <nz-select formControlName="gender" class="input__h-50 bg--input">
+                  <nz-option nzLabel="Masculino" nzValue="M"></nz-option>
+                  <nz-option nzLabel="Femenino" nzValue="F"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          
         </nz-row>
         <nz-row class="">
           <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-30">
@@ -114,21 +121,7 @@
         </nz-row>
         <nz-row class="">
           
-          <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-30">
-            <nz-form-item>
-              <nz-form-label nzFor="gender">Sexo</nz-form-label>
-              <nz-form-control
-                nzErrorTip=""
-              >
-
-
-                <nz-select formControlName="gender" class="input__h-50 bg--input">
-                  <nz-option nzLabel="Masculino" nzValue="M"></nz-option>
-                  <nz-option nzLabel="Femenino" nzValue="F"></nz-option>
-                </nz-select>
-              </nz-form-control>
-            </nz-form-item>
-          </nz-col>
+          
         </nz-row>
       </form>
     </nz-col>

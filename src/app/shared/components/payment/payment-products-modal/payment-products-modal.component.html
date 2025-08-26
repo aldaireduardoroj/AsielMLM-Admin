@@ -83,7 +83,7 @@
     </form>
 
     <div class="m-b-20">
-      <button nz-button nzType="primary" nzBlock class="btn-payment" (click)="onPaymentFlow()" [nzLoading]="isLoadingFlow">
+      <button nz-button nzType="primary" nzBlock class="btn-payment" style="opacity: .4;" disabled (click)="onPaymentFlow()" [nzLoading]="isLoadingFlow">
         <p class="mb-0 text-white">PAGAR</p>
         <p class="mb-0 text-white">(PagoEfectivo exclusivo para Perú)</p>
       </button>
@@ -94,7 +94,7 @@
     </div>
 
     <div class="m-b-30">
-      <button nz-button nzType="primary" nzBlock class="btn-payment" (click)="onPaymentIzipay()" [nzLoading]="isLoadingIzipay">
+      <button nz-button nzType="primary" nzBlock class="btn-payment" style="opacity: .4;" disabled (click)="onPaymentIzipay()" [nzLoading]="isLoadingIzipay">
         <p class="mb-0 text-white">PAGAR</p>
         <p class="mb-0 text-white">(Credit/débit Card para todo Latam)</p>
       </button>
