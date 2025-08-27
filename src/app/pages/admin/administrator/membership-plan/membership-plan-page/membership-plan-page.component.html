@@ -16,7 +16,7 @@
               <div class="m-b-10 " style="margin-top: -50px;">
                 <img [src]="env.hostUrl + '/storage/' + plan.file.path" alt="" class="img-fluid rounded">
               </div>
-              <p style="margin-top: -50px;">Precio {{ plan.price }} PEN, Valor {{ plan.points }} Puntos</p>
+              <p style="margin-top: -50px;">Precio {{ plan.price | number : '1.0'}} PEN, Valor {{ plan.points }} Puntos</p>
             </div>
             <div class="text-center p-t-20">
               <button nz-button nzType="primary" class="bg-rojo" (click)="onPaymentPlan( plan )">Comprar</button>
