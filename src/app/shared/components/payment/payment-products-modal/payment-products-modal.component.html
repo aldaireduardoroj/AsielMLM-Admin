@@ -2,14 +2,14 @@
   <nz-spin nzTip="Verificando..." [nzSpinning]="isSpinning">
     <nz-row class="m-b-10 p-t-20">
       <nz-col [nzSm]="12" [nzXs]="12" >
-        <p class="m-0 fs-15 text-gray-6">Nombre del plan de afiliación :</p>
+        <p class="m-0 fs-14 text-gray-6">Nombre del plan de afiliación :</p>
       </nz-col>
       <nz-col [nzSm]="12" [nzXs]="12" class="text-right">
         <ng-container *ngIf="userModel?.payment?.payment_order != null">
-          <p class="m-0 fs-15 text-gray-6"><b>{{ userModel?.payment?.payment_order?.pack?.title }}</b></p>
+          <p class="m-0 fs-14 text-gray-6"><b>{{ userModel?.payment?.payment_order?.pack?.title }}</b></p>
         </ng-container>
         <ng-container *ngIf="userModel?.payment?.payment_order == null">
-          <p class="m-0 fs-15 text-gray-6"><b>DESACTIVADO</b></p>
+          <p class="m-0 fs-14 text-gray-6"><b>DESACTIVADO</b></p>
         </ng-container>
 
       </nz-col>
@@ -17,10 +17,10 @@
 
     <nz-row class="m-b-10">
       <nz-col [nzSm]="12" [nzXs]="12" >
-        <p class="m-0 fs-15 text-gray-6">Puntos ganados por compra :</p>
+        <p class="m-0 fs-14 text-gray-6">Puntos ganados por compra :</p>
       </nz-col>
       <nz-col [nzSm]="12" [nzXs]="12" class="text-right">
-        <p class="m-0 fs-15 text-gray-6">{{totalPoints}} puntos</p>
+        <p class="m-0 fs-14 text-gray-6">{{totalPoints}} puntos</p>
       </nz-col>
     </nz-row>
 
@@ -43,13 +43,13 @@
       </nz-col>
       <nz-col [nzSm]="24" [nzXs]="24" class="m-b-10">
         <div class="d-flex align-items-center justify-content-between">
-          <p class="m-0 fs-15 text-gray-6 notranslate">Descuento por ser socio Distribuidor:</p> <b>{{ amountDiscount | number: '1.2'}}% Desc</b>
+          <p class="m-0 fs-14 text-gray-6 notranslate">Descuento por ser socio Distribuidor:</p> <b>{{ amountDiscount | number: '1.2'}}% Desc</b>
         </div>
       </nz-col>
       <nz-col [nzSm]="24" [nzXs]="24" class="m-b-10">
         <div class="d-flex align-items-center justify-content-between">
-          <p class="m-0 fs-15 text-gray-6 fs-22"><b>TOTAL:</b></p>
-          <p class="m-0 fs-15 text-gray-6 fs-22 notranslate"><b>S/. {{ totalBuy | number: '1.0-2' }}</b></p>
+          <p class="m-0 fs-14 text-gray-6 fs-22"><b>TOTAL:</b></p>
+          <p class="m-0 fs-14 text-gray-6 fs-22 notranslate"><b>S/. {{ totalBuy | number: '1.0-2' }}</b></p>
         </div>
       </nz-col>
     </nz-row>
@@ -84,8 +84,8 @@
 
     <div class="m-b-20">
       <button nz-button nzType="primary" nzBlock class="btn-payment" style="opacity: .4;" disabled (click)="onPaymentFlow()" [nzLoading]="isLoadingFlow">
-        <p class="mb-0 text-white">PAGAR</p>
-        <p class="mb-0 text-white">(PagoEfectivo exclusivo para Perú)</p>
+        <p class="mb-0 text-white fs-14">PAGAR</p>
+        <p class="mb-0 text-white fs-14">(PagoEfectivo exclusivo para Perú)</p>
       </button>
     </div>
 
@@ -95,8 +95,8 @@
 
     <div class="m-b-30">
       <button nz-button nzType="primary" nzBlock class="btn-payment" style="opacity: .4;" disabled (click)="onPaymentIzipay()" [nzLoading]="isLoadingIzipay">
-        <p class="mb-0 text-white">PAGAR</p>
-        <p class="mb-0 text-white">(Credit/débit Card para todo Latam)</p>
+        <p class="mb-0 text-white fs-14">PAGAR</p>
+        <p class="mb-0 text-white fs-14">(Credit/débit Card para todo Latam)</p>
       </button>
     </div>
 

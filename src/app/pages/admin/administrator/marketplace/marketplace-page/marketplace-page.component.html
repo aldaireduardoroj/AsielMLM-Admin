@@ -1,6 +1,6 @@
 <nz-card  style="border: 0;">
 
-  <nz-card-tab >
+  <nz-card-tab class="tab-makerplace">
     <nz-tabset nzSize="large" [(nzSelectedIndex)]="tabIndex" [nzTabBarExtraContent]="extraTemplate">
       <nz-tab nzTitle="Tienda">
         <div class="row justify-content-between">
@@ -26,7 +26,7 @@
 
         <div class="d-flex justify-content-between align-items-end m-b-20 p-t-10">
           <div>
-            <p class="font-size-16 m-0 text-uppercase"> {{ userModel?.name ?? "" }}/
+            <p class="font-size-13 m-0 text-uppercase "> {{ userModel?.name ?? "" }}/
               <ng-container *ngIf="userModel?.payment?.payment_order != null">
                 {{ userModel?.payment?.payment_order?.pack?.title }} -
                 <span class="d-inline-flex align-items-center">
@@ -68,8 +68,8 @@
                 <img nz-image [nzSrc]="env.hostUrl + '/storage/' + product.file_image?.path" alt="" class="img-fluid rounded">
               </div>
               <div class="m-b-20">
-                <p class="m-b-10 font-size-16 notranslate"><b>{{ product.title }}</b> - <span style="color: #A6A6A6;"><b>{{ product.points }} Ptos</b></span></p>
-                <p class="font-size-16"><span style="color: #A6A6A6;">Precio Regular :</span> &nbsp;&nbsp;<b>{{ product.price }} Soles</b></p>
+                <p class="m-b-10 font-size-14 notranslate "><b>{{ product.title }}</b> - <span style="color: #A6A6A6;"><b>{{ product.points }} Ptos</b></span></p>
+                <p class="font-size-14"><span style="color: #A6A6A6;">Precio Regular :</span> &nbsp;&nbsp;<b>{{ product.price | number : '1.0'}} Soles</b></p>
               </div>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="text-black d-flex align-items-center p-10" style="background-color: #F0F0F0; border-radius: 20px;">
@@ -107,8 +107,8 @@
   <nz-row class="m-b-20 p-t-30">
     <nz-col [nzXs]="24" class="m-b-10">
       <div class="text-center rounded-lg p-10" style="background-color: #F5F7FA;">
-        <h3 style="color: #717171;">Si estás afiliado a algún plan de distribución aplicas a descuentos exclusivos</h3>
-        <a href="assets/pdf/PPT IG AGOSTO 2024 (Final).pdf" download target="_blank"><h2>Mar información +</h2></a>
+        <h3 style="color: #717171;" class="fs-15">Si estás afiliado a algún plan de distribución aplicas a descuentos exclusivos</h3>
+        <a href="#" download target="_blank" class="fs-18"><h2>Mar información +</h2></a>
       </div>
     </nz-col>
   </nz-row>

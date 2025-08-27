@@ -16,7 +16,7 @@
               <div class="m-b-10 " style="margin-top: -50px;">
                 <img [src]="env.hostUrl + '/storage/' + plan.file.path" alt="" class="img-fluid rounded">
               </div>
-              <p style="margin-top: -50px;">Precio {{ plan.price | number: '1.2' }} PEN, Valor {{ plan.points }} Puntos</p>
+              <p style="margin-top: -50px;">Precio {{ plan.price }} PEN, Valor {{ plan.points }} Puntos</p>
             </div>
             <div class="text-center p-t-20">
               <button nz-button nzType="primary" class="bg-rojo" (click)="onPaymentPlan( plan )">Comprar</button>
@@ -36,8 +36,8 @@
   <nz-row class="m-b-20">
     <nz-col [nzXs]="24" class="m-b-10">
       <div class="text-center rounded-lg p-20" style="background-color: #FFFFFF;">
-        <h3 style="color: #717171;">Afíliate y gana a través Bono de venta directa, Bono residual, Bono indirecta, Rangos, entre otros.</h3>
-        <h2>Mar información +</h2>
+        <h3 style="color: #717171;" class="fs-15">Afíliate y gana a través Bono de venta directa, Bono residual, Bono indirecta, Rangos, entre otros.</h3>
+        <h2 class="fs-18">Mar información +</h2>
       </div>
     </nz-col>
   </nz-row>
