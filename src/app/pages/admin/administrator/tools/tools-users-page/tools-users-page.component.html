@@ -55,8 +55,8 @@
             <th [nzAlign]="'center'">Puntos Grupales</th>
             <th [nzAlign]="'center'">Bono Infinito</th>
             <th [nzAlign]="'center'">Puntos Gran total</th>
-            <th [nzAlign]="'center'" nzRight>Ver</th>
-            <th [nzAlign]="'center'" nzRight>Accion</th>
+            <th [nzAlign]="'center'">Ver</th>
+            <th [nzAlign]="'center'">Accion</th>
           </tr>
         </thead>
         <tbody>
@@ -83,10 +83,10 @@
             <td nzAlign="center">{{ (item?.points?.pointGroup ?? 0)  }}</td>
             <td nzAlign="center">{{ item?.points?.infinito ?? 0 }}</td>
             <td nzAlign="center">{{ item?.totalPoints ?? 0 }}</td>
-            <td nzAlign="center" nzRight>
+            <td nzAlign="center">
               <nz-tag [nzColor]="'#87d068'" class="pointer m-0" (click)="onSeletedUSer(item.uuid, item)">VER</nz-tag>
             </td>
-            <td nzAlign="center" nzRight>
+            <td nzAlign="center">
               <button nz-button (click)="onDetailUser( item , tplContent)" [nzSize]="'small'" nzShape="circle">
                 <i nz-icon nzType="ellipsis"></i>
               </button>

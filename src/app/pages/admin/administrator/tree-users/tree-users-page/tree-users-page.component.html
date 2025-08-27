@@ -28,7 +28,7 @@
     </nz-col>
 
     <nz-col [nzLg]="24" [nzXs]="24" class="p-b-30">
-      <div style="overflow-y: auto; width: 100%;">
+      <div style="overflow-y: auto; width: 100%; padding-right: 25px; padding-left: 20px; padding-bottom: 40px;">
         <ng-container *ngIf="isChart">
           <app-tree-view #treeView [data]="data" [template]="treeTemplate" >
           </app-tree-view>
