@@ -96,7 +96,7 @@
             </nz-form-item>
           </nz-col>
         </nz-row>
-        <nz-row class="">
+        <nz-row class="m-b-20">
           <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-30">
             <nz-form-item>
               <nz-form-label nzFor="city">Ciudad</nz-form-label>
@@ -120,8 +120,9 @@
           </nz-col>
         </nz-row>
         <nz-row class="">
-          
-          
+          <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-10">
+            <button nz-button nzType="primary" (click)="onAddUser()" style="margin-bottom: 10px;">Agregar Usuario</button>
+          </nz-col>
         </nz-row>
       </form>
     </nz-col>

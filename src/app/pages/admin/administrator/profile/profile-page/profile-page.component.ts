@@ -13,6 +13,7 @@ import { ModalService } from '@shared/utilities/modal-services';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { ProfileInvitedModalComponent } from './profile-invited-modal/profile-invited-modal.component';
 import { Router } from '@angular/router';
+import { ToolsUserAddModalComponent } from '../../tools/tools-users-page/tools-user-add-modal/tools-user-add-modal.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -368,5 +369,21 @@ export class ProfilePageComponent implements OnInit {
 
       }
     )
+  }
+
+  onAddUser(): void{
+    const modal = this.nzModalService.create({
+      nzTitle: "Agregar Usuario",
+      nzContent: ToolsUserAddModalComponent,
+      nzFooter: null,
+      nzWidth: "550px",
+      nzComponentParams: {
+
+      },
+    });
+
+    modal.afterClose.subscribe( () => {
+      
+    })
   }
 }

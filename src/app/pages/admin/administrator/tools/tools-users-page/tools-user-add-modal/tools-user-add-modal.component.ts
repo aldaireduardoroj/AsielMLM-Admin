@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '@shared/services/api.service';
 import { PackModel } from '@shared/services/models/packs.interface';
+import { ThemeConstantService } from '@shared/services/theme-constant.service';
 import { FormValidator } from '@shared/utilities/form-validator';
 import { ModalService } from '@shared/utilities/modal-services';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -18,7 +19,7 @@ export class ToolsUserAddModalComponent implements OnInit {
   frmRegister!: FormGroup;
   loadingSubmit: boolean = false;
   planList: Array<PackModel> = [];
-
+  isAdmin : boolean;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -26,7 +27,8 @@ export class ToolsUserAddModalComponent implements OnInit {
     private formValidator: FormValidator,
     private message: NzMessageService,
     private nzModalService: NzModalService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private themeService: ThemeConstantService,
   ) {
     this.frmRegister = this.fb.group({
       userName: [null, [Validators.required]],
@@ -36,6 +38,15 @@ export class ToolsUserAddModalComponent implements OnInit {
       sponsor: [null, [Validators.required]],
       plan: [null, [Validators.required]],
     });
+
+    this.themeService.isAdminUserChanges.subscribe(isAdmin => {
+        this.isAdmin = isAdmin;
+        if( !isAdmin ){
+          this.frmRegister.get('sponsor').setValue(localStorage.getItem("uuid"));
+          this.frmRegister.get('sponsor').disable();
+
+        }
+    } );
   }
 
   ngOnInit(): void {
@@ -58,7 +69,6 @@ export class ToolsUserAddModalComponent implements OnInit {
       this.loadingSubmit = true;
       this.apiService.postUserCreate( this.command() ).subscribe(
         (response) => {
-          console.log(response)
           this.nzModalService.closeAll();
           this.modalService.success("Se creo el usuario correctamente");
           this.loadingSubmit = false;
