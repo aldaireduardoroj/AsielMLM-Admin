@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from '@env/environment';
+import { CONSTANTS } from '@shared/constants/constants';
 import { ApiService } from '@shared/services/api.service';
 import { PackModel } from '@shared/services/models/packs.interface';
+import { UserModel } from '@shared/services/models/user.interface';
 import { ThemeConstantService } from '@shared/services/theme-constant.service';
 import { FormValidator } from '@shared/utilities/form-validator';
 import { ModalService } from '@shared/utilities/modal-services';
@@ -20,6 +23,14 @@ export class ToolsUserAddModalComponent implements OnInit {
   loadingSubmit: boolean = false;
   planList: Array<PackModel> = [];
   isAdmin : boolean;
+
+  avatarUrlNewSponsor: string = CONSTANTS.IMAGE.FALLBACK;
+  
+  newSponsor: UserModel;
+  
+  isSponsorNew: boolean = false;
+  loadingSearch: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -81,6 +92,28 @@ export class ToolsUserAddModalComponent implements OnInit {
       )
     }
   }
+
+  public onSearchSponsor(): void{
+      this.loadingSearch = true;
+      this.isSponsorNew = false;
+      this.apiService.getUsersSearch({code: this.frmRegister.get('sponsor').value ?? ""}).subscribe(
+        (response) => {
+          this.loadingSearch = false;
+          this.newSponsor = null;
+          if( response.success ){
+            if( response.data.length > 0 ){
+              this.isSponsorNew = true;
+              this.newSponsor = response.data[0];
+              this.avatarUrlNewSponsor = response.data[0]?.file?.path ? environment.hostUrl + '/storage/' + response.data[0]?.file?.path : CONSTANTS.IMAGE.FALLBACK;
+            }
+          }
+  
+        },
+        (error) => {
+          this.loadingSearch = false;
+        }
+      )
+    }
 
   loadPlans(): void{
     this.apiService.getPlansSearch({}).subscribe(

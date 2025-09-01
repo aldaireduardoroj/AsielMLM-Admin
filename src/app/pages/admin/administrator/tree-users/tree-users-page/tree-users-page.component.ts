@@ -54,7 +54,7 @@ export class TreeUsersPageComponent implements OnInit {
 
         if( children.length == 0 ){
 
-          for (let index = 0; index < 4; index++) {
+          for (let index = 0; index < 3; index++) {
             children.push(
               {
                 data: { id: "" +(1*index) , photo: 'assets/images/Ellipse 4.png' , name: "Usuario "+(1*index) },
