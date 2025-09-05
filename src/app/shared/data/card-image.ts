@@ -6,13 +6,13 @@ export interface ICardImageData{
 
 export const teamMembers: Array<ICardImageData> = [
     {
-        image: "assets/images/Group 1000002317.jpg",
-        name: "Jean Berrios",
+        image: "assets/images/foto de Gerente comercial.jpg",
+        name: "Víctor Gaytan",
         subName: "Gerente Comercial"
     },
     {
-        image: "assets/images/foto de Gerente comercial.jpg",
-        name: "Víctor Gaytan",
+        image: "assets/images/Foto de CEOjpg",
+        name: "Jean Berrios",
         subName: "CEO & Founder"
     },
     {
@@ -34,7 +34,7 @@ export const productList: Array<ICardImageData> = [
         subName: "Suplemento Alimenticio"
     },
     {
-        image: "assets/images/Group 1000003243.jpg",
+        image: "assets/images/Colgar este capuchino ahora.jpg",
         name: "Capuccino Aziel",
         subName: "Bebida/Nutrición"
     },
