@@ -11,7 +11,7 @@ export const teamMembers: Array<ICardImageData> = [
         subName: "Gerente Comercial"
     },
     {
-        image: "assets/images/Foto de CEOjpg",
+        image: "assets/images/Foto de CEO.jpg",
         name: "Jean Berrios",
         subName: "CEO & Founder"
     },
