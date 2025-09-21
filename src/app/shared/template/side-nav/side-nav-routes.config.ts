@@ -53,5 +53,14 @@ export const ROUTES: SideNavInterface[] = [
       icon: 'account-book',
       submenu: [],
       show: true
+    },
+    {
+      path: '/admin/multimedia',
+      title: 'Agregar Multimedia',
+      iconType: 'nzIcon',
+      iconTheme: 'outline',
+      icon: 'fast-forward',
+      submenu: [],
+      show: true
     }
 ]

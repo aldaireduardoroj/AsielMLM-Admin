@@ -19,6 +19,11 @@ export const teamMembers: Array<ICardImageData> = [
         image: "assets/images/Presidente.jpg",
         name: "Yolanda Galindo",
         subName: "Presidenta"
+    },
+    {
+        image: "assets/images/Group 1000001903.png",
+        name: "Daniel Taipe",
+        subName: "Trader Profesional"
     }
 ]
 

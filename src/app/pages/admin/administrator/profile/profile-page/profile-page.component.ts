@@ -14,6 +14,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { ProfileInvitedModalComponent } from './profile-invited-modal/profile-invited-modal.component';
 import { Router } from '@angular/router';
 import { ToolsUserAddModalComponent } from '../../tools/tools-users-page/tools-user-add-modal/tools-user-add-modal.component';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-profile-page',
@@ -50,6 +51,15 @@ export class ProfilePageComponent implements OnInit {
 
   currentDate: Date = new Date();
   oneMonthAgo: Date;
+
+  videoStories: Array<any> = [];
+  imageStories: Array<any> = [];
+
+  pathServer = environment.hostUrl + '/storage/';
+  effect = 'scrollx';
+
+  storySelected: any;
+
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
@@ -77,7 +87,7 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCurrentUser();
-    
+    this.loadStories();
   }
 
   public loadOptions(): void{
@@ -90,6 +100,22 @@ export class ProfilePageComponent implements OnInit {
         
       }
     )
+  }
+
+  public loadStories(): void{
+    forkJoin(
+      this.apiService.getUserPublishVideoStory({story: 1}),
+      this.apiService.getUserPublishVideoStory({story: 0})
+    ).subscribe(
+      ([stories, images]) => {
+        this.videoStories = stories.data;
+        this.imageStories = images.data;
+      }
+    )
+  }
+
+  get isImages(): boolean{
+    return this.imageStories.length > 0;
   }
 
   public loadCurrentUser(): void{
@@ -385,5 +411,12 @@ export class ProfilePageComponent implements OnInit {
     modal.afterClose.subscribe( () => {
       
     })
+  }
+
+  public onCloseStory(): void{
+    this.storySelected = null;
+  }
+  public onSelectedStory(item: any): void{
+    this.storySelected = item;
   }
 }

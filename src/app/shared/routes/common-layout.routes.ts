@@ -24,6 +24,10 @@ export const CommonLayout_ROUTES: Routes = [
     {
       path: 'finance',
       loadChildren: () => import(`../../pages/admin/administrator/finance/finance.module`).then(m => m.FinanceModule)
+    },
+    {
+      path: 'multimedia',
+      loadChildren: () => import(`../../pages/admin/administrator/multimedia/multimedia.module`).then(m => m.MultimediaModule)
     }
 
 ];

@@ -1,7 +1,32 @@
 <nz-card style="border: 0;">
-  <div class="row align-items-center">
-    <div class="col-md-7">
-
+  <div class="row align-items-center d-block d-sm-none">
+    <div class="col-md-12 m-b-20">
+      <div class="d-flex align-items-center">
+        <div class="w-100" style="padding-top: 10px; padding-bottom: 10px; padding-right: 5px; overflow: hidden;">
+          <div class="d-flex" style="flex-direction: row; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none;" >
+            <ng-container *ngFor="let item of videoStories">
+              <div class="d-inline-block text-center pointer" style="margin-right: 10px;" (click)="onSelectedStory(item)">
+                <img [src]="pathServer + item.preview.path" class="rounded-circle " style="width: 65px; height: 65px;"  alt="">
+                <p class="m-0 ff-inter fs-12">{{ item.name }}</p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div style="width: 50px; height: 105px; background-color: rgba(196, 196, 196, .15);" class="d-flex align-items-center justify-content-center">
+          <span class="fs-12 ff-inter" style="color: #076AFE;">All</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 m-b-20">
+      <ng-container *ngIf="isImages">
+        <nz-carousel [nzEffect]="effect">
+          <div nz-carousel-content *ngFor="let item of imageStories">
+            <a [href]="item.link" target="_blank" style="border-radius: 10px; overflow: hidden; display: block;">
+              <img [src]="pathServer + item.file.path" alt="" class="img-fluid">
+            </a>
+          </div>
+        </nz-carousel>
+      </ng-container>
     </div>
   </div>
   <nz-row class="m-b-20">
@@ -377,5 +402,22 @@
     </div>
   </div>
 </ng-template>
+
+<ng-container *ngIf="storySelected != null">
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #0000000a; z-index: 99999;">
+    <div style="width: 100%; height: calc( 100% - 90px ); background-color: #000; z-index: 999999; text-align: center;">
+      <span style="position: absolute; top: 20px; right: 20px; z-index: 99999999;" class="pointer" (click)="onCloseStory()"><i nz-icon nzType="close" style="color: #FFFFFF;" nzTheme="outline"></i></span>
+      <video [src]="pathServer + storySelected?.file.path" autoplay loop style="width: 100%; height: 100%;"></video>
+
+      <div style="position: absolute; bottom: 0; width: 100%; height: 115px; z-index: 99999999; text-align: center;">
+        <a [href]="storySelected?.link" class="d-inline-block" style="background-color: rgba(255, 255, 255, .8); border-radius: 19px; padding: 10px;"><i nz-icon class="fs-14" style="color: #1054DE;" nzType="link" nzTheme="outline"></i>&nbsp;&nbsp;Enlace</a>
+      </div>
+    </div>
+    <div style="width: 100%; height: 90px; background-color: #000; z-index: 999999; padding: 15px;">
+      <p class="m-0" style="color: #FFFFFF;">{{ storySelected?.description }}</p>
+    </div>
+  </div>
+</ng-container>
+
 
 

@@ -297,4 +297,18 @@ export class ApiService {
     return this.httpService.post<IResponse<any>>( '/users/create-user' , command ).pipe(tap( res => res ));
   }
 
+
+  public postUserPublishVideoStory( command: any ): Observable<IResponse<any>>{
+    let options = { contentType: false, mimeType: 'multiplart/form-data' };
+    return this.httpService.post<IResponse<any>>( '/users/story/video-image' , command , options).pipe(tap( res => res ));
+  }
+
+  public getUserPublishVideoStory(parameters: any = {}): Observable<IResponse< any >>{
+    let url = stringFormat(  '/users/story/video-image' );
+    let httpParams = new HttpParams({
+      fromObject: parameters
+    });
+    return this.httpService.get<IResponse< any >>(url, { params: httpParams}).pipe(tap( res => res ));
+  }
+
 }
