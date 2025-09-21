@@ -114,6 +114,9 @@ export class ProfilePageComponent implements OnInit {
     )
   }
 
+  get isStories(): boolean{
+    return this.videoStories.length > 0;
+  }
   get isImages(): boolean{
     return this.imageStories.length > 0;
   }
