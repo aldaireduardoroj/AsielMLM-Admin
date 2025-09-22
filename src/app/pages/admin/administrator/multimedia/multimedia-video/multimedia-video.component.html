@@ -16,13 +16,13 @@
 </ng-container>
 
 <ng-container *ngIf="!storyShow">
-    <p class="text-center ff-inter fs-13">Subir imágenes con un tamaño de 9/16 rectangular</p>
+    <p class="text-center ff-inter fs-13">Subir imágenes con un tamaño de 16/9 rectangular</p>
     <div class="text-center ">
         <label for="fileupload" class="position-relative m-b-10">
-            <img [src]="previewUrl" class="img-fluid" style="width: 140px; height: 70px;">
+            <img [src]="previewUrl" class="img-fluid" style="width: 240px;">
             <input type="file" name="fileupload" id="fileupload" (change)="fileChangeEvent($event)" class="d-none" accept=".png,.jpg"/>
-            <div class="position-absolute top-0 start-0 w-100 d-flex justify-content-center align-items-end" style="background-color: rgba(0, 0, 0, 0.1); padding: 6px; height: 70px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <div class="position-absolute top-0 start-0 w-100 d-flex justify-content-center align-items-end" style="background-color: rgba(0, 0, 0, 0.1); padding: 6px; height: 100%;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 20 20" fill="none">
               <path d="M17.5 5.00001H14.8333L13.3333 3.33334H8.33333V5.00001H12.5833L14.1667 6.66668H17.5V16.6667H4.16667V9.16668H2.5V16.6667C2.5 17.5833 3.25 18.3333 4.16667 18.3333H17.5C18.4167 18.3333 19.1667 17.5833 19.1667 16.6667V6.66668C19.1667 5.75001 18.4167 5.00001 17.5 5.00001ZM6.66667 11.6667C6.66667 15.375 11.1583 17.2417 13.7833 14.6167C16.4083 11.9917 14.5417 7.50001 10.8333 7.50001C8.53333 7.50001 6.66667 9.36668 6.66667 11.6667ZM10.8333 9.16668C12.2 9.20834 13.2917 10.3 13.3333 11.6667C13.2917 13.0333 12.2 14.125 10.8333 14.1667C9.46667 14.125 8.375 13.0333 8.33333 11.6667C8.375 10.3 9.46667 9.20834 10.8333 9.16668ZM4.16667 5.00001H6.66667V3.33334H4.16667V0.833344H2.5V3.33334H0V5.00001H2.5V7.50001H4.16667" fill="#E3E3E3"/>
             </svg>
             </div>

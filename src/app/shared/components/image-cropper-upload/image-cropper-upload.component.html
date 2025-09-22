@@ -2,7 +2,7 @@
 <image-cropper
     [imageChangedEvent]="imageChangedEvent"
     [maintainAspectRatio]="true"
-    [aspectRatio]="4 / 4"
+    [aspectRatio]="square ? 4 / 4 : 16 / 9"
     format="png"
     (imageCropped)="imageCropped($event)"
     (imageLoaded)="imageLoaded($event)"

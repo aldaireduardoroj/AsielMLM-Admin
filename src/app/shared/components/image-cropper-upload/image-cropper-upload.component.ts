@@ -10,6 +10,7 @@ import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 export class ImageCropperUploadComponent implements OnInit {
 
   @Input() file: any = '';
+  @Input() square: boolean = true;
 
   imageChangedEvent: any = '';
   croppedImage: any = '';

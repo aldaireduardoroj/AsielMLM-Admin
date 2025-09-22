@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
+import { ImageCropperUploadComponent } from '@shared/components/image-cropper-upload/image-cropper-upload.component';
 import { CONSTANTS } from '@shared/constants/constants';
 import { ApiService } from '@shared/services/api.service';
 import { FormValidator } from '@shared/utilities/form-validator';
@@ -54,7 +55,6 @@ export class MultimediaVideoComponent implements OnInit {
 
   fileChangeEvent(event: any): void {
   
-    
     const file: File = event.target.files[0];
     this.filePreviewSelected = null;
     if (!file) {
@@ -73,22 +73,38 @@ export class MultimediaVideoComponent implements OnInit {
       return;
     }
 
+    // ====================================================================================
+
+    let modal = this.nzModalService.create({
+      nzContent: ImageCropperUploadComponent,
+      nzTitle: 'Imagen para cortar',
+      nzMaskClosable: false,
+      nzComponentParams: {
+        file: event,
+        square: this.storyShow
+      },
+      nzFooter: null
+    });
+
+    modal.afterClose.subscribe( ( result ) => {
+      if( result.file != null ){
+        const reader = new FileReader();
+        // 2. Definir qué hacer cuando el archivo se haya leído
+        reader.onload = () => {
+          // El resultado de la lectura (la cadena Base64) estará en reader.result
+          this.previewUrl = reader.result as string;
+        };
+        // 3. Iniciar la lectura del archivo. Esto convierte la imagen a Base64
+        reader.readAsDataURL(result.file);
+        if( this.storyShow )
+          this.filePreviewSelected = result.file;
+        else
+          this.fileSelected = result.file;
+      }
+    });
+
     // 1. Crear una instancia de FileReader
-    const reader = new FileReader();
-
-    // 2. Definir qué hacer cuando el archivo se haya leído
-    reader.onload = () => {
-      // El resultado de la lectura (la cadena Base64) estará en reader.result
-      this.previewUrl = reader.result as string;
-    };
-
-    // 3. Iniciar la lectura del archivo. Esto convierte la imagen a Base64
-    reader.readAsDataURL(file);
-
-    if( this.storyShow )
-      this.filePreviewSelected = file;
-    else
-      this.fileSelected = file;
+    
     // this.previewUrl = URL.createObjectURL(file);
 
   }

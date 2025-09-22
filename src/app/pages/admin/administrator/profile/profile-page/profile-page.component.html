@@ -21,7 +21,7 @@
     </ng-container>
     <ng-container *ngIf="isImages">
       <div class="col-md-12 m-b-20">
-        <nz-carousel [nzEffect]="effect">
+        <nz-carousel [nzEffect]="effect" nzAutoPlay>
           <div nz-carousel-content *ngFor="let item of imageStories">
             <a [href]="item.link" target="_blank" style="border-radius: 10px; overflow: hidden; display: block;">
               <img [src]="pathServer + item.file.path" alt="" class="img-fluid">
@@ -198,8 +198,8 @@
           <div class="card--bonus m-b-30">
             <div class="d-flex w-100 m-b-10" >
               <div class="p-r-10 w-100">
-                <p class="fs-15 line-height-1 text-opacity font-size-13">Bonos de Patrocinio</p>
-                <h1 class="m-b-0 line-height-1 fs-25 fw-bold notranslate font-size-18">{{ pointPatrocinio }} puntos</h1>
+                <p class="fs-15 line-height-1 text-opacity">Bonos de Patrocinio</p>
+                <h1 class="m-b-0 line-height-1 fs-18 fw-bold notranslate">{{ pointPatrocinio }} puntos</h1>
               </div>
               <div class="">
                 <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46" fill="none">
@@ -411,13 +411,17 @@
       <span style="position: absolute; top: 20px; right: 20px; z-index: 99999999;" class="pointer" (click)="onCloseStory()"><i nz-icon nzType="close" style="color: #FFFFFF;" nzTheme="outline"></i></span>
       <video [src]="pathServer + storySelected?.file.path" autoplay loop style="width: 100%; height: 100%;"></video>
 
-      <div style="position: absolute; bottom: 0; width: 100%; height: 125px; z-index: 99999999; text-align: center;">
-        <a [href]="storySelected?.link" class="d-inline-block" style="background-color: rgba(255, 255, 255, .8); border-radius: 19px; padding: 10px;"><i nz-icon class="fs-14" style="color: #1054DE;" nzType="link" nzTheme="outline"></i>&nbsp;&nbsp;Enlace</a>
+      <ng-container *ngIf="storySelected?.link != ''">
+        <div style="position: absolute; bottom: 0; width: 100%; height: 125px; z-index: 99999999; text-align: center;">
+          <a [href]="storySelected?.link" class="d-inline-block" style="background-color: rgba(255, 255, 255, .8); border-radius: 19px; padding: 10px;"><i nz-icon class="fs-14" style="color: #1054DE;" nzType="link" nzTheme="outline"></i>&nbsp;&nbsp;Enlace</a>
+        </div>
+      </ng-container>
+    </div>
+    <ng-container *ngIf="storySelected?.description != ''">
+      <div style="width: 100%; height: 80px; background-color: #000; z-index: 999999; padding: 15px;">
+        <p class="m-0" style="color: #FFFFFF;">{{ storySelected?.description }}</p>
       </div>
-    </div>
-    <div style="width: 100%; height: 80px; background-color: #000; z-index: 999999; padding: 15px;">
-      <p class="m-0" style="color: #FFFFFF;">{{ storySelected?.description }}</p>
-    </div>
+    </ng-container>
   </div>
 </ng-container>
 
