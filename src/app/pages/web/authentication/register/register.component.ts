@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
     return {
       name: userName,
       email: email,
-      uuid: dni,
+      dni: dni,
       password: password,
       password_confirmation: repeatpassword
     }

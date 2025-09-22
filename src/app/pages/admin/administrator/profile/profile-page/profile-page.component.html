@@ -7,7 +7,7 @@
             <div class="d-flex" style="flex-direction: row; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none;" >
               <ng-container *ngFor="let item of videoStories">
                 <div class="d-inline-block text-center pointer" style="margin-right: 10px;" (click)="onSelectedStory(item)">
-                  <img [src]="pathServer + item.preview.path" class="rounded-circle " style="width: 65px; height: 65px;"  alt="">
+                  <img [src]="pathServer + (item.preview?.path ?? '')" class="rounded-circle " style="width: 65px; height: 65px;"  alt="">
                   <p class="m-0 ff-inter fs-12">{{ item.name }}</p>
                 </div>
               </ng-container>
