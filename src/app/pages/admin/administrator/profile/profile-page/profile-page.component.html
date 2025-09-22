@@ -21,7 +21,7 @@
     </ng-container>
     <ng-container *ngIf="isImages">
       <div class="col-md-12 m-b-20">
-        <nz-carousel [nzEffect]="effect" nzAutoPlay>
+        <nz-carousel [nzEffect]="effect" nzAutoPlay nzAutoPlaySpeed="7000">
           <div nz-carousel-content *ngFor="let item of imageStories">
             <a [href]="item.link" target="_blank" style="border-radius: 10px; overflow: hidden; display: block;">
               <img [src]="pathServer + item.file.path" alt="" class="img-fluid">

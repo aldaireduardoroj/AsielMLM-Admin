@@ -49,7 +49,7 @@ export class MultimediaVideoComponent implements OnInit {
     if( this.storyShow ){
       this.validateForm.get('name').setValidators([Validators.required]);
     }else{
-      this.validateForm.get('link').setValidators([Validators.required]);
+      // this.validateForm.get('link').setValidators([Validators.required]);
     }
   }
 
