@@ -419,7 +419,16 @@ export class ProfilePageComponent implements OnInit {
   public onCloseStory(): void{
     this.storySelected = null;
   }
+
   public onSelectedStory(item: any): void{
     this.storySelected = item;
+  }
+
+  public onDeleteVideo(id: number): void{
+    this.apiService.deleteUserPublishVideoStory({id}).subscribe(
+      (response) => {
+        this.loadStories()
+      }
+    )
   }
 }

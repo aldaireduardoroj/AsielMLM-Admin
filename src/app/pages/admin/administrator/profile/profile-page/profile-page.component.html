@@ -6,8 +6,9 @@
           <div class="w-100" style="padding-top: 10px; padding-bottom: 10px; padding-right: 5px; overflow: hidden;">
             <div class="d-flex" style="flex-direction: row; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none;" >
               <ng-container *ngFor="let item of videoStories">
-                <div class="d-inline-block text-center pointer" style="margin-right: 10px;" (click)="onSelectedStory(item)">
-                  <img [src]="pathServer + (item.preview?.path ?? '')" class="rounded-circle " style="width: 65px; height: 65px;"  alt="">
+                <div class="d-inline-block text-center pointer position-relative" style="margin-right: 10px;" >
+                  <button nz-button nzType="primary" class="position-absolute" style="top: 0; right: 0; z-index: 9999;min-width: auto;height: auto;padding: 5px;" nzShape="circle" nzDanger (click)="onDeleteVideo(item.id)" ><i nz-icon nzType="close-circle" class="fs-18"   nzTheme="outline"></i></button>
+                  <img [src]="pathServer + (item.preview?.path ?? '')" class="rounded-circle " (click)="onSelectedStory(item)" style="width: 65px; height: 65px;"  alt="">
                   <p class="m-0 ff-inter fs-12">{{ item.name }}</p>
                 </div>
               </ng-container>
@@ -23,9 +24,13 @@
       <div class="col-md-12 m-b-20">
         <nz-carousel [nzEffect]="effect" nzAutoPlay nzAutoPlaySpeed="7000">
           <div nz-carousel-content *ngFor="let item of imageStories">
-            <a [href]="item.link" target="_blank" style="border-radius: 10px; overflow: hidden; display: block;">
-              <img [src]="pathServer + item.file.path" alt="" class="img-fluid">
-            </a>
+            <div class="position-relative">
+              <button nz-button nzType="primary" class="position-absolute" style="top: 0; right: 0; z-index: 9999;" nzShape="circle" nzDanger (click)="onDeleteVideo(item.id)" ><i nz-icon nzType="close-circle" class="fs-18"   nzTheme="outline"></i></button>
+              <a [href]="item.link" target="_blank"  style="border-radius: 10px; overflow: hidden; display: block;">
+                <img [src]="pathServer + item.file.path" alt="" class="img-fluid">
+              </a>
+            </div>
+            
           </div>
         </nz-carousel>
       </div>

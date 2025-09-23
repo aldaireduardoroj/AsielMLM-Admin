@@ -311,4 +311,9 @@ export class ApiService {
     return this.httpService.get<IResponse< any >>(url, { params: httpParams}).pipe(tap( res => res ));
   }
 
+  public deleteUserPublishVideoStory( command: any ): Observable<IResponse<any>>{
+    // let options = { contentType: false, mimeType: 'multiplart/form-data' };
+    return this.httpService.post<IResponse<any>>( '/users/story/video-image/delete' , command ).pipe(tap( res => res ));
+  }
+
 }
