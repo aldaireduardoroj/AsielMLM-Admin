@@ -55,6 +55,7 @@
             <th [nzAlign]="'center'">Puntos Grupales</th>
             <th [nzAlign]="'center'">Bono Infinito</th>
             <th [nzAlign]="'center'">Puntos Gran total</th>
+            <th [nzAlign]="'center'">Comprobante</th>
             <th [nzAlign]="'center'">Ver</th>
             <th [nzAlign]="'center'">Accion</th>
           </tr>
@@ -72,7 +73,9 @@
               {{ item?.payment?.payment_order?.pack?.title ?? "Sin Plan" }}
             </td>
             <td nzAlign="center">
-              {{ item?.payment?.state == null ? "--" : ( item?.payment?.state == CONSTANTS.PAYMENT_ORDER.PAGADO ? "Activo" : "Inactivo") }}
+              <ng-container *ngIf="item?.payment?.state == CONSTANTS.PAYMENT_ORDER.PAGADO">Activo</ng-container>
+              <ng-container *ngIf="item?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO">Inactivo</ng-container>
+              <ng-container *ngIf="item?.payment?.state == CONSTANTS.PAYMENT_ORDER.PREORDER">Pre-Orden</ng-container>
             </td>
             <td nzAlign="center">
               <b>{{ item?.range == null ? 'Sin Rango' : item?.range.range.title }}</b>
@@ -83,6 +86,16 @@
             <td nzAlign="center">{{ (item?.points?.pointGroup ?? 0)  }}</td>
             <td nzAlign="center">{{ item?.points?.infinito ?? 0 }}</td>
             <td nzAlign="center">{{ item?.totalPoints ?? 0 }}</td>
+            <td nzAlign="center">
+              <ng-container *ngIf="item?.payment?.state == CONSTANTS.PAYMENT_ORDER.PREORDER">
+                <ng-container *ngIf="item.payment?.file != null">
+                  <a nz-button [href]="pathServe + item.payment?.file.path" download target="_blank" [nzSize]="'small'" nzShape="circle">
+                    <i nz-icon nzType="download"></i>
+                  </a>
+                </ng-container>
+                
+              </ng-container>
+            </td>
             <td nzAlign="center">
               <nz-tag [nzColor]="'#87d068'" class="pointer m-0" (click)="onSeletedUSer(item.uuid, item)">VER</nz-tag>
             </td>

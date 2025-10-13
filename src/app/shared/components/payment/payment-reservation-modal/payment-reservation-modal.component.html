@@ -86,18 +86,16 @@
         </button>
       </div>
 
-      <ng-container *ngIf="sponsorInvited != ''">
-        <div class="m-b-20 position-relative" >
-          <hr style="border-color: #E4E4E4; border-width: 2px;"><span>OR</span>
-        </div>
+      <div class="m-b-20 position-relative" >
+        <hr style="border-color: #E4E4E4; border-width: 2px;"><span>OR</span>
+      </div>
 
-        <div class="m-b-20" >
-          <button nz-button nzType="primary" nzBlock class="btn-payment" (click)="onPaymentOffline()" [nzLoading]="isLoadingOffline">
-            <p class="mb-0 text-white fs-14">CONFIRMAR PAGO</p>
-            <p class="mb-0 text-white fs-14">Pagué en efectivo a agente de Imperio</p>
-          </button>
-        </div>
-      </ng-container>
+      <div class="m-b-20" >
+        <button nz-button nzType="primary" nzBlock class="btn-payment" (click)="onPaymentOffline()" [nzLoading]="isLoadingOffline">
+          <p class="mb-0 text-white fs-14">CONFIRMAR PAGO</p>
+          <p class="mb-0 text-white fs-14">Pagué en efectivo a agente de Imperio</p>
+        </button>
+      </div>
     </ng-container>
     
 

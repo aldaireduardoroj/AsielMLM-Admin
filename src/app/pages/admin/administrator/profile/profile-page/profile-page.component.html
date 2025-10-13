@@ -7,7 +7,7 @@
             <div class="d-flex" style="flex-direction: row; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none;" >
               <ng-container *ngFor="let item of videoStories">
                 <div class="d-inline-block text-center pointer position-relative" style="margin-right: 10px;" >
-                  <button nz-button nzType="primary" class="position-absolute" style="top: 0; right: 0; z-index: 9999;min-width: auto;height: auto;padding: 5px;" nzShape="circle" nzDanger (click)="onDeleteVideo(item.id)" ><i nz-icon nzType="close-circle" class="fs-18"   nzTheme="outline"></i></button>
+                  
                   <img [src]="pathServer + (item.preview?.path ?? '')" class="rounded-circle " (click)="onSelectedStory(item)" style="width: 65px; height: 65px;"  alt="">
                   <p class="m-0 ff-inter fs-12">{{ item.name }}</p>
                 </div>
@@ -25,7 +25,9 @@
         <nz-carousel [nzEffect]="effect" nzAutoPlay nzAutoPlaySpeed="7000">
           <div nz-carousel-content *ngFor="let item of imageStories">
             <div class="position-relative">
-              <button nz-button nzType="primary" class="position-absolute" style="top: 0; right: 0; z-index: 9999;" nzShape="circle" nzDanger (click)="onDeleteVideo(item.id)" ><i nz-icon nzType="close-circle" class="fs-18"   nzTheme="outline"></i></button>
+              <!-- <button nz-button nzType="primary" class="position-absolute" style="top: 0; right: 0; z-index: 10;" nzShape="circle" nzDanger (click)="onDeleteVideo(item.id)" ><i nz-icon nzType="close-circle" class="fs-18"   nzTheme="outline"></i></button> -->
+
+
               <a [href]="item.link" target="_blank"  style="border-radius: 10px; overflow: hidden; display: block;">
                 <img [src]="pathServer + item.file.path" alt="" class="img-fluid">
               </a>
@@ -411,7 +413,8 @@
 </ng-template>
 
 <ng-container *ngIf="storySelected != null">
-  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #0000000a; z-index: 99999;">
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; z-index: 99999;">
+    <button nz-button nzType="default" class="position-absolute" style="top: 10px; left: 10px; z-index: 10;min-width: auto;height: auto;padding: 5px;"  (click)="onDeleteVideo(storySelected.id)" >borrar esta  historia?</button>
     <div style="width: 100%; height: calc( 100% - 80px ); background-color: #000; z-index: 999999; text-align: center;">
       <span style="position: absolute; top: 20px; right: 20px; z-index: 99999999;" class="pointer" (click)="onCloseStory()"><i nz-icon nzType="close" style="color: #FFFFFF;" nzTheme="outline"></i></span>
       <video [src]="pathServer + storySelected?.file.path" autoplay loop style="width: 100%; height: 100%;"></video>

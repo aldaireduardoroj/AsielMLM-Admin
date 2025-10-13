@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { UserModel } from '@shared/services/models/user.interface';
 import { forkJoin } from 'rxjs';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { PaymentOfflineEfectivoComponent } from '../payment-offline-efectivo/payment-offline-efectivo.component';
 
 @Component({
   selector: 'app-payment-reservation-modal',
@@ -57,7 +59,8 @@ export class PaymentReservationModalComponent implements OnInit {
     private scriptService: ScriptService,
     private rendered: Renderer2,
     private router: Router,
-    private nzModalService: NzModalService
+    private nzModalService: NzModalService,
+    private nzMessage: NzMessageService
   ) { }
 
   ngOnInit(): void {
@@ -194,22 +197,38 @@ export class PaymentReservationModalComponent implements OnInit {
   }
 
   public onPaymentOffline(): void{
+    // if( this.codeUser.trim() == "" ){
+    //   this.codeUserStatus = "error";
+    //   return;
+    // }
+    // this.isLoadingOffline = true;
+    // this.apiService.postPaymentCreateOffline({packId: this.planSelected.id, sponsorId: this.codeUser.trim()}).subscribe(
+    //   (response) => {
+    //     this.modalRef.close();
+    //     this.modalService.success("Pago recibido. Su plan se activará cuando el administrador de Imperio confirme la compra.");
+    //   },
+    //   (error) => {
+    //     this.isLoadingOffline = false;
+    //     this.modalService.error( error?.message ?? "Error");
+    //     this.modalRef.close();
+    //   }
+    // )
+
     if( this.codeUser.trim() == "" ){
       this.codeUserStatus = "error";
+      this.nzMessage.error("Debe Seleccionar un patrocinador" );
       return;
     }
-    this.isLoadingOffline = true;
-    this.apiService.postPaymentCreateOffline({packId: this.planSelected.id, sponsorId: this.codeUser.trim()}).subscribe(
-      (response) => {
-        this.modalRef.close();
-        this.modalService.success("Pago recibido. Su plan se activará cuando el administrador de Imperio confirme la compra.");
-      },
-      (error) => {
-        this.isLoadingOffline = false;
-        this.modalService.error( error?.message ?? "Error");
-        this.modalRef.close();
+    this.modalRef.close();
+    this.nzModalService.create({
+      nzTitle: null,
+      nzContent: PaymentOfflineEfectivoComponent,
+      nzFooter: null,
+      nzComponentParams: {
+        packId: this.planSelected.id,
+        codeUser: this.codeUser
       }
-    )
+    })
   }
 
   private onError = (error: KRError) =>{

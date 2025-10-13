@@ -427,6 +427,7 @@ export class ProfilePageComponent implements OnInit {
   public onDeleteVideo(id: number): void{
     this.apiService.deleteUserPublishVideoStory({id}).subscribe(
       (response) => {
+        this.storySelected = null;
         this.loadStories()
       }
     )

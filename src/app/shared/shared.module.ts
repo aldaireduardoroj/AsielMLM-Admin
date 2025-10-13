@@ -25,6 +25,7 @@ import { TablePaymentProductOrderComponent } from './components/table/table-paym
 import { PaymentViewVoucherModalComponent } from './components/payment/payment-view-voucher-modal/payment-view-voucher-modal.component';
 import { CardImageComponent } from './components/card-image/card-image.component';
 import { CardTestimonialsComponent } from './components/card-testimonials/card-testimonials.component';
+import { PaymentOfflineEfectivoComponent } from './components/payment/payment-offline-efectivo/payment-offline-efectivo.component';
 
 const MODULES = [
     ReactiveFormsModule,
@@ -48,7 +49,8 @@ const COMPONENTS = [
     TablePaymentProductOrderComponent,
     PaymentViewVoucherModalComponent,
     CardImageComponent,
-    CardTestimonialsComponent
+    CardTestimonialsComponent,
+    PaymentOfflineEfectivoComponent
 ]
 
 @NgModule({
