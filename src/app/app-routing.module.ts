@@ -4,18 +4,18 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const appRoutes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./pages/maintenance-page/maintenance-page.module').then( m => m.MaintenancePageModule )
-  },
-    // {
-    //     path: '',
-    //     loadChildren: () => import('./pages/web/web.module').then( m => m.WebModule )
-    // },
-    // {
-    //     path: 'admin',
-    //     loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminModule )
-    // },
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./pages/maintenance-page/maintenance-page.module').then( m => m.MaintenancePageModule )
+  // },
+    {
+        path: '',
+        loadChildren: () => import('./pages/web/web.module').then( m => m.WebModule )
+    },
+    {
+        path: 'admin',
+        loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminModule )
+    },
 ];
 
 @NgModule({
