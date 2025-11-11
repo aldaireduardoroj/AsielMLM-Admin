@@ -96,7 +96,8 @@ export class PaymentProductsModalComponent implements OnInit {
   }
 
   get totalBuy(): number{
-    return this.cartList.length>0 ? this.cartList?.map( p => this.amountDiscount == 0 ? (p.price * p.quantity) : ( (p.quantity * p.price) * (100 - this.amountDiscount) / 100) )?.reduce( (a,b) => a+b ) : 0;
+    // return this.cartList.length>0 ? this.cartList?.map( p => this.amountDiscount == 0 ? (p.price * p.quantity) : ( (p.quantity * p.price) * (100 - this.amountDiscount) / 100) )?.reduce( (a,b) => a+b ) : 0;
+    return this.cartList.length>0 ? this.cartList?.map( p => (p.priceNew * p.quantity) )?.reduce( (a,b) => a+b ) : 0;
   }
 
   get totalPoints(): number{
