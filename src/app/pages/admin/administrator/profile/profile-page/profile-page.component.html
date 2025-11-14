@@ -186,7 +186,7 @@
             <div class="p-r-30">
               <p class="text-uppercase text-gray-7 font-weight-bold notranslate font-size-13" [style]="userModel?.range != null? 'margin-bottom: 7px;' : ''">RANGO ACTUAL: {{ userModel?.range == null ? 'SIN RANGO' : userModel?.range.range.title }} <span class="d-inline-block text-center text-gray-8 border rounded-lg font-size-12 m-l-10 notranslate" style="border-color: #E2E8F0 !important; padding: 0 6px; min-width: 30px;">{{ userModel?.range == null ? 0 : 1 }}</span> &nbsp;&nbsp;
               <ng-container *ngIf="userModel?.range != null">
-                <img [src]="env.hostUrl + '/storage/' + userModel?.range.range.file.path" alt="" style="width: 32px;">
+                <!-- <img [src]="userModel?.range?.range?.file?.path ? (env.hostUrl + '/storage/' + userModel?.range?.range?.file?.path) : CONSTANTS.IMAGE.FALLBACK" alt="" style="width: 32px;"> -->
               </ng-container>
 
               </p>
