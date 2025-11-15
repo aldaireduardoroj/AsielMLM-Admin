@@ -57,6 +57,7 @@ export class MarketplacePageComponent implements OnInit {
     this.productList[index].quantity = this.productList[index].quantity == -1 ? 0 : this.productList[index].quantity;
 
     this._cartList =  this.productList.filter( p => p.quantity > 0 )
+    console.log( this._cartList )
     this.themeConstantService.changeCurrentCartList(this._cartList );
   }
 
@@ -122,7 +123,7 @@ export class MarketplacePageComponent implements OnInit {
   get cartList(): Array<IProductModel>{
 
     return this._cartList.map( x => {
-      if( this.userModel?.payment.state == CONSTANTS.PAYMENT_ORDER.PAGADO ){
+      if( this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.PAGADO ){
         const discounts = x.discounts.find( y => y.pack_id == this.userModel?.payment?.payment_order.pack_id );
         if(discounts){
           x.priceNew = x.price * ((100 - Number.parseFloat(discounts.discount))/100 );
