@@ -14,6 +14,12 @@ export class PaymentOfflineEfectivoComponent implements OnInit {
   @Input() packId: string;
   @Input() codeUser: string;
 
+  @Input() isProduct: boolean = false;
+
+  @Input() phoneContact: string = "";
+  @Input() addressContact: string = "";
+  @Input() details: any[] = [];
+
   private readonly MAX_SIZE_MB = 5;
   fileSelected: any = null;
 
@@ -55,23 +61,44 @@ export class PaymentOfflineEfectivoComponent implements OnInit {
     }
 
     this.loading = true;
-    const formData = new FormData();
-    formData.append("packId" , this.packId );
-    formData.append("sponsorId" , this.codeUser.trim());
-    formData.append("file" , this.fileSelected);
+    if( !this.isProduct ){
+      const formData = new FormData();
+      formData.append("packId" , this.packId );
+      formData.append("sponsorId" , this.codeUser.trim());
+      formData.append("file" , this.fileSelected);
 
-    this.apiService.postPaymentCreateOffline(formData).subscribe(
-      (response) => {
-        this.loading = false;
-        this.modalRef.close();
-        this.modalService.success("Pago recibido. Su plan se activará cuando el administrador de Chayim confirme la compra.");
-      },
-      (error) => {
-        this.loading = false;
-        this.modalService.error( error?.message ?? "Error");
-        this.modalRef.close();
-      }
-    )
+      this.apiService.postPaymentCreateOffline(formData).subscribe(
+        (response) => {
+          this.loading = false;
+          this.modalRef.close();
+          this.modalService.success("Pago recibido. Su plan se activará cuando el administrador de Asiel Network confirme la compra.");
+        },
+        (error) => {
+          this.loading = false;
+          this.modalService.error( error?.message ?? "Error");
+          this.modalRef.close();
+        }
+      )
+    }else{
+      const formData = new FormData();
+      formData.append("phone" , this.phoneContact );
+      formData.append("address" , this.addressContact.trim());
+      formData.append("details" , JSON.stringify( this.details ));
+      formData.append("file" , this.fileSelected);
+
+      this.apiService.postPaymentProductCreateOffline(formData).subscribe(
+        (response) => {
+          this.loading = false;
+          this.modalRef.close();
+          this.modalService.success("Pago recibido. Su plan se activará cuando el administrador de Asiel Network confirme la compra.");
+        },
+        (error) => {
+          this.loading = false;
+          this.modalService.error( error?.message ?? "Error");
+          this.modalRef.close();
+        }
+      )
+    }
   }
 
 }

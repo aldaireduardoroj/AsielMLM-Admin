@@ -106,6 +106,11 @@ export class ApiService {
     return this.httpService.post<IResponse<any>>( '/payment/cash-confirm' , command ).pipe(tap( res => res ));
   }
 
+  public postPaymentProductCreateOffline( command: any ): Observable<IResponse<any>>{
+    let options = { contentType: false, mimeType: 'multiplart/form-data' };
+    return this.httpService.post<IResponse<any>>( '/payment-product/cash-pre' , command , options).pipe(tap( res => res ));
+  }
+
   public postValidateCode( command: any , uuid: string): Observable<IResponse<any>>{
     // let options = { contentType: false, mimeType: 'multiplart/form-data' };
     return this.httpService.post<IResponse<any>>( '/auth/validate-code/' + uuid , command ).pipe(tap( res => res ));
@@ -189,6 +194,11 @@ export class ApiService {
   public postProductPaymentChangeState( command: any ): Observable<IResponse<any>>{
     // let options = { contentType: false, mimeType: 'multiplart/form-data' };
     return this.httpService.post<IResponse<any>>( '/product/payment/change-state' , command ).pipe(tap( res => res ));
+  }
+
+  public postPaymentProductConfirmOffline( command: any): Observable<IResponse<any>>{
+    // let options = { contentType: false, mimeType: 'multiplart/form-data' };
+    return this.httpService.post<IResponse<any>>( '/payment-product/cash-confirm' , command ).pipe(tap( res => res ));
   }
 
   public getProductPaymnetPoints(parameters: any = {}): Observable<IResponse< Array<any> >>{

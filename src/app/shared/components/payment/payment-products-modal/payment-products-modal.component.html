@@ -43,7 +43,7 @@
       </nz-col>
       <nz-col [nzSm]="24" [nzXs]="24" class="m-b-10">
         <div class="d-flex align-items-center justify-content-between">
-          <p class="m-0 fs-14 text-gray-6 notranslate">Descuento por ser socio Distribuidor:</p> <b>{{ amountDiscount | number: '1.2'}}% Desc</b>
+          <p class="m-0 fs-14 text-gray-6 notranslate">Descuento por ser socio Distribuidor:</p> <b>39.40% - 43.35% Desc</b>
         </div>
       </nz-col>
       <nz-col [nzSm]="24" [nzXs]="24" class="m-b-10">
@@ -97,6 +97,17 @@
       <button nz-button nzType="primary" nzBlock class="btn-payment" style="opacity: .4;" disabled (click)="onPaymentIzipay()" [nzLoading]="isLoadingIzipay">
         <p class="mb-0 text-white fs-14">PAGAR</p>
         <p class="mb-0 text-white fs-14">(Credit/débit Card para todo Latam)</p>
+      </button>
+    </div>
+
+    <div class="m-b-20 position-relative" >
+      <hr style="border-color: #E4E4E4; border-width: 2px;"><span>OR</span>
+    </div>
+    
+    <div class="m-b-20" >
+      <button nz-button nzType="primary" nzBlock class="btn-payment" (click)="onPaymentOffline()" [nzLoading]="isLoadingOffline">
+        <p class="mb-0 text-white">CONFIRMAR PAGO</p>
+        <p class="mb-0 text-white">Pagué en efectivo a agente de Chayim</p>
       </button>
     </div>
 

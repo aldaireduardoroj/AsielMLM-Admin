@@ -8,10 +8,11 @@ import { IProductModel } from '@shared/services/models/product.interface';
 import { UserModel } from '@shared/services/models/user.interface';
 import { ScriptService } from '@shared/services/script.service';
 import { ModalService } from '@shared/utilities/modal-services';
-import { NzModalRef } from 'ng-zorro-antd/modal';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { forkJoin } from 'rxjs';
 import KRGlue from "@lyracom/embedded-form-glue";
 import { FormValidator } from '@shared/utilities/form-validator';
+import { PaymentOfflineEfectivoComponent } from '../payment-offline-efectivo/payment-offline-efectivo.component';
 
 @Component({
   selector: 'app-payment-products-modal',
@@ -49,7 +50,8 @@ export class PaymentProductsModalComponent implements OnInit {
     private router: Router,
     private modalRef: NzModalRef,
     private modalService: ModalService,
-    private formValidator: FormValidator
+    private formValidator: FormValidator,
+    private nzModalService: NzModalService,
   ) {
 
     this.validateForm = this.fb.group({
@@ -196,24 +198,42 @@ export class PaymentProductsModalComponent implements OnInit {
   }
 
   public onPaymentOffline(): void{
-    this.isLoadingIzipay = true;
+    // this.isLoadingIzipay = true;
 
-    this.apiService.postProductPaymentOffline({
-      phone: this.validateForm.get('phoneContact').value,
-      address: this.validateForm.get('addressContact').value,
-      details: this.cartList.map( p => {
-        return {
-          product: p.id,
-          quantity: p.quantity ?? 0
-        }
-      })
-    }).subscribe(
-      (response) => {
-        this.isLoadingIzipay = false;
-      },(error) => {
-        this.isLoadingIzipay = false;
+    // this.apiService.postProductPaymentOffline({
+    //   phone: this.validateForm.get('phoneContact').value,
+    //   address: this.validateForm.get('addressContact').value,
+    //   details: this.cartList.map( p => {
+    //     return {
+    //       product: p.id,
+    //       quantity: p.quantity ?? 0
+    //     }
+    //   })
+    // }).subscribe(
+    //   (response) => {
+    //     this.isLoadingIzipay = false;
+    //   },(error) => {
+    //     this.isLoadingIzipay = false;
+    //   }
+    // );
+
+    this.modalRef.close();
+    this.nzModalService.create({
+      nzTitle: null,
+      nzContent: PaymentOfflineEfectivoComponent,
+      nzFooter: null,
+      nzComponentParams: {
+        isProduct: true,
+        phoneContact: this.validateForm.get('phoneContact').value,
+        addressContact: this.validateForm.get('addressContact').value,
+        details: this.cartList.map( p => {
+          return {
+            product: p.id,
+            quantity: p.quantity ?? 0
+          }
+        })
       }
-    );
+    })
   }
 
   private onError = (error: KRError) =>{

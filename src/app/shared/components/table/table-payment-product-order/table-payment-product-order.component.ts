@@ -163,4 +163,21 @@ export class TablePaymentProductOrderComponent implements OnInit {
 
   }
 
+  public onConfirmCash(paymentId: string): void{
+    this.modalService.confirm("¿Desea confirmar el pago de los productos?" ,
+      () => {
+        this.apiService.postPaymentProductConfirmOffline({paymentId: paymentId}).subscribe(
+          (response) => {
+            this.nzModalService.closeAll();
+            this.modalService.success("Compra confirmada");
+          },
+          (error) => {
+            this.modalService.error( error?.message ?? "Error");
+            this.nzModalService.closeAll();
+          }
+        )
+      }
+    )
+  }
+
 }
