@@ -82,7 +82,7 @@ export class PaymentProductsModalComponent implements OnInit {
 
         this.amountDiscount = Number.parseFloat( this.userModel?.payment?.payment_order?.pack?.discount ?? "0" );
 
-        if( this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.PAGADO ){
+        if( this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.PAGADO || this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO){
           if(  this.userModel?.payment?.payment_order?.pack?.id == second_buy_plan ){
             if( productss.data.length <= 1 ){
               this.amountDiscount == 0;

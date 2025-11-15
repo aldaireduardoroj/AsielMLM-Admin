@@ -123,7 +123,7 @@ export class MarketplacePageComponent implements OnInit {
   get cartList(): Array<IProductModel>{
 
     return this._cartList.map( x => {
-      if( this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.PAGADO ){
+      if( this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.PAGADO || this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO){
         const discounts = x.discounts.find( y => y.pack_id == this.userModel?.payment?.payment_order.pack_id );
         if(discounts){
           x.priceNew = x.price * ((100 - Number.parseFloat(discounts.discount))/100 );

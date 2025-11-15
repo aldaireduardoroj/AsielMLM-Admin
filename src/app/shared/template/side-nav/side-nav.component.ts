@@ -52,6 +52,7 @@ export class SideNavComponent{
 
     onLogout(): void{
       removeSessionLocalAll();
+      this.themeService.changeCurrentCartList([]);
       this.router.navigate(['/home']);
       // this.modalService.confirm( this.MESSAGES.LOG_OUT , () => {
       //   removeSessionLocalAll();
