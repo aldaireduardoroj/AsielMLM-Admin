@@ -82,7 +82,7 @@ export class MembershipPlanPageComponent implements OnInit {
 
     if( this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO ){
       this.modalService.confirm(
-        "Usted ya tiene un paquete activo. Para cambiar de paquete de afiliación, por favor, póngase en contacto con soporte de Imperio Global.",
+        "Usted ya tiene un paquete activo. Para cambiar de paquete de afiliación, por favor, póngase en contacto con soporte de Aziel Network.",
         () => {
           this.nZmodal.closeAll();
           this.router.navigate(['/admin/marketplace']);
