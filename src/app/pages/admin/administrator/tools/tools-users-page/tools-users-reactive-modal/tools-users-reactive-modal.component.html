@@ -38,13 +38,13 @@
   <nz-col [nzXs]="24" class="m-b-20">
     <p>DETALLE DE COMPRA</p>
     <ng-container *ngIf="_cartList.length > 0">
-      <ng-container *ngFor="let product of _cartList; let i = index">
+      <ng-container *ngFor="let product of cartList; let i = index">
         <div class="d-flex justify-content-between" *ngIf="product.quantity > 0">
           <div>
             <p class="m-0">{{ product.title }} ({{ product.quantity }})</p>
           </div>
           <div class="text-right">
-            <p class="m-0"><b>S/.{{ product.price * product.quantity}}</b></p>
+            <p class="m-0"><b>S/.{{ product.priceNew * product.quantity}}</b></p>
           </div>
         </div>
       </ng-container>

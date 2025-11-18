@@ -71,6 +71,23 @@ export class ToolsUsersReactiveModalComponent implements OnInit {
     return this._cartList.length == 0 ? 0 : this._cartList.map( c => c.points * c.quantity ).reduce( (a, b) => a + b );
   }
 
+  get cartList(): Array<IProductModel>{
+
+    return this._cartList.map( x => {
+      if( this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.PAGADO || this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO){
+        const discounts = x.discounts.find( y => y.pack_id == this.userModel?.payment?.payment_order.pack_id );
+        if(discounts){
+          x.priceNew = x.price * ((100 - Number.parseFloat(discounts.discount))/100 );
+        }else{
+          x.priceNew = x.price * ((100 - Number.parseFloat(this.userModel?.payment?.payment_order.pack?.discount))/100 );
+        }
+      }else{
+        x.priceNew = x.price;
+      }
+      return x
+    });
+  }
+
   public modalDesactive(): void{
     this.modalService.confirm(
       "¿Desea activar este usuario?",
