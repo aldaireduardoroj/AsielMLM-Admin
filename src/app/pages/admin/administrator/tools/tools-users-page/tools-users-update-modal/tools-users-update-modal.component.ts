@@ -137,7 +137,6 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
   }
 
   public onSave(): void{
-    console.log( this.validateForm.get('packActive')?.value )
     if( this.userModel.payment == null ){
       if( this.validateForm.get('packActive')?.value == 1 ){
         this.modalService.warning("Para activarle 1er Plan, se debe seleccionar un plan existente.");
@@ -155,25 +154,30 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
       }
     }
 
-    this.loadingSave = true;
-    this.apiService.postUserModify({
-      userCode: this.userModel.uuid,
-      userFullName: this.validateForm.get('fullname')?.value,
-      packId: this.validateForm.get('packActive')?.value,
-      sponsorNew: this.validateForm.get('sponsorNew')?.value ?? ""
+    
+    this.modalService.confirm( "Esta acción anulara todos los puntos que tiene actualmente para poder asignarle el plan como PATROCINIO, ¿Desea continuar con esta acción?" , () => {
+      this.loadingSave = true;
+      this.apiService.postUserModify({
+        userCode: this.userModel.uuid,
+        userFullName: this.validateForm.get('fullname')?.value,
+        packId: this.validateForm.get('packActive')?.value,
+        sponsorNew: this.validateForm.get('sponsorNew')?.value ?? ""
 
-    }).subscribe(
-      (response) => {
-        this.nzModalService.closeAll();
-        this.modalService.success("¡Listo, tu cambio se realizó con éxito! ")
-        this.loadingSave = false;
-      },
-      (error) => {
-        this.nzModalService.closeAll();
-        this.modalService.error("¡Error, no se pudo hacer el cambio!")
-        this.loadingSave = false;
-      }
-    )
+      }).subscribe(
+        (response) => {
+          this.nzModalService.closeAll();
+          this.modalService.success("¡Listo, tu cambio se realizó con éxito! ")
+          this.loadingSave = false;
+        },
+        (error) => {
+          this.nzModalService.closeAll();
+          this.modalService.error("¡Error, no se pudo hacer el cambio!")
+          this.loadingSave = false;
+        }
+      )
+    })
+    
+    
   }
 
 }
