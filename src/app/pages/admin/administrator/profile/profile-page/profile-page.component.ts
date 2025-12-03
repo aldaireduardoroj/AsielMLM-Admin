@@ -391,7 +391,7 @@ export class ProfilePageComponent implements OnInit {
 
   public onPaymentMakerplace(): void{
     this.modalService.confirm(
-      "Usted ya tiene un paquete activo. Para cambiar de paquete de afiliación, por favor, póngase en contacto con soporte de Imperio Global.",
+      "Usted ya tiene un paquete activo. Para cambiar de paquete de afiliación, por favor, póngase en contacto con soporte de Aziel Network.",
       () => {
         this.nzModalService.closeAll();
         this.router.navigate(['/admin/marketplace']);
