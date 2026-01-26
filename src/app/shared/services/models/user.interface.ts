@@ -19,6 +19,7 @@ export interface UserModel {
   range?: RangeModel;
   creatxlssed: string;
   is_admin?: boolean;
+  is_bot?: boolean;
 }
 
 export interface AuthModel{

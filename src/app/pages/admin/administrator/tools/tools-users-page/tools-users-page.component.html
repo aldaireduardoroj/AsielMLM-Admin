@@ -55,6 +55,7 @@
             <th [nzAlign]="'center'">Puntos Grupales</th>
             <th [nzAlign]="'center'">Bono Infinito</th>
             <th [nzAlign]="'center'">Puntos Gran total</th>
+            <th [nzAlign]="'center'">Usuario Bot</th>
             <th [nzAlign]="'center'">Comprobante</th>
             <th [nzAlign]="'center'">Ver</th>
             <th [nzAlign]="'center'">Accion</th>
@@ -93,6 +94,14 @@
                     <i nz-icon nzType="download"></i>
                   </a>
                 </ng-container>
+                
+              </ng-container>
+            </td>
+            <td nzAlign="center">
+              <ng-container *ngIf="item.is_bot">
+                <i nz-icon nzType="robot" nzTheme="outline" class="text-primary"></i>
+              </ng-container>
+              <ng-container *ngIf="!item.is_bot">
                 
               </ng-container>
             </td>
