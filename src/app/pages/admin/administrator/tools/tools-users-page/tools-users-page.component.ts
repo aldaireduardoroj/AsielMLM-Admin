@@ -43,7 +43,7 @@ export class ToolsUsersPageComponent implements OnInit {
 
   tabModal: number = 0;
   tabTitle: string = titleModalGeneral;
-
+  isBot: boolean = false;
   planSelected: any = null;
 
   planList: Array<any> = [];
@@ -64,7 +64,12 @@ export class ToolsUsersPageComponent implements OnInit {
 
   public onSearch(): void{
     this.tableProductLoading = true;
-    this.apiService.getUsersFindAll({code: this.codeUser.trim(), name: this.nameUser.trim() , plan: this.planSelected ?? "", limit: this.pageSize , page: this.pageIndex }).subscribe(
+    this.apiService.getUsersFindAll({
+      code: this.codeUser.trim(), 
+      name: this.nameUser.trim() , 
+      plan: this.planSelected ?? "", 
+      bot: this.isBot ? 1 : 0,
+      limit: this.pageSize , page: this.pageIndex }).subscribe(
       (response) =>{
         if( response.success ){
           this.totalRecord = response.data.pagination.total;

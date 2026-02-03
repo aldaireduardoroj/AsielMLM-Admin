@@ -23,7 +23,7 @@
           <nz-option nzValue="-1" nzLabel="Sin Plan"></nz-option>
           <nz-option [nzValue]="item.id" [nzLabel]="item.title" *ngFor="let item of planList"></nz-option>
         </nz-select>
-
+        <label nz-checkbox [(ngModel)]="isBot" style="margin-right: 10px; margin-bottom: 10px;" (ngModelChange)="onSearch()">Usuario Bot</label>
         <button nz-button nzType="primary" (click)="onAddUser()" style="margin-bottom: 10px;">Agregar Usuario</button>
       </div>
     </nz-col>
@@ -55,8 +55,8 @@
             <th [nzAlign]="'center'">Puntos Grupales</th>
             <th [nzAlign]="'center'">Bono Infinito</th>
             <th [nzAlign]="'center'">Puntos Gran total</th>
-            <th [nzAlign]="'center'">Usuario Bot</th>
             <th [nzAlign]="'center'">Comprobante</th>
+            <th [nzAlign]="'center'">Usuario Bot</th>
             <th [nzAlign]="'center'">Ver</th>
             <th [nzAlign]="'center'">Accion</th>
           </tr>
