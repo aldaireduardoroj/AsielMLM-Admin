@@ -5,7 +5,7 @@
     border-color: $border-color;
     color: $body-color;
     height: $btn-size;
-    border-radius: $border-radius;
+    border-radius: 11px;
 
     &:hover,
     &:focus {
@@ -258,44 +258,44 @@ a {
     background-color: $brand-success;
     border-color: $brand-success;
     color: $white;
-  
+
     &:hover,
     &:focus {
         color: $white;
         background-color: lighten($brand-success, 5%);
         border-color: lighten($brand-success, 5%);
     }
-  
+
     &:active {
         color: $white;
         background-color: darken($brand-success, 5%);
         border-color: darken($brand-success, 5%);
     }
-  
+
     &.active {
         color: $white;
         background-color: darken($brand-success, 5%);
         border-color: darken($brand-success, 5%);
-  
+
         &:hover,
         &:focus {
             background-color: darken($brand-success, 5%);
             border-color: darken($brand-success, 5%);
         }
     }
-  
+
     &:not([disabled]):not(.disabled):active,
     &:not([disabled]):not(.disabled).active {
         &:focus {
             box-shadow: none;
         }
     }
-  
+
     &.ant-btn-background-ghost {
         background-color: transparent;
         border-color: $brand-warning;
         color: $brand-warning;
-  
+
         &:hover,
         &:focus,
         &:active {
@@ -303,13 +303,13 @@ a {
             color: lighten($brand-warning, 5%);
         }
     }
-  
+
     &.disabled,
     &[disabled] {
         color: rgba($body-color, 0.25);
         background-color: $gray-lightest;
         border-color: $border-color;
-  
+
         &.active,
         &:active,
         &:hover,
@@ -319,7 +319,7 @@ a {
             border-color: $border-color;
         }
     }
-  
+
     &.ant-btn-clicked {
         &:after {
             border-color: $brand-warning;
@@ -331,44 +331,44 @@ a {
     background-color: $brand-default;
     border-color: $brand-default;
     color: $white;
-  
+
     &:hover,
     &:focus {
         color: $white;
         background-color: lighten($brand-default, 5%);
         border-color: lighten($brand-default, 5%);
     }
-  
+
     &:active {
         color: $white;
         background-color: darken($brand-default, 5%);
         border-color: darken($brand-default, 5%);
     }
-  
+
     &.active {
         color: $white;
         background-color: darken($brand-default, 5%);
         border-color: darken($brand-default, 5%);
-  
+
         &:hover,
         &:focus {
             background-color: darken($brand-default, 5%);
             border-color: darken($brand-default, 5%);
         }
     }
-  
+
     &:not([disabled]):not(.disabled):active,
     &:not([disabled]):not(.disabled).active {
         &:focus {
             box-shadow: none;
         }
     }
-  
+
     &.ant-btn-background-ghost {
         background-color: transparent;
         border-color: $brand-warning;
         color: $brand-warning;
-  
+
         &:hover,
         &:focus,
         &:active {
@@ -376,13 +376,13 @@ a {
             color: lighten($brand-warning, 5%);
         }
     }
-  
+
     &.disabled,
     &[disabled] {
         color: rgba($body-color, 0.25);
         background-color: $gray-lightest;
         border-color: $border-color;
-  
+
         &.active,
         &:active,
         &:hover,
@@ -392,7 +392,7 @@ a {
             border-color: $border-color;
         }
     }
-  
+
     &.ant-btn-clicked {
         &:after {
             border-color: $brand-warning;

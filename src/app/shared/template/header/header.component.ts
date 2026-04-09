@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from '@env/environment';
 import { ThemeConstantService } from '@shared/services/theme-constant.service';
 
 
@@ -13,6 +14,10 @@ export class HeaderComponent{
     quickViewVisible : boolean = false;
     isFolded : boolean = false;
     isExpand : boolean = false;
+
+    currentUser = JSON.parse(localStorage.getItem("currentUser") ?? "{}");
+
+    pathServer = environment.hostUrl + '/storage/';
 
     constructor( private themeService: ThemeConstantService) {}
 

@@ -37,6 +37,8 @@ export class MarketplacePageComponent implements OnInit {
   isGlobalPersonal: boolean = false;
   totalPointsPersonalGlobal: number = 0;
 
+  rdTab: number = 1;
+
   constructor(
     private apiService: ApiService,
     private nZmodal: NzModalService,

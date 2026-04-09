@@ -15,3 +15,37 @@ box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.55);
   overflow: hidden;
   background: transparent !important;
 }
+
+.banner-container{
+  background: #B2E6FD;
+  background: linear-gradient(90deg, rgba(178, 230, 253, 1) 0%, rgba(155, 216, 241, 1) 39%, rgba(45, 12, 255, 1) 100%);
+  border-radius: 15px;
+}
+.img-banner{
+  background-image: url('/assets/images/unsplash_7bMdiIqz_J4.png');
+  height: 100%;
+  background-size: 107%;
+  background-position-y: -41px;
+  z-index: 10px;
+  position: relative;
+}
+.banner-stadistic{
+  background-color: rgba($color: #FFFFFF, $alpha: 0.55);
+  border-radius: 16px;
+  padding: 18px;;
+  .banner-stadistic-succes{
+    background-color: #DFFDDD;
+    border-radius: 13px;
+    padding: 10px;
+  }
+  .banner-stadistic-error{
+    background-color: #FBC3C3;
+    border-radius: 13px;
+    padding: 5px;
+  }
+}
+.img-banner-doctor{
+  position: relative;
+  top: -42px;
+  height: 110%;
+}

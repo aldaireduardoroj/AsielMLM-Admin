@@ -34,6 +34,18 @@
         &.logo-white {
             display: none;
         }
+
+        .desktop-toggle {
+            @include screen-tablet {
+                display: none;
+            }
+        }
+
+        .mobile-toggle {
+            @include screen-tablet-above {
+                display: none;
+            }
+        }
     }
 
     .nav-wrap {

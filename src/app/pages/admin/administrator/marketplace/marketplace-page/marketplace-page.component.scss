@@ -1,13 +1,13 @@
 .shadow--product{
-  -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.25);
+-moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.25);
+box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.25)
 }
 .product--image{
   height: 315px;
     overflow: hidden;
     position: relative;
-    border: 10px solid #FFF;
+    border: 5px solid #FFF;
 }
 
 @media (max-width: 960px){
@@ -18,4 +18,31 @@ box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
 
 .product--image img{
   height: 100%;
+}
+
+.banner-container{
+  background: #B2E6FD;
+  background: linear-gradient(90deg, rgba(178, 230, 253, 1) 0%, rgba(155, 216, 241, 1) 39%, rgba(45, 12, 255, 1) 100%);
+  border-radius: 15px;
+}
+
+.banner-stadistic{
+  background-color: rgba($color: #FFFFFF, $alpha: 0.55);
+  border-radius: 16px;
+  padding: 18px;;
+  .banner-stadistic-succes{
+    background-color: #DFFDDD;
+    border-radius: 13px;
+    padding: 10px;
+  }
+  .banner-stadistic-error{
+    background-color: #FBC3C3;
+    border-radius: 13px;
+    padding: 5px;
+  }
+}
+.img-banner-doctor{
+  position: relative;
+  top: -42px;
+  height: 110%;
 }

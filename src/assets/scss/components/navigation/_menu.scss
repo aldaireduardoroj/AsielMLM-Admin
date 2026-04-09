@@ -7,9 +7,9 @@
     &:not(.ant-menu-horizontal) {
         .ant-menu-item-selected {
             // @include background-opacity($brand-primary, 0.1);
-            background: $brand-primary;
+            background: #EEF2FF;
             a {
-                color: $white;
+                color: #4880FF;
             }
         }
     }
@@ -136,7 +136,7 @@
 .ant-menu-vertical-right {
     .ant-menu-item {
         &:after {
-            border-right: 3px solid $brand-primary;
+            border-right: none;
         }
     }
 }

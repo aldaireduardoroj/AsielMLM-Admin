@@ -21,6 +21,7 @@ $bg-gray-4: #E2E8F0;
 $bg-gray-8: #94A3B8;
 $bg-gray-7: #626262;
 $bg-black-2: #343A40;
+$black-three: #454545;
 
 .ff-inter{
     font-family: 'Inter', sans-serif !important;
@@ -93,6 +94,9 @@ body{
 .fs-25{
   font-size: 25px !important;
 }
+.fs-32{
+    font-size: 32px !important;
+}
 .fs-33{
     font-size: 33px !important;
 }
@@ -102,7 +106,9 @@ body{
 .fs-40{
     font-size: 40px !important;
 }
-
+.fs-45{
+    font-size: 45px !important;
+}
 .bg-gris{
     background-color: $gris !important;
 }
@@ -141,6 +147,10 @@ body{
 }
 .text-black-2{
   color: $bg-black-2;
+}
+
+.text-black-3{
+  color: $black-three;
 }
 .text-black-lig{
   color: $bg-black-lig;
@@ -192,6 +202,9 @@ body{
 }
 .fw-700{
   font-weight: 700;
+}
+.fw-800{
+  font-weight: 800;
 }
 hr + span{
   position: absolute;
@@ -549,7 +562,7 @@ fieldset.scheduler-border > legend {
     border-left: 1px solid #C4C4C4;
   }
   .card--shadow{
-    
+
   }
   .flex-colums-movil{
     flex-direction: column;
@@ -659,6 +672,11 @@ perfect-scrollbar>.ps {
   padding-left: 15px;
   padding-right: 15px;
   background-color: #FFFFFF;
+
+}
+.header .logo,
+perfect-scrollbar>.ps{
+  border-right: 2px solid #E7E7E7 !important;
 }
 .logo{
   display: flex;
@@ -680,7 +698,6 @@ perfect-scrollbar>.ps {
   border-radius: 20px;
 }
 .bg--auth-shape{
-  background-color: #4880FF;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -712,15 +729,22 @@ perfect-scrollbar>.ps {
 }
 .card--bonus{
   border-radius: 10px;
+  background-color: #FFFFFF;
   box-shadow: 0 4px 5px 0px rgba(0,0,0,0.25);
   -webkit-box-shadow: 0 4px 5px 0px rgba(0,0,0,0.25);
   -moz-box-shadow: 0 4px 5px 0px rgba(0,0,0,0.25);
   padding: 16px;
   display: block;
-  max-width: 300px;
+  max-width: 200px;
+  padding-top: 25px;
+  &.card--bonus--total{
+    background-color: #1A71F6;
+    color: #FFFFFF;
+  }
 }
 .ant-menu-inline.ant-menu-root .ant-menu-item{
-  border-radius: 7px;
+  border-radius: 25px;
+  margin-bottom: 15px !important;
 }
 .ant-menu:not(.ant-menu-dark) .ant-menu-item-selected a:hover{
   color: #FFFFFF;
@@ -735,9 +759,11 @@ perfect-scrollbar>.ps {
 .header{
   border-bottom: 0;
 }
-.bg--input.ant-input{
-  background-color: #F5F6FA;
-  border: 1px solid #D5D5D5;
+.bg--input.ant-input,
+.bg--input.ant-select .ant-select-selector{
+  // background-color: #F5F6FA;
+  border: 2px solid #D1D1D1;
+  border-radius: 15px;
 }
 .label--right{
   position: relative;
@@ -782,4 +808,33 @@ perfect-scrollbar>.ps {
 }
 .ant-upload-text-icon .anticon-loading{
   display: none;
+}
+.btn-notification{
+  display: inline-block;
+  background-color: #F6F6F6;
+  padding: 6px;
+  border-radius: 9px;
+}
+.tab--fill{
+  width: 100%;
+  display: flex;
+
+  .ant-radio-button-wrapper{
+    border: 0;
+    flex: 1 0 0;
+    text-align: center;
+    color: #737373;
+    font-weight: 500;
+
+    &:hover,
+    &.ant-radio-button-wrapper-checked{
+      background-color: #D9EDFF !important;
+      color: #1A71F6 !important;
+      font-weight: 600;
+      border-radius: 10px;
+    }
+  }
+  .ant-radio-button-wrapper:not(:first-child)::before{
+    width: 0;
+  }
 }

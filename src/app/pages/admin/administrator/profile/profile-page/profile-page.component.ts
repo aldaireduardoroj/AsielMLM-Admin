@@ -15,6 +15,7 @@ import { ProfileInvitedModalComponent } from './profile-invited-modal/profile-in
 import { Router } from '@angular/router';
 import { ToolsUserAddModalComponent } from '../../tools/tools-users-page/tools-user-add-modal/tools-user-add-modal.component';
 import { forkJoin } from 'rxjs';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-profile-page',
@@ -24,7 +25,7 @@ import { forkJoin } from 'rxjs';
 export class ProfilePageComponent implements OnInit {
   @ViewChild('templatePointPersonal', { read: TemplateRef }) templatePointPersonal:TemplateRef<any>;
   @ViewChild('templatePointAfiliado', { read: TemplateRef }) templatePointAfiliado:TemplateRef<any>;
-  
+
   @ViewChild('renewModal', { read: TemplateRef }) renewModal:TemplateRef<any>;
 
   avatarUrl: string = CONSTANTS.IMAGE.FALLBACK;
@@ -76,6 +77,9 @@ export class ProfilePageComponent implements OnInit {
       city: [null],
       country: [null],
       gender: [null],
+      fullName: [null],
+      password: [{value: "12345678" , disabled: true}, []],
+      dateCreation: [{value: null , disabled: true}, []]
     });
 
     this.oneMonthAgo = new Date(
@@ -97,7 +101,7 @@ export class ProfilePageComponent implements OnInit {
           this.isPointPersonal = this.userModel?.payment?.payment_order.pack.id == res.data[0].option_value;
         }
       },(error) => {
-        
+
       }
     )
   }
@@ -134,7 +138,9 @@ export class ProfilePageComponent implements OnInit {
           city: response.data.city,
           gender: response.data.genger,
           country: response.data.country,
-          dni: response.data.dni
+          dni: response.data.dni,
+          fullName: response.data.name,
+          dateCreation: formatDate(new Date(response.data.created_at), 'dd/MM/yyyy', 'en-US' )
         });
         this.userCode = response.data.uuid;
 
@@ -301,7 +307,7 @@ export class ProfilePageComponent implements OnInit {
         })
       }
     )
-    
+
     // const selBox = document.createElement('textarea');
     // selBox.style.position = 'fixed';
     // selBox.style.left = '0';
@@ -330,7 +336,7 @@ export class ProfilePageComponent implements OnInit {
       nzContent: this.templatePointAfiliado
     })
   }
-  
+
 
   public onRenewModal(): void{
     this.nzModalService.create({
@@ -412,7 +418,7 @@ export class ProfilePageComponent implements OnInit {
     });
 
     modal.afterClose.subscribe( () => {
-      
+
     })
   }
 

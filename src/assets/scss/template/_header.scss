@@ -11,6 +11,7 @@
     .logo {
         width: $side-nav-width;
         border-right: 1px solid $border-color;
+        padding: 0 10px;
         @include transition(all 0.2s ease);
 
         @include screen-laptop-only {
@@ -34,15 +35,81 @@
         &.logo-white {
             display: none;
         }
+
+        .nav-left,
+        .nav-right {
+            list-style-type: none;
+            padding-left: 0px;
+            margin-bottom: 0px;
+            align-items: center;
+            display: flex;
+
+            li {
+
+                > a,
+                nz-dropdown > a {
+                    padding: 0px 9px 3px;
+                    font-size: 18px;
+                    color: $body-color;
+                    display: block;
+                    @include transition(background-color 0.3s);
+                    border-radius: 0.75rem;
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        color: $brand-primary;
+                        background-color: rgba($brand-primary, 0.1);
+
+                        .ant-badge {
+                            color: $brand-primary;
+                        }
+                    }
+
+                    .ant-badge {
+                        color: $body-color;
+                        font-size: 18px;
+                    }
+                }
+
+
+            }
+
+            @include screen-tablet {
+              width: 100%;
+              justify-content: end;
+            }
+
+            .desktop-toggle {
+                @include screen-tablet {
+                    display: none;
+                }
+            }
+
+            .mobile-toggle {
+                @include screen-tablet-above {
+                    display: none;
+                }
+            }
+
+            .btn-toogle-menu{
+              border: 2px solid rgba($color: #374957, $alpha: 0.2);
+              margin-left: 10px;
+            }
+        }
+
+
     }
 
     .nav-wrap {
         flex: 1;
         display: flex;
         justify-content: space-between;
+        border-bottom: 2px solid #E7E7E7;
 
-
-
+        &.nav-wrap-right{
+          justify-content: end;
+        }
         .nav-left,
         .nav-right {
             list-style-type: none;
