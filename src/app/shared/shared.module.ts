@@ -26,6 +26,9 @@ import { PaymentViewVoucherModalComponent } from './components/payment/payment-v
 import { CardImageComponent } from './components/card-image/card-image.component';
 import { CardTestimonialsComponent } from './components/card-testimonials/card-testimonials.component';
 import { PaymentOfflineEfectivoComponent } from './components/payment/payment-offline-efectivo/payment-offline-efectivo.component';
+import { BannerAuthenticationComponent } from './template-web/banner-authentication/banner-authentication.component';
+
+import { NgChartsModule } from 'ng2-charts';
 
 const MODULES = [
     ReactiveFormsModule,
@@ -50,7 +53,8 @@ const COMPONENTS = [
     PaymentViewVoucherModalComponent,
     CardImageComponent,
     CardTestimonialsComponent,
-    PaymentOfflineEfectivoComponent
+    PaymentOfflineEfectivoComponent,
+    BannerAuthenticationComponent
 ]
 
 @NgModule({
@@ -63,7 +67,7 @@ const COMPONENTS = [
         ...MODULES,
         SearchPipe,
         ...COMPONENTS,
-
+        NgChartsModule
     ],
     imports: [
         GooglePlaceModule,
@@ -72,7 +76,7 @@ const COMPONENTS = [
         FormsModule,
         ...MODULES,
         PerfectScrollbarModule,
-
+        NgChartsModule
     ],
     declarations: [
         SearchPipe,

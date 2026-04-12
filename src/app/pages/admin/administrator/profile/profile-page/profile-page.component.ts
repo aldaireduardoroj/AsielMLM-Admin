@@ -17,6 +17,8 @@ import { ToolsUserAddModalComponent } from '../../tools/tools-users-page/tools-u
 import { forkJoin } from 'rxjs';
 import { formatDate } from '@angular/common';
 
+import { ChartConfiguration, ChartType } from 'chart.js';
+
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -60,6 +62,55 @@ export class ProfilePageComponent implements OnInit {
   effect = 'scrollx';
 
   storySelected: any;
+
+  rdTab: number = 1;
+  sldPoints: number = 80;
+
+
+  public lineChartData: ChartConfiguration['data'] = {
+    labels: ['Jan', 'Feb', 'Mar', 'Jun', 'Jul', 'Aug', 'Sep'], // Fechas del eje X
+    datasets: [
+      {
+        data: [10, 25, 15, 23, 20, 45, 35],
+        label: 'Average item persale',
+        borderColor: '#BCF328',
+        backgroundColor: '#BCF328',
+        tension: 0.4, // <-- Esto crea el efecto de curva (suavizado de Bezier)
+        pointBackgroundColor: '#BCF328',
+        fill: false
+      },
+      {
+        data: [5, 15, 4, 20, 12, 27, 25],
+        label: 'Average year value',
+        borderColor: '#1A71F6',
+        backgroundColor: '#1A71F6',
+        tension: 0.4, // <-- 0 hace que las líneas sean completamente rectas y generen ángulos
+        borderDash: [5, 5],
+        pointBackgroundColor: '#1A71F6',
+        fill: false
+      }
+    ]
+  };
+
+  public lineChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    scales: {
+      x: {
+        display: true, // Mantiene visible el eje X (fechas)
+      },
+      y: {
+        display: false, // <-- Esto oculta completamente el eje Y (valores, líneas y etiquetas)
+        beginAtZero: true
+      }
+    },
+    plugins: {
+      legend: {
+        display: true // Muestra la leyenda arriba
+      }
+    }
+  };
+
+  public lineChartType: ChartType = 'line';
 
   constructor(
     private fb: FormBuilder,
@@ -435,6 +486,27 @@ export class ProfilePageComponent implements OnInit {
       (response) => {
         this.storySelected = null;
         this.loadStories()
+      }
+    )
+  }
+
+  public onDownloadFinanceExcel(): void{
+    this.apiService.postUserExcelFinance({}).subscribe(
+      (response) => {
+        console.log(response)
+
+        const base64 = response.data.base64;
+        const byteCharacters = atob(base64);
+        const byteNumbers = Array.from(byteCharacters, char => char.charCodeAt(0));
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], {
+          type: response.data.mime
+        });
+
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = response.data.filename;
+        link.click();
       }
     )
   }

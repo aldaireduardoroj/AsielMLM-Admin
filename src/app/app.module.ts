@@ -19,6 +19,9 @@ import { TemplateWebModule } from '@shared/template-web/template-web.module';
 import { WebLayoutComponent } from './layouts/web-layout/web-layout.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { JwtInterceptor } from '@shared/interceptor/token.interceptor';
+import { AuthenticationLayoutComponent } from './layouts/authentication-layout/authentication-layout.component';
+
+import { NgChartsModule } from 'ng2-charts';
 
 registerLocaleData(es);
 
@@ -27,7 +30,8 @@ registerLocaleData(es);
     AppComponent,
     CommonLayoutComponent,
     FullLayoutComponent,
-    WebLayoutComponent
+    WebLayoutComponent,
+    AuthenticationLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ registerLocaleData(es);
     AppRoutingModule,
     TemplateModule,
     TemplateWebModule,
-    NzButtonModule
+    NzButtonModule,
+    NgChartsModule
   ],
   providers: [
     {

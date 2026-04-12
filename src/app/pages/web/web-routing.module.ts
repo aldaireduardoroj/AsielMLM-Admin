@@ -5,10 +5,11 @@ import { WebLayoutComponent } from 'src/app/layouts/web-layout/web-layout.compon
 import { WebLayout_ROUTES } from '@shared/routes/web-layout.routes';
 import { FullLayoutComponent } from 'src/app/layouts/full-layout/full-layout.component';
 import { GuestComponent } from './guest/guest.component';
+import { AuthenticationLayoutComponent } from 'src/app/layouts/authentication-layout/authentication-layout.component';
 
 
 const routes: Routes = [
-    
+
     {
         path: '',
         component: WebLayoutComponent,
@@ -16,6 +17,7 @@ const routes: Routes = [
     },
     {
         path: 'auth',
+        component: AuthenticationLayoutComponent,
         loadChildren: () => import('../web/authentication/authentication.module').then( m => m.AuthenticationWebModule )
     },
     {

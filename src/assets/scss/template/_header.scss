@@ -20,7 +20,8 @@
 
         @include screen-tablet {
             // display: none;
-            border-right: 0;
+            border-right: 0 !important;
+            width: 100%;
         }
 
         > a {
@@ -159,9 +160,10 @@
 
         .nav-right {
             margin-right: 10px;
+
         }
 
-        .desktop-toggle {
+        &.desktop-toggle {
             @include screen-tablet {
                 display: none;
             }

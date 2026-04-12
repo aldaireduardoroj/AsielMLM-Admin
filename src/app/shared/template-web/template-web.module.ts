@@ -17,11 +17,12 @@ const antdModule = [
 @NgModule({
   exports:[
     HeaderMenuComponent,
-    FooterMenuComponent
+    FooterMenuComponent,
+
   ],
   declarations: [
     HeaderMenuComponent,
-    FooterMenuComponent
+    FooterMenuComponent,
   ],
   imports: [
     CommonModule,

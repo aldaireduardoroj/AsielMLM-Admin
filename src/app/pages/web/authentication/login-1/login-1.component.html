@@ -1,337 +1,202 @@
-<div class="container-fluid p-0">
-  <nav
-    class="navbar navbar-expand-lg border-bottom d-flex d-md-none"
-    id="navbar-example2"
-  >
-    <div class="container-xxl align-items-center">
-      <a class="navbar-brand pt-1" [routerLink]="'/home'">
-        <img
-          src="assets/images/Logo.png"
-          alt=""
-          class="img-fluid"
-          width="169px"
-        />
-      </a>
-      <div>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="19"
-            viewBox="0 0 24 19"
-            fill="none"
-          >
-            <rect width="24" height="3" rx="1.5" fill="#423838" />
-            <rect y="8" width="24" height="3" rx="1.5" fill="#423838" />
-            <rect
-              x="10"
-              y="16"
-              width="13.8947"
-              height="3"
-              rx="1.5"
-              fill="#423838"
-            />
-          </svg>
-        </button>
+<div class="row">
 
-        <img
-          nz-image
-          *ngIf="isAuth"
-          width="40px"
-          height="40px"
-          [nzSrc]="avatarUrl"
-          [nzDisablePreview]="true"
-          class="d-md-none rounded-circle ml-1 border border-3"
-        />
-      </div>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="javascript: void(0)"
-              (click)="goTo('inicio-section')"
-              >Inicio</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="javascript: void(0)"
-              (click)="goTo('team-section')"
-              >Nosotros</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="javascript: void(0)"
-              (click)="goTo('valores-section')"
-              >Valores</a
-            >
-          </li>
-          <li class="nav-item d-block d-md-none">
-            <a
-              class="nav-link"
-              href="javascript: void(0)"
-              (click)="goTo('testimonial-section')"
-              >Testimonios</a
-            >
-          </li>
-          <li class="nav-item d-block d-md-none">
-            <a
-              class="nav-link"
-              [routerLink]="'/auth/login'"
-              [routerLinkActive]="'active'"
-              >Inicio Sesión</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div
-    class="row align-items-stretch m-0 p-0 container-mobile bg--auth-shape"
-    style="min-height: 100vh"
-  >
-    <div class="col-lg-5 col-12 ">
-      <div class="row align-items-center h-100">
-        <div>
-          <div class="row">
-            <div class="col-12 m-b-40">
-              <a class="navbar-brand pt-1" [routerLink]="'/home'">
-                <img
-                  src="assets/images/Logo.png"
-                  alt=""
-                  class="img-fluid"
-                  width="169px"
-                />
-              </a>
-            </div>
-            <div class="col-xl-7 col-md-8 col-12 mx-auto m-b-40">
-              <!-- <img src="assets/images/logo/5cd86c5269c85bcc6dfd9d97f1e772ee.png" alt="" class="img-fluid mb-4" width="367px"> -->
-              <nz-card class="card--auth">
-                <h1
-                  class="ff-poppins fs-22 fw-bolder container-form-mobile text-center"
-                  style="color: #202224"
-                >
-                  Inicia sesión - Asiel Network
-                </h1>
-                <p
-                  class="m-b-20 fs-15 container-form-mobile text-center"
-                  style="color: #202224"
-                >
-                  Escribe correo y contraseña para continuar
-                </p>
-                <form
-                  nz-form
-                  [formGroup]="frmLogin"
-                  nzLayout="vertical"
-                  class="login-form"
-                >
-                  <nz-row class="m-b-20">
-                    <nz-col [nzSm]="24" [nzXs]="24">
-                      <nz-form-item>
-                        <nz-form-label nzFor="dni"
-                          ><span style="color: #202224"
-                            >Documento de Identidad</span
-                          ></nz-form-label
-                        >
-                        <nz-form-control [nzErrorTip]="errorEmail">
-                          <input type="text" nz-input formControlName="dni" />
-                          <ng-template #errorEmail let-control>
-                            <ng-container *ngIf="control.hasError('required')"
-                              >Campo obligatorio.</ng-container
-                            >
-                            <!-- <ng-container *ngIf="control.hasError('email')">
+  <div class="col-xl-7 col-md-8 col-12 mx-auto m-b-40">
+    <!-- <img src="assets/images/logo/5cd86c5269c85bcc6dfd9d97f1e772ee.png" alt="" class="img-fluid mb-4" width="367px"> -->
+    <nz-card class="card--auth">
+      <h1
+        class="ff-poppins fs-22 fw-bolder container-form-mobile text-center"
+        style="color: #202224"
+      >
+        Inicia sesión - Asiel Network
+      </h1>
+      <p
+        class="m-b-20 fs-15 container-form-mobile text-center"
+        style="color: #202224"
+      >
+        Escribe correo y contraseña para continuar
+      </p>
+      <form
+        nz-form
+        [formGroup]="frmLogin"
+        nzLayout="vertical"
+        class="login-form"
+      >
+        <nz-row class="m-b-20">
+          <nz-col [nzSm]="24" [nzXs]="24">
+            <nz-form-item>
+              <nz-form-label nzFor="dni"
+                ><span style="color: #202224"
+                  >Documento de Identidad</span
+                ></nz-form-label
+              >
+              <nz-form-control [nzErrorTip]="errorEmail">
+                <input type="text" nz-input formControlName="dni" />
+                <ng-template #errorEmail let-control>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Campo obligatorio.</ng-container
+                  >
+                  <!-- <ng-container *ngIf="control.hasError('email')">
                                   Email incorrecto
                                 </ng-container> -->
-                          </ng-template>
-                        </nz-form-control>
-                      </nz-form-item>
-                    </nz-col>
-                  </nz-row>
-                  <nz-row class="mb-4">
-                    <nz-col [nzSm]="24" [nzXs]="24">
-                      <nz-form-item>
-                        <nz-form-label nzFor="password" class="label--right">
-                          <span style="color: #202224">Contraseña</span>
-                          <a
-                            [routerLink]="'/auth/recover-password'"
-                            style="
-                              position: absolute;
-                              right: 0;
-                              color: rgba(32, 34, 36, 0.6);
-                            "
-                            >Olvidaste tu contraseña?</a
-                          >
-                        </nz-form-label>
-                        <nz-form-control nzErrorTip="Campo obligatorio.">
-                          <nz-input-group [nzSuffix]="templateView">
-                            <ng-template #templateView>
-                              <i
-                                nz-icon
-                                nzType="eye"
-                                nzTheme="outline"
-                                *ngIf="isViewPassword"
-                                style="color: #a6a6a6; font-size: 18px"
-                                (click)="onViewPassword(false)"
-                              ></i>
-                              <i
-                                nz-icon
-                                nzType="eye-invisible"
-                                nzTheme="outline"
-                                *ngIf="!isViewPassword"
-                                style="color: #a6a6a6; font-size: 18px"
-                                (click)="onViewPassword(true)"
-                              ></i>
-                            </ng-template>
-                            <input
-                              [type]="!isViewPassword ? 'password' : 'text'"
-                              nz-input
-                              formControlName="password"
-                            />
-                          </nz-input-group>
-                        </nz-form-control>
-                      </nz-form-item>
-                    </nz-col>
-                  </nz-row>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+        </nz-row>
+        <nz-row class="mb-4">
+          <nz-col [nzSm]="24" [nzXs]="24">
+            <nz-form-item>
+              <nz-form-label nzFor="password" class="label--right">
+                <span style="color: #202224">Contraseña</span>
+                <a
+                  [routerLink]="'/auth/recover-password'"
+                  style="
+                    position: absolute;
+                    right: 0;
+                    color: rgba(32, 34, 36, 0.6);
+                  "
+                  >Olvidaste tu contraseña?</a
+                >
+              </nz-form-label>
+              <nz-form-control nzErrorTip="Campo obligatorio.">
+                <nz-input-group [nzSuffix]="templateView">
+                  <ng-template #templateView>
+                    <i
+                      nz-icon
+                      nzType="eye"
+                      nzTheme="outline"
+                      *ngIf="isViewPassword"
+                      style="color: #a6a6a6; font-size: 18px"
+                      (click)="onViewPassword(false)"
+                    ></i>
+                    <i
+                      nz-icon
+                      nzType="eye-invisible"
+                      nzTheme="outline"
+                      *ngIf="!isViewPassword"
+                      style="color: #a6a6a6; font-size: 18px"
+                      (click)="onViewPassword(true)"
+                    ></i>
+                  </ng-template>
+                  <input
+                    [type]="!isViewPassword ? 'password' : 'text'"
+                    nz-input
+                    formControlName="password"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+        </nz-row>
 
-                  <nz-row class="m-b-20">
-                    <nz-col [nzSm]="24" [nzXs]="24">
-                      <nz-form-control>
-                        <div
-                          class="d-flex align-items-center justify-content-between"
-                        >
-                          <button
-                            nz-button
-                            class="login-form-button w-100 border-0"
-                            [nzType]="'primary'"
-                            (click)="onSubmit()"
-                            [nzLoading]="loadingSubmit"
-                          >
-                            Ingresar
-                          </button>
-                        </div>
-                      </nz-form-control>
-                    </nz-col>
-                  </nz-row>
-                </form>
-                <div class="text-center">
-                  <span class="font-size-15"
-                    >Aún no tienes cuenta?
-                    <a [routerLink]="'/auth/register'">
-                      Crea tu cuenta aqui</a
-                    ></span
-                  >
-                </div>
-              </nz-card>
-            </div>
-            <div class="col-12">
-              <div class="d-flex align-items-center justify-content-center gap-3">
-                <a href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="50"
-                    height="50"
-                    viewBox="0 0 50 50"
-                    fill="none"
-                  >
-                    <path
-                      d="M0 25C0 38.8071 11.1929 50 25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25Z"
-                      fill="#1877F2"
-                    />
-                    <path
-                      d="M37.5 25C37.5 18.125 31.875 12.5 25 12.5C18.125 12.5 12.5 18.125 12.5 25C12.5 31.25 17.0312 36.4062 22.9688 37.3438V28.5937H19.8437V25H22.9688V22.1875C22.9688 19.0625 24.8438 17.3438 27.6563 17.3438C29.0625 17.3438 30.4688 17.6563 30.4688 17.6563V20.7812H28.9062C27.3438 20.7812 26.875 21.7188 26.875 22.6562V25H30.3125L29.6875 28.5937H26.7188V37.5C32.9688 36.5625 37.5 31.25 37.5 25Z"
-                      fill="white"
-                    />
-                  </svg>
-                </a>
-                <a href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="50"
-                    height="50"
-                    viewBox="0 0 50 50"
-                    fill="none"
-                  >
-                    <path
-                      d="M0 25C0 38.8071 11.1929 50 25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25Z"
-                      fill="#25D366"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M33.75 16.0938C31.4063 13.75 28.2812 12.5 25 12.5C18.125 12.5 12.5 18.125 12.5 25C12.5 27.1875 13.125 29.375 14.2188 31.25L12.5 37.5L19.0625 35.7812C20.9375 36.7188 22.9688 37.3438 25 37.3438C31.875 37.3438 37.5 31.7188 37.5 24.8437C37.5 21.5625 36.0938 18.4375 33.75 16.0938ZM25 35.3125C23.125 35.3125 21.25 34.8438 19.6875 33.9063L19.375 33.75L15.4687 34.8437L16.5625 31.0938L16.25 30.625C15.1562 28.9062 14.6875 27.0313 14.6875 25.1563C14.6875 19.5313 19.375 14.8438 25 14.8438C27.8125 14.8438 30.3125 15.9375 32.3438 17.8125C34.375 19.8437 35.3125 22.3438 35.3125 25.1563C35.3125 30.625 30.7812 35.3125 25 35.3125ZM30.625 27.5C30.3125 27.3438 28.75 26.5625 28.4375 26.5625C28.125 26.4062 27.9687 26.4063 27.8125 26.7188C27.6562 27.0313 27.0313 27.6562 26.875 27.9687C26.7188 28.125 26.5625 28.125 26.25 28.125C25.9375 27.9688 25 27.6562 23.75 26.5625C22.8125 25.7812 22.1875 24.6875 22.0313 24.375C21.875 24.0625 22.0313 23.9062 22.1875 23.75C22.3438 23.5938 22.5 23.4375 22.6562 23.2812C22.8125 23.125 22.8125 22.9688 22.9688 22.8125C23.125 22.6563 22.9688 22.5 22.9688 22.3438C22.9688 22.1875 22.3438 20.625 22.0313 20C21.875 19.5313 21.5625 19.5312 21.4063 19.5312C21.25 19.5312 21.0937 19.5312 20.7812 19.5312C20.625 19.5312 20.3125 19.5312 20 19.8437C19.6875 20.1562 18.9063 20.9375 18.9063 22.5C18.9063 24.0625 20 25.4688 20.1562 25.7812C20.3125 25.9375 22.3437 29.2188 25.4687 30.4688C28.125 31.5625 28.5938 31.25 29.2188 31.25C29.8438 31.25 31.0938 30.4688 31.25 29.8438C31.5625 29.0625 31.5625 28.4375 31.4063 28.4375C31.25 27.6563 30.9375 27.6563 30.625 27.5Z"
-                      fill="white"
-                    />
-                  </svg>
-                </a>
-                <a href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="50"
-                    height="50"
-                    viewBox="0 0 50 50"
-                    fill="none"
-                  >
-                    <path
-                      d="M0 25C0 11.1929 11.1929 0 25 0C38.8071 0 50 11.1929 50 25C50 38.8071 38.8071 50 25 50C11.1929 50 0 38.8071 0 25Z"
-                      fill="black"
-                    />
-                    <path
-                      d="M22.6537 22.3442V21.371C22.3203 21.3264 21.9813 21.2986 21.6312 21.2986C17.4579 21.2931 14.0625 24.6913 14.0625 28.8737C14.0625 31.4377 15.3406 33.7069 17.2967 35.0806C16.0353 33.7291 15.2628 31.9104 15.2628 29.9193C15.2628 25.798 18.5637 22.4388 22.6537 22.3442Z"
-                      fill="#25F4EE"
-                    />
-                    <path
-                      d="M22.8369 33.3787C24.6985 33.3787 26.2211 31.8938 26.2878 30.0473L26.2934 13.5456H29.3053C29.2441 13.2063 29.2108 12.856 29.2108 12.5H25.0986L25.093 29.0017C25.0264 30.8482 23.5037 32.3331 21.6421 32.3331C21.0642 32.3331 20.5196 32.1885 20.0361 31.9327C20.6585 32.8059 21.681 33.3787 22.8369 33.3787Z"
-                      fill="#25F4EE"
-                    />
-                    <path
-                      d="M34.9349 19.1463V18.2287C33.7846 18.2287 32.7176 17.8894 31.8174 17.2998C32.6176 18.2175 33.7012 18.885 34.9349 19.1463Z"
-                      fill="#25F4EE"
-                    />
-                    <path
-                      d="M31.8177 17.2998C30.9397 16.2932 30.4118 14.9806 30.4118 13.5457H29.3115C29.5949 15.1141 30.5285 16.46 31.8177 17.2998Z"
-                      fill="#FE2C55"
-                    />
-                    <path
-                      d="M21.6371 25.4087C19.7311 25.4087 18.1807 26.9605 18.1807 28.8681C18.1807 30.1974 18.9364 31.3542 20.0367 31.9327C19.6255 31.3654 19.381 30.6702 19.381 29.9137C19.381 28.0061 20.9314 26.4543 22.8375 26.4543C23.1931 26.4543 23.5376 26.5155 23.86 26.6156V22.411C23.5265 22.3665 23.1876 22.3386 22.8375 22.3386C22.7763 22.3386 22.7208 22.3442 22.6596 22.3442V25.57C22.3318 25.4699 21.9928 25.4087 21.6371 25.4087Z"
-                      fill="#FE2C55"
-                    />
-                    <path
-                      d="M34.935 19.1462V22.3442C32.8011 22.3442 30.8228 21.6602 29.2112 20.5033V28.8737C29.2112 33.0506 25.8159 36.4544 21.6369 36.4544C20.0254 36.4544 18.525 35.9427 17.2969 35.0806C18.6806 36.5656 20.6533 37.5 22.8373 37.5C27.0106 37.5 30.4115 34.1018 30.4115 29.9193V21.5489C32.023 22.7058 34.0013 23.3898 36.1353 23.3898V19.2742C35.7185 19.2742 35.3184 19.2297 34.935 19.1462Z"
-                      fill="#FE2C55"
-                    />
-                    <path
-                      d="M29.2109 28.8738V20.5033C30.8225 21.6602 32.8008 22.3443 34.9347 22.3443V19.1463C33.701 18.885 32.6174 18.2175 31.8172 17.2998C30.5279 16.46 29.5999 15.1141 29.3053 13.5457H26.2934L26.2879 30.0473C26.2212 31.8938 24.6985 33.3788 22.837 33.3788C21.6811 33.3788 20.6641 32.8059 20.0306 31.9383C18.9303 31.3543 18.1746 30.2031 18.1746 28.8738C18.1746 26.9661 19.725 25.4144 21.6311 25.4144C21.9867 25.4144 22.3313 25.4755 22.6536 25.5757V22.3498C18.5636 22.4388 15.2627 25.7981 15.2627 29.9194C15.2627 31.9105 16.0351 33.7236 17.2966 35.0807C18.5247 35.9427 20.0251 36.4544 21.6366 36.4544C25.81 36.4544 29.2109 33.0506 29.2109 28.8738Z"
-                      fill="white"
-                    />
-                  </svg>
-                </a>
+        <nz-row class="m-b-20">
+          <nz-col [nzSm]="24" [nzXs]="24">
+            <nz-form-control>
+              <div class="d-flex align-items-center justify-content-between">
+                <button
+                  nz-button
+                  class="login-form-button w-100 border-0"
+                  [nzType]="'primary'"
+                  (click)="onSubmit()"
+                  [nzLoading]="loadingSubmit"
+                >
+                  Ingresar
+                </button>
               </div>
-            </div>
-          </div>
-        </div>
+            </nz-form-control>
+          </nz-col>
+        </nz-row>
+      </form>
+      <div class="text-center">
+        <span class="font-size-15"
+          >Aún no tienes cuenta?
+          <a [routerLink]="'/auth/register'"> Crea tu cuenta aqui</a></span
+        >
       </div>
+    </nz-card>
+  </div>
+  <div class="col-12">
+    <div class="d-flex align-items-center justify-content-center gap-3">
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          viewBox="0 0 50 50"
+          fill="none"
+        >
+          <path
+            d="M0 25C0 38.8071 11.1929 50 25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25Z"
+            fill="#1877F2"
+          />
+          <path
+            d="M37.5 25C37.5 18.125 31.875 12.5 25 12.5C18.125 12.5 12.5 18.125 12.5 25C12.5 31.25 17.0312 36.4062 22.9688 37.3438V28.5937H19.8437V25H22.9688V22.1875C22.9688 19.0625 24.8438 17.3438 27.6563 17.3438C29.0625 17.3438 30.4688 17.6563 30.4688 17.6563V20.7812H28.9062C27.3438 20.7812 26.875 21.7188 26.875 22.6562V25H30.3125L29.6875 28.5937H26.7188V37.5C32.9688 36.5625 37.5 31.25 37.5 25Z"
+            fill="white"
+          />
+        </svg>
+      </a>
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          viewBox="0 0 50 50"
+          fill="none"
+        >
+          <path
+            d="M0 25C0 38.8071 11.1929 50 25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25Z"
+            fill="#25D366"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M33.75 16.0938C31.4063 13.75 28.2812 12.5 25 12.5C18.125 12.5 12.5 18.125 12.5 25C12.5 27.1875 13.125 29.375 14.2188 31.25L12.5 37.5L19.0625 35.7812C20.9375 36.7188 22.9688 37.3438 25 37.3438C31.875 37.3438 37.5 31.7188 37.5 24.8437C37.5 21.5625 36.0938 18.4375 33.75 16.0938ZM25 35.3125C23.125 35.3125 21.25 34.8438 19.6875 33.9063L19.375 33.75L15.4687 34.8437L16.5625 31.0938L16.25 30.625C15.1562 28.9062 14.6875 27.0313 14.6875 25.1563C14.6875 19.5313 19.375 14.8438 25 14.8438C27.8125 14.8438 30.3125 15.9375 32.3438 17.8125C34.375 19.8437 35.3125 22.3438 35.3125 25.1563C35.3125 30.625 30.7812 35.3125 25 35.3125ZM30.625 27.5C30.3125 27.3438 28.75 26.5625 28.4375 26.5625C28.125 26.4062 27.9687 26.4063 27.8125 26.7188C27.6562 27.0313 27.0313 27.6562 26.875 27.9687C26.7188 28.125 26.5625 28.125 26.25 28.125C25.9375 27.9688 25 27.6562 23.75 26.5625C22.8125 25.7812 22.1875 24.6875 22.0313 24.375C21.875 24.0625 22.0313 23.9062 22.1875 23.75C22.3438 23.5938 22.5 23.4375 22.6562 23.2812C22.8125 23.125 22.8125 22.9688 22.9688 22.8125C23.125 22.6563 22.9688 22.5 22.9688 22.3438C22.9688 22.1875 22.3438 20.625 22.0313 20C21.875 19.5313 21.5625 19.5312 21.4063 19.5312C21.25 19.5312 21.0937 19.5312 20.7812 19.5312C20.625 19.5312 20.3125 19.5312 20 19.8437C19.6875 20.1562 18.9063 20.9375 18.9063 22.5C18.9063 24.0625 20 25.4688 20.1562 25.7812C20.3125 25.9375 22.3437 29.2188 25.4687 30.4688C28.125 31.5625 28.5938 31.25 29.2188 31.25C29.8438 31.25 31.0938 30.4688 31.25 29.8438C31.5625 29.0625 31.5625 28.4375 31.4063 28.4375C31.25 27.6563 30.9375 27.6563 30.625 27.5Z"
+            fill="white"
+          />
+        </svg>
+      </a>
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          viewBox="0 0 50 50"
+          fill="none"
+        >
+          <path
+            d="M0 25C0 11.1929 11.1929 0 25 0C38.8071 0 50 11.1929 50 25C50 38.8071 38.8071 50 25 50C11.1929 50 0 38.8071 0 25Z"
+            fill="black"
+          />
+          <path
+            d="M22.6537 22.3442V21.371C22.3203 21.3264 21.9813 21.2986 21.6312 21.2986C17.4579 21.2931 14.0625 24.6913 14.0625 28.8737C14.0625 31.4377 15.3406 33.7069 17.2967 35.0806C16.0353 33.7291 15.2628 31.9104 15.2628 29.9193C15.2628 25.798 18.5637 22.4388 22.6537 22.3442Z"
+            fill="#25F4EE"
+          />
+          <path
+            d="M22.8369 33.3787C24.6985 33.3787 26.2211 31.8938 26.2878 30.0473L26.2934 13.5456H29.3053C29.2441 13.2063 29.2108 12.856 29.2108 12.5H25.0986L25.093 29.0017C25.0264 30.8482 23.5037 32.3331 21.6421 32.3331C21.0642 32.3331 20.5196 32.1885 20.0361 31.9327C20.6585 32.8059 21.681 33.3787 22.8369 33.3787Z"
+            fill="#25F4EE"
+          />
+          <path
+            d="M34.9349 19.1463V18.2287C33.7846 18.2287 32.7176 17.8894 31.8174 17.2998C32.6176 18.2175 33.7012 18.885 34.9349 19.1463Z"
+            fill="#25F4EE"
+          />
+          <path
+            d="M31.8177 17.2998C30.9397 16.2932 30.4118 14.9806 30.4118 13.5457H29.3115C29.5949 15.1141 30.5285 16.46 31.8177 17.2998Z"
+            fill="#FE2C55"
+          />
+          <path
+            d="M21.6371 25.4087C19.7311 25.4087 18.1807 26.9605 18.1807 28.8681C18.1807 30.1974 18.9364 31.3542 20.0367 31.9327C19.6255 31.3654 19.381 30.6702 19.381 29.9137C19.381 28.0061 20.9314 26.4543 22.8375 26.4543C23.1931 26.4543 23.5376 26.5155 23.86 26.6156V22.411C23.5265 22.3665 23.1876 22.3386 22.8375 22.3386C22.7763 22.3386 22.7208 22.3442 22.6596 22.3442V25.57C22.3318 25.4699 21.9928 25.4087 21.6371 25.4087Z"
+            fill="#FE2C55"
+          />
+          <path
+            d="M34.935 19.1462V22.3442C32.8011 22.3442 30.8228 21.6602 29.2112 20.5033V28.8737C29.2112 33.0506 25.8159 36.4544 21.6369 36.4544C20.0254 36.4544 18.525 35.9427 17.2969 35.0806C18.6806 36.5656 20.6533 37.5 22.8373 37.5C27.0106 37.5 30.4115 34.1018 30.4115 29.9193V21.5489C32.023 22.7058 34.0013 23.3898 36.1353 23.3898V19.2742C35.7185 19.2742 35.3184 19.2297 34.935 19.1462Z"
+            fill="#FE2C55"
+          />
+          <path
+            d="M29.2109 28.8738V20.5033C30.8225 21.6602 32.8008 22.3443 34.9347 22.3443V19.1463C33.701 18.885 32.6174 18.2175 31.8172 17.2998C30.5279 16.46 29.5999 15.1141 29.3053 13.5457H26.2934L26.2879 30.0473C26.2212 31.8938 24.6985 33.3788 22.837 33.3788C21.6811 33.3788 20.6641 32.8059 20.0306 31.9383C18.9303 31.3543 18.1746 30.2031 18.1746 28.8738C18.1746 26.9661 19.725 25.4144 21.6311 25.4144C21.9867 25.4144 22.3313 25.4755 22.6536 25.5757V22.3498C18.5636 22.4388 15.2627 25.7981 15.2627 29.9194C15.2627 31.9105 16.0351 33.7236 17.2966 35.0807C18.5247 35.9427 20.0251 36.4544 21.6366 36.4544C25.81 36.4544 29.2109 33.0506 29.2109 28.8738Z"
+            fill="white"
+          />
+        </svg>
+      </a>
     </div>
-    <div
-      class="col-lg-7 d-none d-lg-block"
-      style="
-        background-image: url(&quot;assets/images/Frame 480965928.png&quot;);
-        background-repeat: no-repeat;
-        background-size: cover;
-      "
-    ></div>
   </div>
 </div>
