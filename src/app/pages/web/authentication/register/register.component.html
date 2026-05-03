@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xl-7 col-md-8 col-12 mx-auto m-b-40">
+  <div class="col-xl-7 col-md-8 col-11 mx-auto m-b-40">
     <nz-card class="card--auth">
       <div class="row no-gutters align-items-center">
         <div class="col-12 col-md-12 col-lg-11 col-xl-11 mx-auto p-t-20 p-b-20">
@@ -79,6 +79,18 @@
                                 Email incorrecto
                               </ng-container> -->
                     </ng-template>
+                  </nz-form-control>
+                </nz-form-item>
+              </nz-col>
+            </nz-row>
+            <nz-row>
+              <nz-col [nzSm]="24" [nzXs]="24">
+                <nz-form-item>
+                  <nz-form-label nzFor="country"
+                    >Indicar País</nz-form-label
+                  >
+                  <nz-form-control>
+                    <input type="text" nz-input formControlName="country" />
                   </nz-form-control>
                 </nz-form-item>
               </nz-col>

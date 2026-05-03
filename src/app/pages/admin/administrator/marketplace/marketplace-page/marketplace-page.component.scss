@@ -5,14 +5,34 @@ box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.25)
 }
 .product--image{
   height: 315px;
-    overflow: hidden;
-    position: relative;
-    border: 5px solid #FFF;
+  overflow: hidden;
+  position: relative;
+  border-radius: 15px;
 }
 
 @media (max-width: 960px){
   .product--image{
-    height: 250px;
+    height: 155px;
+    width: 100%;
+  }
+  .card--products{
+    .p-10{
+      padding: 5px !important;
+    }
+    .p-20{
+      padding: 9px !important;
+    }
+    .font-size-14{
+      font-size: 12px !important;
+    }
+    .btn--count-product{
+      &.p-10{
+        padding: 1px !important;
+      }
+    }
+    .ant-btn-sm{
+      padding: 0.15rem 0rem;
+    }
   }
 }
 
@@ -20,29 +40,3 @@ box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.25)
   height: 100%;
 }
 
-.banner-container{
-  background: #B2E6FD;
-  background: linear-gradient(90deg, rgba(178, 230, 253, 1) 0%, rgba(155, 216, 241, 1) 39%, rgba(45, 12, 255, 1) 100%);
-  border-radius: 15px;
-}
-
-.banner-stadistic{
-  background-color: rgba($color: #FFFFFF, $alpha: 0.55);
-  border-radius: 16px;
-  padding: 18px;;
-  .banner-stadistic-succes{
-    background-color: #DFFDDD;
-    border-radius: 13px;
-    padding: 10px;
-  }
-  .banner-stadistic-error{
-    background-color: #FBC3C3;
-    border-radius: 13px;
-    padding: 5px;
-  }
-}
-.img-banner-doctor{
-  position: relative;
-  top: -42px;
-  height: 110%;
-}

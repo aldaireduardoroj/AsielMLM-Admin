@@ -1,5 +1,5 @@
 <perfect-scrollbar class="side-nav" sideNav>
-  <div style="position: static;" class="ps">
+  <div style="position: static; overflow-y: auto;" class="ps">
 
     <ul class="ant-menu ant-menu-root ant-menu-inline side-nav-menu"
         [ngClass]="{
@@ -68,6 +68,15 @@
         <li [ngClass]="['ant-menu-item']">
           <a href="javascript:void(0);" (click)="onLogout()"><i nz-icon nzType="logout" nzTheme="outline"></i> <span>Cerrar sesión</span></a>
         </li>
+        <li [ngClass]="['ant-menu-item', 'menu--desing']" >
+            <div class="text-center footer-side-nav m-b-20 d-flex flex-column w-100">
+                <hr style="border-color: #E2E8F0;">
+                <img src="assets/images/Moneyverse Home Office.png" alt="Logo" class="img-fluid m-b-20">
+                <button class="btn btn-primary font-size-13" style="background-color: #4F46E5 !important; padding-right: 5px !important; padding-left: 5px !important;">Pagar alquiler de servidor</button>
+            </div>
+        </li>    
     </ul>
+    
+
   </div>
 </perfect-scrollbar>

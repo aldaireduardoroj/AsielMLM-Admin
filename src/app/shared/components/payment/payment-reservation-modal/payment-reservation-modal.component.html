@@ -2,7 +2,7 @@
   <nz-spin nzTip="Verificando..." [nzSpinning]="isSpinning">
     <nz-row class="m-b-10">
       <nz-col [nzSm]="12" [nzXs]="12" >
-        <p class="m-0 fs-14 text-gray-6">Nombre del plan de afiliación :</p>
+        <p class="m-0 fs-14 text-gray-6 line-height-1">Nombre del plan de afiliación :</p>
       </nz-col>
       <nz-col [nzSm]="12" [nzXs]="12" class="text-right">
         <p class="m-0 fs-14 text-gray-6">{{ planSelected.title }}</p>
@@ -11,7 +11,7 @@
 
     <nz-row class="m-b-10">
       <nz-col [nzSm]="12" [nzXs]="12" >
-        <p class="m-0 fs-14 text-gray-6">Puntos por plan :</p>
+        <p class="m-0 fs-14 text-gray-6 line-height-1">Puntos por plan :</p>
       </nz-col>
       <nz-col [nzSm]="12" [nzXs]="12" class="text-right">
         <p class="m-0 fs-14 text-gray-6">{{ planSelected.points }} puntos</p>
@@ -22,35 +22,35 @@
 
     <nz-row class="m-b-10">
       <nz-col [nzSm]="12" [nzXs]="12" >
-        <p class="m-0 fs-15 text-black-6">Precio del plan de afiliación:</p>
+        <p class="m-0 fs-14 text-black-6 line-height-1">Precio del plan de afiliación:</p>
       </nz-col>
       <nz-col [nzSm]="12" [nzXs]="12" class="text-right">
-        <p class="m-0 fs-15 text-black-6">S/ {{ planSelected.price | number : '1.2-2' }}</p>
+        <p class="m-0 fs-14 text-black-6">S/ {{ planSelected.price | number : '1.2-2' }}</p>
       </nz-col>
     </nz-row>
 
     <nz-row class="m-b-10">
       <nz-col [nzSm]="12" [nzXs]="12" >
-        <p class="m-0 fs-15 text-black-6">Comisión e impuestos de venta:</p>
+        <p class="m-0 fs-14 text-black-6 line-height-1">Comisión e impuestos de venta:</p>
       </nz-col>
       <nz-col [nzSm]="12" [nzXs]="12" class="text-right">
-        <p class="m-0 fs-15 text-black-6">{{ comitionTotal }}%</p>
+        <p class="m-0 fs-14 text-black-6">{{ comitionTotal }}%</p>
       </nz-col>
     </nz-row>
 
     <nz-row class="m-b-10">
       <nz-col [nzSm]="12" [nzXs]="12" >
-        <p class="m-0 fs-15 text-black-6">Precio final:</p>
+        <p class="m-0 fs-14 text-black-6 line-height-1">Precio final:</p>
       </nz-col>
       <nz-col [nzSm]="12" [nzXs]="12" class="text-right">
-        <p class="m-0 fs-15 text-black-6"><b>S/ {{ this.totalPayment | number : '1.2-2' }}</b></p>
+        <p class="m-0 fs-14 text-black-6"><b>S/ {{ this.totalPayment | number : '1.2-2' }}</b></p>
       </nz-col>
     </nz-row>
 
     <nz-row class="m-b-30">
       <nz-col [nzSm]="12" [nzXs]="12" >
-        <p class="m-0 fs-15 text-black-6"><b>Escribir ID de patrocinador</b></p>
-        <p class="m-0 fs-15 text-black-6"><b>(información obligatorio)</b></p>
+        <p class="m-0 fs-14 text-black-6"><b>Escribir ID de patrocinador</b></p>
+        <p class="m-0 fs-14 text-black-6"><b>(información obligatorio)</b></p>
       </nz-col>
       <nz-col [nzSm]="12" [nzXs]="12" class="text-right">
         <nz-input-group [nzSuffix]="suffixTemplateClean" >
@@ -68,7 +68,7 @@
     </nz-row>
 
     <ng-container *ngIf="!isReactivePlan">
-      <div class="m-b-20">
+      <!-- <div class="m-b-20">
         <button nz-button nzType="primary" nzBlock class="btn-payment" style="opacity: .4;" disabled (click)="onPaymentFlow()" [nzLoading]="isLoadingFlow">
           <p class="mb-0 text-white fs-14">PAGAR</p>
           <p class="mb-0 text-white fs-14">(PagoEfectivo exclusivo para Perú)</p>
@@ -88,7 +88,7 @@
 
       <div class="m-b-20 position-relative" >
         <hr style="border-color: #E4E4E4; border-width: 2px;"><span>OR</span>
-      </div>
+      </div> -->
 
       <div class="m-b-20" >
         <button nz-button nzType="primary" nzBlock class="btn-payment" (click)="onPaymentOffline()" [nzLoading]="isLoadingOffline">
@@ -97,7 +97,7 @@
         </button>
       </div>
     </ng-container>
-    
+
 
     <ng-container *ngIf="isReactivePlan">
         <button nz-button nzType="primary" nzBlock class="btn-payment" (click)="onPaymentMakerplace()" >
@@ -105,8 +105,8 @@
           <p class="mb-0 text-white fs-14">Para renovar compra productos en la tienda</p>
         </button>
     </ng-container>
-    
-    
+
+
 
 
   </nz-spin>
@@ -116,8 +116,8 @@
 <ng-container *ngIf="paymentSection == 1">
   <nz-row class="m-b-20">
     <nz-col [nzSm]="24" [nzXs]="24" class="m-b-20 text-center" >
-      <p class="m-0 fs-15 text-gray-6"><b>¡ Listo, se genero un link de pago!. </b></p>
-      <p class="m-0 fs-15 text-gray-6">Ingresar al link para poder realizar el pago de su plan.</p>
+      <p class="m-0 fs-14 text-gray-6"><b>¡ Listo, se genero un link de pago!. </b></p>
+      <p class="m-0 fs-14 text-gray-6">Ingresar al link para poder realizar el pago de su plan.</p>
 
     </nz-col>
     <nz-col [nzSm]="24" [nzXs]="24" class="text-center">
@@ -168,8 +168,8 @@
 <ng-container *ngIf="paymentSection == 4">
   <nz-row class="m-b-20">
     <nz-col [nzSm]="24" [nzXs]="24" class="m-b-20 text-center" >
-      <p class="m-0 fs-15 text-gray-6"><b>¡ Listo, pago offline!. </b></p>
-      <p class="m-0 fs-15 text-gray-6">Ingresar al link para poder realizar el pago de su plan.</p>
+      <p class="m-0 fs-14 text-gray-6"><b>¡ Listo, pago offline!. </b></p>
+      <p class="m-0 fs-14 text-gray-6">Ingresar al link para poder realizar el pago de su plan.</p>
 
     </nz-col>
 

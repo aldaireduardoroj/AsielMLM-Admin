@@ -20,9 +20,13 @@ export class TreeViewComponent implements OnInit {
      this.addNodes( this.tree, this.data );
      this.tree.UpdateTree();
 
+
+
      this.tree.nDatabaseNodes.forEach( node => {
       node.paths = node._drawChildrenLinks(this.tree)
-     })
+     });
+
+     this.centrarPrimerNodo();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -31,6 +35,27 @@ export class TreeViewComponent implements OnInit {
 
   get nodes(){
     return this.tree.nDatabaseNodes
+  }
+
+  centrarPrimerNodo() {
+    if (!this.data || this.data.length === 0) return;
+    const idDelPrimerNodo = this.data.data.id;
+    const idHTML = 'nodo-' + idDelPrimerNodo; // Ej: 'nodo-1'
+
+    // Usamos setTimeout para dar tiempo a que app-tree-view dibuje el template
+    setTimeout(() => {
+      const elementoNativo = document.getElementById(idHTML);
+
+      if (elementoNativo) {
+        elementoNativo.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',  // Centra verticalmente
+          inline: 'center'  // Centra horizontalmente si hay scroll en X
+        });
+      } else {
+        console.warn('No se encontró el nodo en el DOM con ID:', idHTML);
+      }
+    }, 100); // 100ms suele ser suficiente para que Angular y el componente hijo terminen de renderizar
   }
 
   getChildren(node:ECONode,nodes:ECONode[]=[])

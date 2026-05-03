@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TreeViewComponent } from '@shared/components/tree-view/tree-view.component';
 import { ECONode, IECONode, Orientation } from '@shared/interfaces/econode.type';
 import { ApiService } from '@shared/services/api.service';
@@ -16,7 +16,6 @@ import { forkJoin } from 'rxjs';
 })
 export class TreeUsersPageComponent implements OnInit {
 
-
   Orientation = Orientation;
   nodeSelected: ECONode = null;
   isChart: boolean = false;
@@ -32,6 +31,7 @@ export class TreeUsersPageComponent implements OnInit {
   codeSponsor: string = "--";
 
   listPoints: Array<any> = [];
+  isSpinning: boolean = true;
 
   constructor(
     private apiService: ApiService,
@@ -84,6 +84,8 @@ export class TreeUsersPageComponent implements OnInit {
         // getCodeUuid()
         this.listPoints = pointsData;
         this.isChart = true;
+        this.isSpinning = false;
+
       }
     )
 

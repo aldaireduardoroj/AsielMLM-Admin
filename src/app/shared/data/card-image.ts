@@ -6,22 +6,22 @@ export interface ICardImageData{
 
 export const teamMembers: Array<ICardImageData> = [
     {
-        image: "assets/images/foto de Gerente comercial.jpg",
+        image: "assets/images/Group 1000003393.png",
         name: "Víctor Gaytan",
         subName: "Gerente Comercial"
     },
-    {
-        image: "assets/images/Foto de CEO.jpg",
-        name: "Jean Berrios",
-        subName: "CEO & Founder"
-    },
+    // {
+    //     image: "assets/images/Foto de CEO.jpg",
+    //     name: "Jean Berrios",
+    //     subName: "CEO & Founder"
+    // },
     {
         image: "assets/images/Presidente.jpg",
         name: "Yolanda Galindo",
         subName: "Presidenta"
     },
     {
-        image: "assets/images/Group 1000001903.png",
+        image: "assets/images/Group 1000003387.png",
         name: "Daniel Taipe",
         subName: "Trader Profesional"
     }

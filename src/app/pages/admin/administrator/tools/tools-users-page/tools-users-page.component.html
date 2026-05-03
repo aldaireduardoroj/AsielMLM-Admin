@@ -43,22 +43,25 @@
       >
         <thead>
           <tr>
-            <th [nzAlign]="'center'">Image</th>
-            <th [nzAlign]="'center'">Nombre y Apellidos</th>
-            <th [nzAlign]="'center'">Código ID</th>
-            <th [nzAlign]="'center'">Plan Actual</th>
-            <th [nzAlign]="'center'">Estado</th>
-            <th [nzAlign]="'center'">Rango</th>
-            <th [nzAlign]="'center'">Puntos Patrocinio</th>
-            <th [nzAlign]="'center'">Puntos Residuales</th>
-            <th [nzAlign]="'center'">Puntos por plan Actual</th>
-            <th [nzAlign]="'center'">Puntos Grupales</th>
-            <th [nzAlign]="'center'">Bono Infinito</th>
-            <th [nzAlign]="'center'">Puntos Gran total</th>
-            <th [nzAlign]="'center'">Comprobante</th>
-            <th [nzAlign]="'center'">Usuario Bot</th>
-            <th [nzAlign]="'center'">Ver</th>
-            <th [nzAlign]="'center'">Accion</th>
+            <th [nzAlign]="'center'" nzWidth="100px">Image</th>
+            <th [nzAlign]="'center'" nzWidth="250px">Nombre y Apellidos</th>
+            <th [nzAlign]="'center'" nzWidth="100px">Código ID</th>
+            <th [nzAlign]="'center'" nzWidth="150px">Plan Actual</th>
+            <th [nzAlign]="'center'" nzWidth="120px">Estado</th>
+            <th [nzAlign]="'center'" nzWidth="100px">Rango</th>
+            <th [nzAlign]="'center'" nzWidth="100px">Totales en tu red</th>
+            <th [nzAlign]="'center'" nzWidth="80px">Directos</th>
+            <th [nzAlign]="'center'" nzWidth="80px">Usuarios Activos</th>
+            <th [nzAlign]="'center'" nzWidth="80px">Puntos Patrocinio</th>
+            <th [nzAlign]="'center'" nzWidth="80px">Puntos Residuales</th>
+            <th [nzAlign]="'center'" nzWidth="80px">Puntos por plan Actual</th>
+            <th [nzAlign]="'center'" nzWidth="80px">Puntos Grupales</th>
+            <th [nzAlign]="'center'" nzWidth="80px">Bono Infinito</th>
+            <th [nzAlign]="'center'" nzWidth="80px">Puntos Gran total</th>
+            <th [nzAlign]="'center'" nzWidth="80px">Comprobante</th>
+            <th [nzAlign]="'center'" nzWidth="80px">Usuario Bot</th>
+            <th [nzAlign]="'center'" nzWidth="80px">Ver</th>
+            <th [nzAlign]="'center'" nzWidth="80px">Accion</th>
           </tr>
         </thead>
         <tbody>
@@ -81,6 +84,15 @@
             <td nzAlign="center">
               <b>{{ item?.range == null ? 'Sin Rango' : item?.range.range.title }}</b>
             </td>
+            <td nzAlign="center">
+              {{ item?.countTotal ?? 0 }}
+            </td>
+            <td nzAlign="center">
+              {{ item?.countDirects ?? 0 }}
+            </td>
+            <td nzAlign="center">
+              {{item?.countUserActive ?? 0 }}
+            </td>
             <td nzAlign="center">{{ item?.points?.patrocinio ?? 0 }}</td>
             <td nzAlign="center">{{ (item?.points?.residual ?? 0) + (item?.points?.pointAfiliado ?? 0) + (item?.points?.personalGlobal ?? 0) }}</td>
             <td nzAlign="center">{{ (item?.points?.compra ?? 0) + (item?.points?.personal ?? 0) }}</td>
@@ -94,7 +106,7 @@
                     <i nz-icon nzType="download"></i>
                   </a>
                 </ng-container>
-                
+
               </ng-container>
             </td>
             <td nzAlign="center">
@@ -102,7 +114,7 @@
                 <i nz-icon nzType="robot" nzTheme="outline" class="text-primary"></i>
               </ng-container>
               <ng-container *ngIf="!item.is_bot">
-                
+
               </ng-container>
             </td>
             <td nzAlign="center">
@@ -137,7 +149,7 @@
         <ng-container *ngIf="userModel.payment?.state == CONSTANTS.PAYMENT_ORDER.PREORDER">
           <button nz-button nzType="primary" class="m-b-20 ant-btn-info" (click)="onPaymentOfflineConfirm(userModel.uuid)">Activar Usuario: Pago Efectivo</button>
         </ng-container>
-        
+
       </nz-col>
     </nz-row>
   </ng-container>
