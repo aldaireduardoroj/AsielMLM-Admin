@@ -589,7 +589,7 @@ fieldset.scheduler-border > legend {
 
 @media (max-width: 768px){
   .ant-card-body{
-    padding: 0.5rem 0.5rem;
+    padding: 0.7rem 0.6rem;
   }
 }
 
@@ -663,6 +663,10 @@ fieldset.scheduler-border > legend {
   border-color: #00B517 !important;
   border-radius: 15px;
   color: #FFFFFF;
+  @include screen-tablet{
+    width: auto !important;
+    padding: 0.35rem 0.75rem;
+  }
 }
 
 .ant-menu{
@@ -1047,7 +1051,6 @@ button.bg-gray{
 .modal-auth-detail{
   @include screen-tablet{
     .file-upload{
-      width: 100%;
       img{
         width: 75px !important;
         height: 75px !important;
@@ -1055,6 +1058,9 @@ button.bg-gray{
     }
     h1{
       font-size: 42px !important;
+    }
+    .p-l-20{
+      flex: 1;
     }
   }
 }
@@ -1064,4 +1070,50 @@ button.bg-gray{
 }
 .ant-menu.ant-menu-inline-collapsed>.ant-menu-item.menu--desing{
   display: none;
+}
+.modal--payment-reservation{
+  @include screen-tablet{
+    .fs-14, h4{
+      font-size: 13px !important;
+    }
+  }
+
+}
+.menu--page{
+  @include screen-tablet{
+    .font-size-18{
+      font-size: 14px !important;
+    }
+    h2{
+      font-size: 18px !important;
+    }
+  }
+}
+.menu--page--finance{
+  @include screen-tablet{
+    h1, h2{
+      font-size: 16px !important;
+    }
+    p{
+      font-size: 13px !important;
+    }
+  }
+}
+.modal--auth-buttons{
+   @include screen-tablet{
+    h2{
+      font-size: 22px !important;
+      text-align: left;
+    }
+    button{
+      font-size: 12px;
+      border-radius: 10px;
+    }
+    label{
+      font-size: 13px !important;
+    }
+    p{
+      font-size: 12px !important;
+    }
+  }
 }

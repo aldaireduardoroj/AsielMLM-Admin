@@ -1,5 +1,5 @@
 <ng-container *ngIf="paymentSection == 0">
-  <nz-spin nzTip="Verificando..." [nzSpinning]="isSpinning">
+  <nz-spin nzTip="Verificando..." [nzSpinning]="isSpinning" class="modal--payment-reservation">
     <nz-row class="m-b-10">
       <nz-col [nzSm]="12" [nzXs]="12" >
         <p class="m-0 fs-14 text-gray-6 line-height-1">Nombre del plan de afiliación :</p>
@@ -49,8 +49,8 @@
 
     <nz-row class="m-b-30">
       <nz-col [nzSm]="12" [nzXs]="12" >
-        <p class="m-0 fs-14 text-black-6"><b>Escribir ID de patrocinador</b></p>
-        <p class="m-0 fs-14 text-black-6"><b>(información obligatorio)</b></p>
+        <p class="m-0 fs-14 text-black-6 line-height-1"><b>Escribir ID de patrocinador</b></p>
+        <p class="m-0 fs-14 text-black-6 line-height-1"><b>(información obligatorio)</b></p>
       </nz-col>
       <nz-col [nzSm]="12" [nzXs]="12" class="text-right">
         <nz-input-group [nzSuffix]="suffixTemplateClean" >

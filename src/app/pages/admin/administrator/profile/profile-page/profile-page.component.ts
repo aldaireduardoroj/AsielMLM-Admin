@@ -349,7 +349,7 @@ export class ProfilePageComponent implements OnInit {
       (res) => {
         this.nzModalService.create({
           nzContent: ProfileInvitedModalComponent,
-          nzTitle: "Inivitación",
+          nzTitle: "Invitación",
           nzFooter: null,
           nzComponentParams: {
             userModel: this.userModel,

@@ -1,4 +1,4 @@
-<nz-row class="m-b-40">
+<nz-row class="m-b-40 modal--auth-buttons">
   <nz-col [nzXs]="24" class="m-b-10 text-center">
     <p class="font-size-18" style="color: #4379EE;">{{ this.userModel.name }}</p>
   </nz-col>
@@ -36,7 +36,7 @@
     </nz-collapse>
   </nz-col>
   <nz-col [nzXs]="24" class="m-b-20">
-    <p>DETALLE DE COMPRA</p>
+    <p>Detalle de Compra</p>
     <ng-container *ngIf="_cartList.length > 0">
       <ng-container *ngFor="let product of cartList; let i = index">
         <div class="d-flex justify-content-between" *ngIf="product.quantity > 0">

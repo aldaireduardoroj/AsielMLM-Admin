@@ -60,7 +60,7 @@
       <nz-carousel [nzEffect]="effect" nzAutoPlay nzAutoPlaySpeed="7000">
         <div nz-carousel-content *ngFor="let item of imageStories">
           <div class="position-relative">
-            <!-- <button nz-button nzType="primary" class="position-absolute" style="top: 0; right: 0; z-index: 10;" nzShape="circle" nzDanger (click)="onDeleteVideo(item.id)" ><i nz-icon nzType="close-circle" class="fs-18"   nzTheme="outline"></i></button> -->
+            <button nz-button nzType="primary" class="position-absolute" style="top: 0; right: 0; z-index: 10;" nzShape="circle" nzDanger (click)="onDeleteVideo(item.id)" ><i nz-icon nzType="close-circle" class="fs-18"   nzTheme="outline"></i></button>
 
             <a
               [href]="item.link"
@@ -86,7 +86,7 @@
       <nz-radio-group [(ngModel)]="rdTab" nzButtonStyle="solid" class="tab--fill">
         <label nz-radio-button [nzValue]="1">Datos de usuario</label>
         <label nz-radio-button [nzValue]="2">Mis puntos</label>
-        <label nz-radio-button [nzValue]="3">Historial resultados</label>
+        <label nz-radio-button [nzValue]="3">Historial</label>
       </nz-radio-group>
     </nz-card>
   </div>
@@ -97,7 +97,7 @@
     <nz-row class="m-b-20">
       <nz-col [nzSm]="24" [nzXs]="24">
         <div class="profile-header">
-          <p style="color: #454545" class="fs-16 fw-600">
+          <p style="color: #454545" class="fs-16 fw-600 m-t-10" >
             {{ userModel?.name }} - ID:
             <span class="text-uppercase">{{ userModel?.uuid }}</span> &nbsp;<a
               href="javascrip: void(0);"
@@ -244,13 +244,13 @@
               </nz-form-item>
             </nz-col>
           </nz-row>
-          <nz-row class="">
+          <nz-row class="m-b-20">
             <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-10">
               <button
                 nz-button
                 nzType="primary"
                 (click)="onAddUser()"
-                style="margin-bottom: 10px"
+                style="margin-bottom: 10px; background-color: #A6A6A6; border-color: #A6A6A6;"
               >
                 Agregar Usuario
               </button>
@@ -610,14 +610,14 @@
                 <h1 class="m-b-20 line-height-1 fs-18 fw-bold notranslate">
                     {{ pointResudial + pointAfiliado + totalPointsPersonalGlobal }}
                     puntos &nbsp;
-                    <!-- <i
+                    <i
                       nz-icon
                       nzType="info-circle"
                       nzTheme="outline"
                       style="font-size: 14px"
                       class="pointer"
                       (click)="onInfoPointAfiliado()"
-                    ></i> -->
+                    ></i>
                   </h1>
               </div>
               <div>
@@ -724,6 +724,14 @@
               <div>
                 <h1 class="m-b-20 line-height-1 fs-18 fw-bold notranslate">
                     {{ pointCompra + pointPersonal }} puntos &nbsp;
+                    <i
+                      nz-icon
+                      nzType="info-circle"
+                      nzTheme="outline"
+                      style="font-size: 14px"
+                      class="pointer"
+                      (click)="onInfoPointPresonal()"
+                    ></i>
                   </h1>
               </div>
               <div>
@@ -991,9 +999,9 @@
               </svg>
           </div>
           <div class="">
-              <p class="m-b-0 font-size-18" style="color: rgba(60, 60, 67, 0.6);">Descargar Doc Excel {{ oneMonthAgo | date: 'MMMM' : '' : "es-ES" }} {{
+              <p class="m-b-0 font-size-13" style="color: rgba(60, 60, 67, 0.6);">Descargar Doc Excel {{ oneMonthAgo | date: 'MMMM' : '' : "es-ES" }} {{
           oneMonthAgo | date: 'YYYY' }}</p>
-              <p class="m-0 font-size-18" style="font-weight: 400;">Ver resultados de usuarios</p>
+              <p class="m-0 font-size-14" style="font-weight: 400;">Ver resultados de usuarios</p>
           </div>
       </a>
 
@@ -1091,7 +1099,7 @@
       "
       (click)="onDeleteVideo(storySelected.id)"
     >
-      borrar esta historia?
+      Borrar esta historia?
     </button>
     <div
       style="

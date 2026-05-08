@@ -1,4 +1,4 @@
-<nz-row class="m-b-10 p-t-30">
+<nz-row class="m-b-10 p-t-30 modal--payment-reservation" >
   <nz-col [nzSm]="12" [nzXs]="12" >
     <p class="m-0 fs-14 text-gray-6 line-height-1">Nombre del plan de afiliación :</p>
   </nz-col>
@@ -7,7 +7,7 @@
   </nz-col>
 </nz-row>
 
-<nz-row class="m-b-10">
+<nz-row class="m-b-10 modal--payment-reservation">
   <nz-col [nzSm]="12" [nzXs]="12" >
     <p class="m-0 fs-14 text-gray-6 line-height-1">Puntos por plan :</p>
   </nz-col>
@@ -30,7 +30,7 @@
     </nz-col>
   </nz-row>
   <nz-row class="m-b-10">
-    <nz-col [nzSm]="24" [nzXs]="24" class="m-b-30">
+    <nz-col [nzSm]="24" [nzXs]="24" class="m-b-30 modal--payment-reservation">
       <ng-container *ngFor="let product of iProductPaymentOrder.details; let i = index">
         <div class="d-flex align-items-center justify-content-between">
           <p class="m-0 fs-14 text-gray-6">{{ product.product_title }}</p>
@@ -39,12 +39,12 @@
       </ng-container>
 
     </nz-col>
-    <nz-col [nzSm]="24" [nzXs]="24" >
+    <nz-col [nzSm]="24" [nzXs]="24" class="modal--payment-reservation">
       <div class="d-flex align-items-center justify-content-between">
         <p class="m-0 fs-14 text-gray-6"><b>ESCRIBIR NÚMERO DE CONTACTO:</b></p> <b>{{ iProductPaymentOrder.phone }}</b>
       </div>
     </nz-col>
-    <nz-col [nzSm]="24" [nzXs]="24" >
+    <nz-col [nzSm]="24" [nzXs]="24" class="modal--payment-reservation">
       <div class="d-flex align-items-center justify-content-between">
         <p class="m-0 fs-14 text-gray-6">Descuento por ser socio Distribuidor:</p> <b>{{ iProductPaymentOrder.discount }}% Desc</b>
       </div>

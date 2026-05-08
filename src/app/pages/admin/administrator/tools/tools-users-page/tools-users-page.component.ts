@@ -65,9 +65,9 @@ export class ToolsUsersPageComponent implements OnInit {
   public onSearch(): void{
     this.tableProductLoading = true;
     this.apiService.getUsersFindAll({
-      code: this.codeUser.trim(), 
-      name: this.nameUser.trim() , 
-      plan: this.planSelected ?? "", 
+      code: this.codeUser.trim(),
+      name: this.nameUser.trim() ,
+      plan: this.planSelected ?? "",
       bot: this.isBot ? 1 : 0,
       limit: this.pageSize , page: this.pageIndex }).subscribe(
       (response) =>{
@@ -251,7 +251,9 @@ export class ToolsUsersPageComponent implements OnInit {
         break;
       case 2: this.tabTitle = "Modificar Patrocinador de Usuario";
         break;
-      case 4: this.tabTitle = "Activar Usuarios con Plan : Genera residual";
+      case 3: this.tabTitle = "Eliminar a usuario (Reseat)";
+        break;
+      case 4: this.tabTitle = "Reactivar usuario: Generando residual";
         break;
       default: this.tabTitle = titleModalGeneral;
         break;
