@@ -29,7 +29,8 @@ const routes: Routes = [
                 component: GuestComponent
             }
         ]
-    }
+    },
+
 ]
 
 @NgModule({

@@ -71,7 +71,7 @@ export class PaymentOfflineEfectivoComponent implements OnInit {
         (response) => {
           this.loading = false;
           this.modalRef.close();
-          this.modalService.success("Pago recibido. Su plan se activará cuando el administrador de Asiel Network confirme la compra.");
+          this.modalService.success("Pago recibido. Su plan se activará cuando el administrador de Vithara confirme la compra.");
         },
         (error) => {
           this.loading = false;
@@ -90,7 +90,7 @@ export class PaymentOfflineEfectivoComponent implements OnInit {
         (response) => {
           this.loading = false;
           this.modalRef.close();
-          this.modalService.success("Pago recibido. Su plan se activará cuando el administrador de Asiel Network confirme la compra.");
+          this.modalService.success("Pago recibido. Su plan se activará cuando el administrador de Vithara confirme la compra.");
         },
         (error) => {
           this.loading = false;
