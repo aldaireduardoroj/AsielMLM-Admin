@@ -104,6 +104,8 @@ export class MembershipPlanPageComponent implements OnInit {
       modal.afterClose.subscribe( (r)=> {
       })
     }
-    
+
   }
+
+
 }

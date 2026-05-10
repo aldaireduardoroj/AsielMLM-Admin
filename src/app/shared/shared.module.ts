@@ -29,6 +29,7 @@ import { PaymentOfflineEfectivoComponent } from './components/payment/payment-of
 import { BannerAuthenticationComponent } from './template-web/banner-authentication/banner-authentication.component';
 
 import { NgChartsModule } from 'ng2-charts';
+import { ListProductsComponent } from './components/list-products/list-products.component';
 
 const MODULES = [
     ReactiveFormsModule,
@@ -54,7 +55,8 @@ const COMPONENTS = [
     CardImageComponent,
     CardTestimonialsComponent,
     PaymentOfflineEfectivoComponent,
-    BannerAuthenticationComponent
+    BannerAuthenticationComponent,
+    ListProductsComponent
 ]
 
 @NgModule({

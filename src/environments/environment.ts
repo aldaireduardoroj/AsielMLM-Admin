@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  hostUrl: 'https://api.asielnetwork.com' ,// 'http://127.0.0.1:8000',
-  serveUrl: "https://asielnetwork.com" // http://localhost:4203/
+  hostUrl: 'https://api.vitharaoficial.com' ,// 'http://127.0.0.1:8000',
+  serveUrl: "https://vitharaoficial.com" // http://localhost:4203/
 };
 
 /*

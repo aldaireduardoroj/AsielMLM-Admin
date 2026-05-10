@@ -13,6 +13,7 @@ import { UserModel } from '@shared/services/models/user.interface';
 import { forkJoin } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { PaymentOfflineEfectivoComponent } from '../payment-offline-efectivo/payment-offline-efectivo.component';
+import { IProductModel } from '@shared/services/models/product.interface';
 
 @Component({
   selector: 'app-payment-reservation-modal',
@@ -21,15 +22,15 @@ import { PaymentOfflineEfectivoComponent } from '../payment-offline-efectivo/pay
 })
 export class PaymentReservationModalComponent implements OnInit {
 
-  @Input() planSelected: PackModel;
-  @Input() userModel : UserModel;
+  @Input() planSelected!: PackModel;
+  @Input() userModel!: UserModel;
 
   codeUser: string = "";
   codeUserStatus: string = "";
 
   isLoadingFlow: boolean = false;
   isLoadingIzipay: boolean = false;
-  paymentSection: number = 0;
+  paymentSection: number = 5;
 
   linkPayment: string = "#";
 
@@ -51,6 +52,10 @@ export class PaymentReservationModalComponent implements OnInit {
   sponsorInvited: string = "";
 
   isReactivePlan: boolean = false;
+
+  env = environment;
+
+  _cartList: Array<IProductModel> = [];
 
   constructor(
     private apiService: ApiService,
@@ -102,7 +107,7 @@ export class PaymentReservationModalComponent implements OnInit {
         this.isSpinning = false;
       }
     )
-    
+
   }
 
   public onPaymentFlow(): void{
@@ -283,6 +288,10 @@ export class PaymentReservationModalComponent implements OnInit {
       }
     )
 
+  }
+
+  public onNextPayment(): void{
+    this.paymentSection = 0;
   }
 
 }

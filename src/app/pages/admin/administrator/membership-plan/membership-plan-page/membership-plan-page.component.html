@@ -1,5 +1,5 @@
 <div class="p-30 text-center">
-  
+
     <h1 class="fs-20">NUESTRO PLANES DE AFILIACIÓN:<br>
     INDUSTRIA NETWORKER</h1>
 </div>
@@ -11,16 +11,18 @@
       <owl-carousel-o [options]="customOptions">
         <ng-container *ngFor="let plan of planList">
           <ng-template carouselSlide [id]="plan.id">
-            <div class="position-relative text-center p-t-20">
-              <h2 class="m-0 fs-25 text-center position-relative" style="z-index: 9;">{{ plan.title }}</h2>
-              <div class="m-b-10 " style="margin-top: -50px;">
+            <div class="position-relative p-20 bg-white rounded-lg m-l-10 m-r-10">
+              <div class="m-b-10 ">
                 <img [src]="env.hostUrl + '/storage/' + plan.file.path" alt="" class="img-fluid rounded">
               </div>
-              <p style="margin-top: -50px;">Precio {{ plan.price | number : '1.0'}} PEN, Valor {{ plan.points }} Puntos</p>
-            </div>
-            <div class="text-center p-t-20">
-              <button nz-button nzType="primary" class="bg-rojo" (click)="onPaymentPlan( plan )">Comprar</button>
-              <!--  -->
+              <h2 class="m-0 fs-24 text-left position-relative">{{ plan.title }}</h2>
+              <div class="d-flex justify-content-between m-t-10 w-100">
+                <div class="text-left">
+                  <p class="m-b-10 line-height-1" style="color: #818181;">Precio {{ plan.price | number : '1.0'}} PEN</p>
+                  <p class="m-0 line-height-1" style="color: #818181;">Valor {{ plan.points }} Puntos</p>
+                </div>
+                <button nz-button nzType="primary" class="bg-rojo" (click)="onPaymentPlan( plan )">Comprar</button>
+              </div>
             </div>
           </ng-template>
         </ng-container>
@@ -29,16 +31,16 @@
   </nz-row>
   <nz-row class="m-b-20">
     <nz-col [nzXs]="24" class="m-b-10 text-center">
-      <p style="font-weight: 600;">Número de cuenta BCP Soles de la empresa es 191585831150425.  Yape: +51 904 724 635</p>
-      <p style="font-weight: 600;">Mi número de cuenta interbancaria es 002191198583155042526.</p>
+      <p style="font-weight: 600;">Número de cuenta BCP Soles de la empresa es 23571280379098.  Yape: +51 946 057 509</p>
+      <p style="font-weight: 600;">Mi número de cuenta interbancaria es 00223517128037909808.</p>
     </nz-col>
   </nz-row>
   <nz-row class="m-b-20">
     <nz-col [nzXs]="24" class="m-b-10">
-      <div class="text-center rounded-lg p-20" style="background-color: #FFFFFF;">
+      <a class="text-center rounded-lg p-20 d-block" style="background-color: #FFFFFF;" target="_blank" [href]="env.hostUrl + '/storage/files/download/9Qv07JcuM9hcJ6Ej6fYGyPECpSPAQr7zOPNuKmc7.jpg'" download>
         <h3 style="color: #717171;" class="fs-15">Afíliate y gana a través Bono de venta directa, Bono residual, Bono indirecta, Rangos, entre otros.</h3>
         <h2 class="fs-18">Mar información +</h2>
-      </div>
+      </a>
     </nz-col>
   </nz-row>
 </div>

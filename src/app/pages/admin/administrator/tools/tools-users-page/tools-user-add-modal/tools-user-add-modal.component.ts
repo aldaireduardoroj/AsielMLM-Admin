@@ -25,9 +25,9 @@ export class ToolsUserAddModalComponent implements OnInit {
   isAdmin : boolean;
 
   avatarUrlNewSponsor: string = CONSTANTS.IMAGE.FALLBACK;
-  
+
   newSponsor: UserModel;
-  
+
   isSponsorNew: boolean = false;
   loadingSearch: boolean = false;
 
@@ -46,8 +46,8 @@ export class ToolsUserAddModalComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       dni: [null, [Validators.required]],
       password: [null, [Validators.required, Validators.minLength(8)]],
-      sponsor: [null, [Validators.required]],
-      plan: [null, [Validators.required]],
+      sponsor: [null, []],
+      plan: [null, []],
     });
 
     this.themeService.isAdminUserChanges.subscribe(isAdmin => {
@@ -61,7 +61,7 @@ export class ToolsUserAddModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadPlans(); 
+    this.loadPlans();
   }
 
   private command(): any {
@@ -107,7 +107,7 @@ export class ToolsUserAddModalComponent implements OnInit {
               this.avatarUrlNewSponsor = response.data[0]?.file?.path ? environment.hostUrl + '/storage/' + response.data[0]?.file?.path : CONSTANTS.IMAGE.FALLBACK;
             }
           }
-  
+
         },
         (error) => {
           this.loadingSearch = false;
@@ -121,6 +121,12 @@ export class ToolsUserAddModalComponent implements OnInit {
         this.planList = response.data;
       }
     )
+  }
+
+  onChangePlan(event: any): void{
+    if( event ){
+      const planSelected = this.planList.find( x => x.id === event );
+    }
   }
 
 }
