@@ -1,11 +1,13 @@
 <nz-row>
+
   <nz-col [nzXs]="24" class=" m-b-10">
     <nz-collapse [nzExpandIconPosition]="'right'"	class="out--content">
       <nz-collapse-panel
         [nzHeader]="'Click aquí para ver listado de productos y seleccionar'"
+        [nzActive]="true"
       >
         <nz-list nzBordered nzSize="small">
-          <nz-list-item *ngFor="let product of productsList; let i = index">
+          <nz-list-item *ngFor="let product of _productsList; let i = index">
             <nz-col [nzXs]="18" class="">
               <p class="m-0"><b>{{ product.title }}</b> - <span style="color: #A6A6A6;"><b>{{ product.price }} PEN</b></span></p>
             </nz-col>

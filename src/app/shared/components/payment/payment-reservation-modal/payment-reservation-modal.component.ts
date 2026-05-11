@@ -14,6 +14,7 @@ import { forkJoin } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { PaymentOfflineEfectivoComponent } from '../payment-offline-efectivo/payment-offline-efectivo.component';
 import { IProductModel } from '@shared/services/models/product.interface';
+import { parse } from 'date-fns';
 
 @Component({
   selector: 'app-payment-reservation-modal',
@@ -37,7 +38,7 @@ export class PaymentReservationModalComponent implements OnInit {
   isSpinning: boolean = true;
 
   comitionTotal: number = 0;
-  totalPayment: number = 0;
+  //totalPayment: number = 0;
 
   message: string = "";
 
@@ -84,8 +85,8 @@ export class PaymentReservationModalComponent implements OnInit {
         this.isSpinning = false;
         let comision = options.data.find( o => o.option_key == "comision" )?.option_value;
         this.comitionTotal = comision == null ? 0 : Number.parseFloat( comision );
-        if( this.comitionTotal == 0 ) this.totalPayment = Number.parseFloat(this.planSelected.price);
-        else this.totalPayment = parseFloat(this.planSelected.price) +  ( parseFloat(this.planSelected.price) * this.comitionTotal / 100) ;
+        // if( this.comitionTotal == 0 ) this.totalPayment = Number.parseFloat(this.planSelected.price);
+        // else this.totalPayment = parseFloat(this.planSelected.price) +  ( parseFloat(this.planSelected.price) * this.comitionTotal / 100) ;
         // this.totalPayment = this.comitionTotal == 0 ? this.planSelected.price : (this.planSelected.price + (this.planSelected.price * this.comitionTotal / 100) )
 
         this.sponsorInvited = sponsor.data;
@@ -202,22 +203,7 @@ export class PaymentReservationModalComponent implements OnInit {
   }
 
   public onPaymentOffline(): void{
-    // if( this.codeUser.trim() == "" ){
-    //   this.codeUserStatus = "error";
-    //   return;
-    // }
-    // this.isLoadingOffline = true;
-    // this.apiService.postPaymentCreateOffline({packId: this.planSelected.id, sponsorId: this.codeUser.trim()}).subscribe(
-    //   (response) => {
-    //     this.modalRef.close();
-    //     this.modalService.success("Pago recibido. Su plan se activará cuando el administrador de Imperio confirme la compra.");
-    //   },
-    //   (error) => {
-    //     this.isLoadingOffline = false;
-    //     this.modalService.error( error?.message ?? "Error");
-    //     this.modalRef.close();
-    //   }
-    // )
+
 
     if( this.codeUser.trim() == "" ){
       this.codeUserStatus = "error";
@@ -272,7 +258,6 @@ export class PaymentReservationModalComponent implements OnInit {
   }
 
   public onRemoveReferido(): void{
-    console.log("############")
 
     this.modalService.confirm(
       "¿Desea eliminar el usuario referido que acepto?",
@@ -292,6 +277,20 @@ export class PaymentReservationModalComponent implements OnInit {
 
   public onNextPayment(): void{
     this.paymentSection = 0;
+  }
+
+  get isValidCart(): boolean{
+    return ( (this._cartList?.map( (p) => p.price * (p?.quantity ?? 0 ) ).reduce( (acc, curr) => (acc + curr), 0 ) ?? 0) >= parseFloat(this.planSelected.price) );
+  }
+
+  get totalPayment(): number{
+    const cartAmount = this._cartList.length == 0 ? 0 : this._cartList.map( c => c.price * (c?.quantity ?? 0 ) ).reduce( (a, b) => a + b );
+    const planAmount = ( parseFloat(this.planSelected?.price) * ( this.comitionTotal == 0 ? 1 : this.comitionTotal / 100 ));
+    return cartAmount;
+  }
+
+  public onCartChange( cartList: Array<IProductModel> ): void{
+    this._cartList = cartList;
   }
 
 }

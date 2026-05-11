@@ -11,6 +11,7 @@ import { FormValidator } from '@shared/utilities/form-validator';
 import { ModalService } from '@shared/utilities/modal-services';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { IProductModel } from '@shared/services/models/product.interface';
 
 @Component({
   selector: 'app-tools-user-add-modal',
@@ -30,6 +31,10 @@ export class ToolsUserAddModalComponent implements OnInit {
 
   isSponsorNew: boolean = false;
   loadingSearch: boolean = false;
+
+  planSelected?: PackModel;
+
+  cartList: Array<IProductModel> = [];
 
   constructor(
     private fb: FormBuilder,
@@ -72,6 +77,13 @@ export class ToolsUserAddModalComponent implements OnInit {
       password: this.frmRegister.get('password')?.value,
       sponsor: this.frmRegister.get('sponsor')?.value,
       plan: this.frmRegister.get('plan')?.value,
+      products: this.cartList.map( p => {
+        return {
+          id: p.id,
+          quantity: p.quantity,
+          title: p.title,
+        }
+      } )
     }
   }
 
@@ -123,10 +135,21 @@ export class ToolsUserAddModalComponent implements OnInit {
     )
   }
 
-  onChangePlan(event: any): void{
-    if( event ){
-      const planSelected = this.planList.find( x => x.id === event );
+  onChangePlan(planId?: string): void{
+    if( planId != null ){
+      this.planSelected = this.planList.find( x => x.id === planId );
+    }else{
+      this.planSelected = null;
     }
+  }
+
+  public onCartChange( cartList: Array<IProductModel> ): void{
+    this.cartList = cartList;
+  }
+
+  get totalPayment(): number{
+    const cartAmount = this.cartList.length == 0 ? 0 : this.cartList.map( c => c.price * (c?.quantity ?? 0 ) ).reduce( (a, b) => a + b );
+    return cartAmount;
   }
 
 }
