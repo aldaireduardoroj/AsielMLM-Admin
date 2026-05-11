@@ -85,7 +85,7 @@
     <nz-row>
         <nz-col [nzSm]="24" [nzXs]="24">
 
-            
+
             <nz-form-item>
                 <nz-form-label nzRequired nzFor="sponsor"
                 >ID de patrocinador</nz-form-label
@@ -110,7 +110,7 @@
                 >Plan</nz-form-label
                 >
                 <nz-form-control nzErrorTip="Campo obligatorio.">
-                    <nz-select formControlName="plan" class="input__h-50 bg--input">
+                    <nz-select formControlName="plan" class="input__h-50 bg--input" nzAllowClear>
                         <nz-option [nzValue]="item.id" [nzLabel]="item.title" *ngFor="let item of planList"></nz-option>
                     </nz-select>
                 </nz-form-control>

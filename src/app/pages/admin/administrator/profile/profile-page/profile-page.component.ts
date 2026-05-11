@@ -63,7 +63,7 @@ export class ProfilePageComponent implements OnInit {
 
   storySelected: any;
 
-  rdTab: number = 1;
+  rdTab: number = 2;
   sldPoints: number = 80;
 
 

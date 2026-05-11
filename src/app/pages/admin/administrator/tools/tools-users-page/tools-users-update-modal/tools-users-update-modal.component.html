@@ -35,7 +35,7 @@
       <nz-form-label [nzSpan]="24">Activarle nuevo plan de Afiliación</nz-form-label>
       <nz-form-control  [nzSpan]="24" nzErrorTip="">
         <nz-select formControlName="packActive" nzPlaceholder="Seleccionar plan">
-          <nz-option [nzValue]="1" [nzLabel]="'Sin Plan'" ></nz-option>
+          <nz-option [nzValue]="1" [nzLabel]="'Desact. Plan'" ></nz-option>
           <nz-option [nzValue]="item.id" [nzLabel]="item.title" *ngFor="let item of planList"></nz-option>
         </nz-select>
       </nz-form-control>
