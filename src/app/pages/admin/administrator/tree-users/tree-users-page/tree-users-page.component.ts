@@ -146,6 +146,7 @@ export class TreeUsersPageComponent implements OnInit {
       nzTitle: 'Detalle',
       nzContent: UserTreeDetailComponent,
       nzFooter: null,
+      nzClassName: "modal-tree-user",
       nzComponentParams: {
         userModel: userModel.user,
         listPoints: this.listPoints,

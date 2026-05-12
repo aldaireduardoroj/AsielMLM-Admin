@@ -18,12 +18,17 @@ export class HeaderComponent{
     currentUser = JSON.parse(localStorage.getItem("currentUser") ?? "{}");
 
     pathServer = environment.hostUrl + '/storage/';
+    isAdmin : boolean;
 
     constructor( private themeService: ThemeConstantService) {}
 
     ngOnInit(): void {
         this.themeService.isMenuFoldedChanges.subscribe(isFolded => this.isFolded = isFolded);
         this.themeService.isExpandChanges.subscribe(isExpand => this.isExpand = isExpand);
+        this.themeService.isAdminUserChanges.subscribe(isAdmin => {
+            this.isAdmin = isAdmin;
+
+          } );
     }
 
     toggleFold() {
