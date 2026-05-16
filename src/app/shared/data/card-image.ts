@@ -30,7 +30,7 @@ export const teamMembers: Array<ICardImageData> = [
 export const productList: Array<ICardImageData> = [
     {
         image: "assets/images/Group 1000002321.jpg",
-        name: "Colágeno Aziel",
+        name: "Colágeno Asiel",
         subName: "Colágeno Triple Acción"
     },
     {
@@ -40,7 +40,7 @@ export const productList: Array<ICardImageData> = [
     },
     {
         image: "assets/images/Colgar este capuchino ahora.jpg",
-        name: "Capuccino Aziel",
+        name: "Capuccino Asiel",
         subName: "Bebida/Nutrición"
     },
     {

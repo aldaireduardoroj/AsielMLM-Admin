@@ -13,11 +13,11 @@ export const testimonial: Array<ICardTestimonialData> = [
     {
         image: "assets/images/Ellipse 8.png",
         name: "Ana Luisa",
-        description: "Desde el primer día que tomé el Sacha Jergón de Aziel Network me dio tremendos resultados 100% recomendable, además es natural y accesible para todas las familias. Gracias a Aziel mis molestias gástricas han disminuido bastante"
+        description: "Desde el primer día que tomé el Sacha Jergón de Asiel Network me dio tremendos resultados 100% recomendable, además es natural y accesible para todas las familias. Gracias a Asiel mis molestias gástricas han disminuido bastante"
     },
     {
         image: "assets/images/Ellipse 9.png",
         name: "Alicia Obregón",
-        description: "Llevaba tiempo sintiéndome pesada, con digestiones lentas y sin energía. Probé muchos productos, pero nada me funcionaba... hasta que conocí el Capuccino de Aziel. En solo 7 días, mi cuerpo comenzó a sentirse más liviano, mi digestión mejoró muchísimo y hasta noté cambios en mi piel. Lo mejor es que es 100% natural y me dio confianza desde el 1er día"
+        description: "Llevaba tiempo sintiéndome pesada, con digestiones lentas y sin energía. Probé muchos productos, pero nada me funcionaba... hasta que conocí el Capuccino de Asiel. En solo 7 días, mi cuerpo comenzó a sentirse más liviano, mi digestión mejoró muchísimo y hasta noté cambios en mi piel. Lo mejor es que es 100% natural y me dio confianza desde el 1er día"
     }
 ];
