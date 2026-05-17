@@ -121,14 +121,7 @@
           <nz-col [nzSm]="24" [nzXs]="24" class="m-b-10">
             <app-list-products [userModel]="null" [planSelected]="planSelected" (onCart)="onCartChange($event)" ></app-list-products>
           </nz-col>
-          <nz-col [nzSm]="24" [nzXs]="24" class="">
-            <div class="d-flex justify-content-between gap-2">
-              <div>
-                <p>Plan: <b>{{ planSelected?.price }}</b></p>
-              </div>
-              <div><p>Total: <b>{{ totalPayment | number: '1.0' }}</b></p></div>
-            </div>
-          </nz-col>
+
         </ng-container>
     </nz-row>
 

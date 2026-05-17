@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '@shared/services/api.service';
+import { IProductModel } from '@shared/services/models/product.interface';
 import { ModalService } from '@shared/utilities/modal-services';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
@@ -18,7 +19,7 @@ export class PaymentOfflineEfectivoComponent implements OnInit {
 
   @Input() phoneContact: string = "";
   @Input() addressContact: string = "";
-  @Input() details: any[] = [];
+  @Input() cartList: Array<any> = [];
 
   private readonly MAX_SIZE_MB = 5;
   fileSelected: any = null;
@@ -83,7 +84,7 @@ export class PaymentOfflineEfectivoComponent implements OnInit {
       const formData = new FormData();
       formData.append("phone" , this.phoneContact );
       formData.append("address" , this.addressContact.trim());
-      formData.append("details" , JSON.stringify( this.details ));
+      formData.append("cartList" , JSON.stringify( this.cartList ));
       formData.append("file" , this.fileSelected);
 
       this.apiService.postPaymentProductCreateOffline(formData).subscribe(

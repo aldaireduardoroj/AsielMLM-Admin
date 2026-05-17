@@ -4,7 +4,7 @@
       <h1 class="fs-28">{{ planSelected.title }}</h1>
       <img [src]="env.hostUrl + '/storage/' + planSelected.file.path" alt="" class="img-fluid rounded-circle m-b-20" style="width: 64px; height: 64px;">
       <p class="m-b-20 line-height-1" >Precio {{ planSelected.price | number : '1.0'}} PEN   Valor {{ planSelected.points }} Puntos</p>
-      <p class="m-b-0 line-height-1">Elige los productos que deseas llevarte por la compra de este plan. El número de productos seleccionados deben cumplir lo siguiente: La suma de los precios de los productos seleccionados deben indicar como mímimo 300 PEN</p>
+      <p class="m-b-0 line-height-1">Elige los productos que deseas llevarte por la compra de este plan. El número de productos seleccionados deben cumplir lo siguiente: La suma de los precios de los productos seleccionados deben indicar como mímimo {{ planSelected.price | number : '1.0'}} PEN</p>
     </nz-col>
     <nz-col [nzSm]="24" [nzXs]="24" >
       <app-list-products [userModel]="userModel" [planSelected]="planSelected" (onCart)="onCartChange($event)"></app-list-products>

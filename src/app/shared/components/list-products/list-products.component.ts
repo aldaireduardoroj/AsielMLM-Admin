@@ -75,14 +75,23 @@ export class ListProductsComponent implements OnInit {
 
   }
 
-  public onAddQuantity( index: number , suma: number ): void{
+  public onAddQuantity( productId: string , suma: number ): void{
 
-    if( (this.productsList[index].quantity??0) >= 0 ) this.productsList[index].quantity = (this.productsList[index].quantity??0) + suma;
-    this.productsList[index].quantity = this.productsList[index].quantity == -1 ? 0 : this.productsList[index].quantity;
-    this._cartList =  this.productsList.filter( p => (p?.quantity ?? 0) > 0 );
+    // if( (this.productsList[index].quantity??0) >= 0 ) this.productsList[index].quantity = (this.productsList[index].quantity??0) + suma;
+    // this.productsList[index].quantity = this.productsList[index].quantity == -1 ? 0 : this.productsList[index].quantity;
+
+    const isOperationValid = (this._productsList.find( p => p.id === productId)?.quantity ?? 0) + suma >= 0;
+
+    this._productsList =this._productsList.map( (p) => p.id === productId ? {...p, quantity: isOperationValid ? (p?.quantity ?? 0) + suma : 0 } : p );
+    this._cartList =  this._productsList.filter( p => (p?.quantity ?? 0) > 0 );
 
     this.onCart.emit(this._cartList);
 
+  }
+
+  get totalPayment(): number{
+    const cartAmount = this._cartList.length == 0 ? 0 : this._cartList.map( c => c.price * (c?.quantity ?? 0 ) ).reduce( (a, b) => a + b );
+    return cartAmount;
   }
 
 }

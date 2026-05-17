@@ -1,6 +1,6 @@
-<nz-row class="m-b-40 modal--auth-buttons">
+<nz-row class="m-b-20 modal--auth-buttons">
   <nz-col [nzXs]="24" class="m-b-10 text-center">
-    <p class="font-size-18" style="color: #4379EE;">{{ this.userModel.name }}</p>
+    <p class="font-size-18 m-0" style="color: #4379EE;">{{ this.userModel.name }}</p>
   </nz-col>
   <nz-col [nzXs]="24" class="text-center">
     <label for="fileupload" class="position-relative m-b-20">
@@ -8,10 +8,10 @@
     </label>
   </nz-col>
   <nz-col [nzXs]="24" class="m-b-10 text-center">
-    <p class="font-size-18">ID: <span class="text-uppercase">{{ this.userModel.uuid }}</span> / Fecha: {{ this.userModel.created_at | date: 'dd/MM/yyyy' }}</p>
+    <p class="font-size-18 m-0">ID: <span class="text-uppercase">{{ this.userModel.uuid }}</span> / Fecha: {{ this.userModel.created_at | date: 'dd/MM/yyyy' }}</p>
   </nz-col>
-  <nz-col [nzXs]="24" class="text-center m-b-30">
-    <p class=" font-size-15" style="color: #606060;">Para Reactivar a este usuario y generar Puntos residual, es necesario que indiques los productos que comprará por valor x≥200 Puntos. La reactivación se hará simulando una compra.</p>
+  <nz-col [nzXs]="24" class="text-center m-b-10">
+    <p class=" font-size-15" style="color: #606060;">Para Reactivar a este usuario y generar Puntos residual, es necesario que indiques los productos que comprará por valor x≥240 Puntos. La reactivación se hará simulando una compra.</p>
   </nz-col>
   <nz-col [nzXs]="24" class=" m-b-10">
     <nz-collapse [nzExpandIconPosition]="'right'"	class="out--content">
@@ -20,10 +20,10 @@
       >
         <nz-list nzBordered nzSize="small">
           <nz-list-item *ngFor="let product of productsList; let i = index">
-            <nz-col [nzXs]="18" class="">
+            <nz-col [nzXs]="14" [nzLg]="18" class="">
               <p class="m-0"><b>{{ product.title }}</b> - <span style="color: #A6A6A6;"><b>{{ product.points }} Ptos</b></span></p>
             </nz-col>
-            <nz-col [nzXs]="6" class="text-center">
+            <nz-col [nzXs]="10" [nzLg]="6" class="text-center">
               <div class="text-black d-flex align-items-center p-10" style="background-color: #F0F0F0; border-radius: 20px;">
                 <i nz-icon nzType="minus" nzTheme="outline" (click)="onAddQuantity( i , -1 )" class="p-r-10 p-l-10 pointer"></i>
                 <span class="notranslate">{{ product?.quantity ?? 0 }}</span>
@@ -48,7 +48,7 @@
           </div>
         </div>
       </ng-container>
-      
+
       <div>
         <div class="d-flex justify-content-between">
         <div>
@@ -61,7 +61,7 @@
       </div>
     </ng-container>
   </nz-col>
-  <nz-col [nzXs]="24" class="m-b-20">
+  <nz-col [nzXs]="24">
     <button (click)="modalDesactive()" nz-button nzType="primary" class="ant-btn-success" [nzLoading]="loadingDesactive">Reactivar, simulando compra en tienda</button>
   </nz-col>
 </nz-row>

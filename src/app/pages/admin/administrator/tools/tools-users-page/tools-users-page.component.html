@@ -67,7 +67,7 @@
         <tbody>
           <tr *ngFor="let item of tableProducts">
             <td nzAlign="center">
-              <img [src]="item.file != null ? environment.hostUrl + '/storage/' + item.file.path  :CONSTANTS.IMAGE.FALLBACK" alt="" class="rounded-circle" style="width: 50px;">
+              <img [src]="item.file != null ? environment.hostUrl + '/storage/' + item.file.path  :CONSTANTS.IMAGE.FALLBACK" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
             </td>
             <td nzAlign="center">{{ item.name }}</td>
             <td nzAlign="center">

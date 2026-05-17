@@ -1059,8 +1059,8 @@ button.bg-gray{
   @include screen-tablet{
     .file-upload{
       img{
-        width: 75px !important;
-        height: 75px !important;
+        width: 64px !important;
+        height: 64px !important;
       }
     }
     h1{
@@ -1068,6 +1068,14 @@ button.bg-gray{
     }
     .p-l-20{
       flex: 1;
+      padding-left: 10px !important;
+    }
+  }
+}
+.modal-tree-user{
+  @include screen-tablet{
+    .ant-modal-body{
+      padding: 0.75rem;
     }
   }
 }
@@ -1122,5 +1130,11 @@ button.bg-gray{
     p{
       font-size: 12px !important;
     }
+  }
+}
+
+@include screen-tablet{
+  .ant-modal-body{
+    padding: 1.1rem;
   }
 }

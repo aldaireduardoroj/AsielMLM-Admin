@@ -5,9 +5,11 @@ import { ImageCropperUploadComponent } from '@shared/components/image-cropper-up
 import { CONSTANTS } from '@shared/constants/constants';
 import { ApiService } from '@shared/services/api.service';
 import { PackModel } from '@shared/services/models/packs.interface';
+import { IProductModel } from '@shared/services/models/product.interface';
 import { UserModel } from '@shared/services/models/user.interface';
 import { saveSessionStoraheUser } from '@shared/utilities/functions';
 import { ModalService } from '@shared/utilities/modal-services';
+import { ca } from 'date-fns/locale';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { forkJoin } from 'rxjs';
 
@@ -33,6 +35,12 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
 
   isSponsordata: boolean = false;
 
+  planSelected?: PackModel;
+
+  cartList: Array<IProductModel> = [];
+
+  btnDsb: boolean = false;
+
   constructor(
     private apiService: ApiService,
     private modalService: ModalService,
@@ -50,6 +58,7 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
     this.loadData();
     console.log( this.userModel )
     if( this.userModel.payment == null ) this.isSponsordata = true;
+    if( this.isSponsordata ) this.btnDsb = true;
   }
 
   public loadData(): void{
@@ -138,7 +147,7 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
 
   public onSave(): void{
     if( this.userModel.payment == null ){
-      if( this.validateForm.get('packActive')?.value == 1 ){
+      if( this.validateForm.get('packActive')?.value == "1" ){
         this.modalService.warning("Para activarle 1er Plan, se debe seleccionar un plan existente.");
         return;
       }
@@ -154,14 +163,20 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
       }
     }
 
-    
     this.modalService.confirm( "Esta acción anulara todos los puntos que tiene actualmente para poder asignarle el plan como PATROCINIO, ¿Desea continuar con esta acción?" , () => {
       this.loadingSave = true;
       this.apiService.postUserModify({
         userCode: this.userModel.uuid,
         userFullName: this.validateForm.get('fullname')?.value,
         packId: this.validateForm.get('packActive')?.value,
-        sponsorNew: this.validateForm.get('sponsorNew')?.value ?? ""
+        sponsorNew: this.validateForm.get('sponsorNew')?.value ?? "",
+        cartList: this.cartList.map( p => {
+          return {
+            id: p.id,
+            quantity: p.quantity,
+            title: p.title,
+          }
+        })
 
       }).subscribe(
         (response) => {
@@ -176,8 +191,34 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
         }
       )
     })
-    
-    
+
+
   }
+
+  public onChangePlan( planId: string ): void{
+    this.planSelected = this.planList.find( item => item.id == planId ) ?? undefined;
+    if(this.planSelected){
+      if( this.isSponsordata ) this.btnDsb = true;
+      else this.btnDsb = false;
+
+    }else{
+      this.btnDsb = false;
+      this.cartList = [];
+    }
+  }
+
+  public onCartChange( cartList: Array<IProductModel> ): void{
+    this.cartList = cartList;
+
+    if(this.planSelected ){
+      const cartAmount = this.cartList.length == 0 ? 0 : this.cartList.map( c => c.price * (c?.quantity ?? 0 ) ).reduce( (a, b) => a + b );
+      if( this.isSponsordata ){
+        this.btnDsb = cartAmount >= parseFloat(this.planSelected?.price ?? "0") ? false : true;
+      }
+    }
+
+  }
+
+
 
 }

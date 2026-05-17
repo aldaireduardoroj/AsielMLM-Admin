@@ -1,6 +1,6 @@
 <nz-row>
 
-  <nz-col [nzXs]="24" class=" m-b-10">
+  <nz-col [nzXs]="24" class="m-b-10">
     <nz-collapse [nzExpandIconPosition]="'right'"	class="out--content">
       <nz-collapse-panel
         [nzHeader]="'Click aquí para ver listado de productos y seleccionar'"
@@ -13,14 +13,22 @@
             </nz-col>
             <nz-col [nzXs]="6" class="text-center">
               <div class="text-black d-inline-flex align-items-center" style="background-color: #F0F0F0; border-radius: 20px; padding: 5px;">
-                <i nz-icon nzType="minus" nzTheme="outline" (click)="onAddQuantity( i , -1 )" class="p-r-10 p-l-10 pointer"></i>
+                <i nz-icon nzType="minus" nzTheme="outline" (click)="onAddQuantity( product.id , -1 )" class="p-r-10 p-l-10 pointer"></i>
                 <span class="notranslate">{{ product?.quantity ?? 0 }}</span>
-                <i nz-icon nzType="plus" nzTheme="outline" (click)="onAddQuantity( i , 1 )" class="p-r-10 p-l-10 pointer"></i>
+                <i nz-icon nzType="plus" nzTheme="outline" (click)="onAddQuantity( product.id , 1 )" class="p-r-10 p-l-10 pointer"></i>
               </div>
             </nz-col>
           </nz-list-item>
         </nz-list>
       </nz-collapse-panel>
     </nz-collapse>
+  </nz-col>
+  <nz-col [nzSm]="24" [nzXs]="24" class="">
+    <div class="d-flex justify-content-between gap-2">
+      <div>
+        <p>Plan: <b>{{ planSelected?.price }}</b></p>
+      </div>
+      <div><p>Total: <b>{{ totalPayment | number: '1.0' }}</b></p></div>
+    </div>
   </nz-col>
 </nz-row>

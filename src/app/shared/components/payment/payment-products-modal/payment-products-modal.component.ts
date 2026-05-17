@@ -108,7 +108,7 @@ export class PaymentProductsModalComponent implements OnInit {
 
   public onPaymentFlow(): void{
 
-    
+
 
     if( !this.formValidator.validForm( this.validateForm ) ) return;
     this.isLoadingFlow = true;
@@ -116,7 +116,7 @@ export class PaymentProductsModalComponent implements OnInit {
       {
         phone: this.validateForm.get('phoneContact').value,
         address: this.validateForm.get('addressContact').value,
-        details: this.cartList.map( p => {
+        cartList: this.cartList.map( p => {
           return {
             product: p.id,
             quantity: p.quantity ?? 0
@@ -140,14 +140,14 @@ export class PaymentProductsModalComponent implements OnInit {
   }
 
   public onPaymentIzipay(): void{
-    
-    
+
+
     if( !this.formValidator.validForm( this.validateForm ) ) return;
     this.isLoadingIzipay = true;
     this.apiService.postProductPaymentCreateIzipay({
         phone: this.validateForm.get('phoneContact').value,
         address: this.validateForm.get('addressContact').value,
-        details: this.cartList.map( p => {
+        cartList: this.cartList.map( p => {
           return {
             product: p.id,
             quantity: p.quantity ?? 0
@@ -226,7 +226,7 @@ export class PaymentProductsModalComponent implements OnInit {
         isProduct: true,
         phoneContact: this.validateForm.get('phoneContact').value,
         addressContact: this.validateForm.get('addressContact').value,
-        details: this.cartList.map( p => {
+        cartList: this.cartList.map( p => {
           return {
             product: p.id,
             quantity: p.quantity ?? 0
@@ -246,10 +246,10 @@ export class PaymentProductsModalComponent implements OnInit {
 
   private onSubmit = (paymentData: KRPaymentResponse) => {
     this.isSpinningPayment = true;
-    
+
     this.apiService.postProductPaymentConfirmIzizpay( {orderId: this.paymentOrderProductId , ...paymentData} ).subscribe(
       (response) => {
-        
+
         this.paymentSection = 3;
         this.isPaymentError = false;
         this.isSpinningPayment = false;

@@ -220,7 +220,8 @@ export class ProfilePageComponent implements OnInit {
       phone: this.validateForm.get('phoneNumber').value,
       city: this.validateForm.get('city').value,
       country: this.validateForm.get('country').value,
-      gender: this.validateForm.get('gender').value
+      gender: this.validateForm.get('gender').value,
+      name: this.validateForm.get('fullName').value
     }
   }
 

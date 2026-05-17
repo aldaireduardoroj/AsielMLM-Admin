@@ -204,7 +204,6 @@ export class PaymentReservationModalComponent implements OnInit {
 
   public onPaymentOffline(): void{
 
-
     if( this.codeUser.trim() == "" ){
       this.codeUserStatus = "error";
       this.nzMessage.error("Debe Seleccionar un patrocinador" );
@@ -217,7 +216,8 @@ export class PaymentReservationModalComponent implements OnInit {
       nzFooter: null,
       nzComponentParams: {
         packId: this.planSelected.id,
-        codeUser: this.codeUser
+        codeUser: this.codeUser,
+        cartList: this._cartList
       }
     })
   }
