@@ -6,10 +6,9 @@ import { isAuth } from '@shared/utilities/functions';
 @Component({
   selector: 'app-guest',
   templateUrl: './guest.component.html',
-  styleUrls: ['./guest.component.scss']
+  styleUrls: ['./guest.component.scss'],
 })
 export class GuestComponent implements OnInit {
-
   codeToken: string;
   loading: boolean = true;
   status: string = 'warning';
@@ -28,47 +27,54 @@ export class GuestComponent implements OnInit {
     this.verifyData();
   }
 
-  public verifyData(): void{
+  public verifyData(): void {
     this.loading = true;
-    this.apiService.postInvitedEmailVerify({token: this.codeToken}).subscribe(
+    this.apiService.postInvitedEmailVerify({ token: this.codeToken }).subscribe(
       (res) => {
         this.loading = false;
         this.title = res.message;
-        if( res.success ){
-          localStorage.setItem("guest", this.codeToken);
-          if( !isAuth() ){
+        if (res.success) {
+          localStorage.setItem('guest', this.codeToken);
+          if (!isAuth()) {
             this.status = 'warning';
-            this.title = "Inicia sesion para activar la invitación.";
-          }else{
+            this.title = 'Inicia sesion para activar la invitación.';
+          } else {
             this.status = 'success';
             this.confirmData();
           }
-        }else{
+        } else {
           this.status = 'error';
         }
-        console.log(res)
-      }, (error) => {
+        console.log(res);
+      },
+      (error) => {
         this.loading = false;
         this.status = 'error';
-        this.title = "Hubo un error con el codigo de invitación.";
-      }
+        this.title = 'Hubo un error con el codigo de invitación.';
+      },
     );
   }
 
-  public confirmData(): void{
-    this.apiService.postInvitedEmailConfirm({}).subscribe(
-      (res) => {
-        this.loading = false;
-        localStorage.removeItem("guest");
-        console.log(res)
-        if( res.success ){
-          this.router.navigate(['/auth/profile']);
-        }
-      }, (error) => {
-        this.loading = false;
-        this.status = 'error';
-        this.title = "Hubo un error con el codigo de invitación.";
-      }
-    )
+  public confirmData(): void {
+    this.apiService
+      .postInvitedEmailConfirm({
+        token: this.codeToken,
+        accept: true,
+      })
+      .subscribe(
+        (res) => {
+          this.loading = false;
+          localStorage.removeItem('guest');
+          console.log(res);
+          if (res.success) {
+            this.router.navigate(['/auth/login']);
+          }
+        },
+        (error) => {
+          this.loading = false;
+          this.status = 'error';
+          this.title = 'Hubo un error con el codigo de invitación.';
+        },
+      );
   }
 }
