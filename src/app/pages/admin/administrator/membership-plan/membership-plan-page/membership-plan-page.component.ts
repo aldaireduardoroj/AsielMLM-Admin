@@ -14,11 +14,9 @@ import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-membership-plan-page',
   templateUrl: './membership-plan-page.component.html',
-  styleUrls: ['./membership-plan-page.component.scss']
+  styleUrls: ['./membership-plan-page.component.scss'],
 })
 export class MembershipPlanPageComponent implements OnInit {
-
-
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -27,50 +25,48 @@ export class MembershipPlanPageComponent implements OnInit {
     dots: false,
     navSpeed: 700,
     autoplay: false,
-    autoplayTimeout:5000,
+    autoplayTimeout: 5000,
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       400: {
-        items: 2
+        items: 2,
       },
       900: {
-        items: 3
+        items: 2,
       },
       1200: {
-        items: 4
-      }
+        items: 3,
+      },
     },
-    nav: true
-  }
+    nav: true,
+  };
 
   planList: Array<PackModel> = [];
   env = environment;
 
-  userModel : UserModel;
+  userModel: UserModel;
   constructor(
     private apiService: ApiService,
     private modalService: ModalService,
     private nZmodal: NzModalService,
-    private router: Router
-  ) { }
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.loadPlans();
   }
 
-  public loadPlans(): void{
+  public loadPlans(): void {
     forkJoin(
       this.apiService.getAuthenticationUser(),
-      this.apiService.getPlansSearch({})
-    ).subscribe(
-      ([userModel, plans]) => {
-        this.userModel = userModel.data
-        this.planList = plans.data;
-      }
-    )
+      this.apiService.getPlansSearch({}),
+    ).subscribe(([userModel, plans]) => {
+      this.userModel = userModel.data;
+      this.planList = plans.data;
+    });
     // this.apiService.getPlansSearch({}).subscribe(
     //   (response) =>{
     //     this.planList = response.data;
@@ -81,34 +77,28 @@ export class MembershipPlanPageComponent implements OnInit {
     // )
   }
 
-  public onPaymentPlan( plan: PackModel ): void{
-
-    if( this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO ){
+  public onPaymentPlan(plan: PackModel): void {
+    if (this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO) {
       this.modalService.confirm(
-        "Usted ya tiene un paquete activo. Para cambiar de paquete de afiliación, por favor, póngase en contacto con soporte de Aziel Network.",
+        'Usted ya tiene un paquete activo. Para cambiar de paquete de afiliación, por favor, póngase en contacto con soporte de Aziel Network.',
         () => {
           this.nZmodal.closeAll();
           this.router.navigate(['/admin/marketplace']);
-
-        }
-      )
-    }else{
+        },
+      );
+    } else {
       let modal = this.nZmodal.create({
-        nzTitle: "Pagar",
+        nzTitle: 'Pagar',
         nzContent: PaymentReservationModalComponent,
         nzFooter: null,
-        nzComponentParams:{
+        nzComponentParams: {
           planSelected: plan,
-          userModel: this.userModel
+          userModel: this.userModel,
         },
-        nzMaskClosable: false
+        nzMaskClosable: false,
       });
 
-      modal.afterClose.subscribe( (r)=> {
-      })
+      modal.afterClose.subscribe((r) => {});
     }
-
   }
-
-
 }

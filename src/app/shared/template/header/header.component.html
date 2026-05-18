@@ -112,36 +112,40 @@
             </li>
         </ul> -->
     <ul class="nav-right">
-      <li style="margin-right: 15px;">
-        <span class="btn-notification">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
-              stroke="#454545"
-              stroke-width="1.4"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M3 12.8391V11.1609C3 10.1693 3.76462 9.34928 4.70915 9.34928C6.33733 9.34928 7.003 8.1288 6.18441 6.6318C5.71664 5.77365 5.9955 4.65805 6.81409 4.16223L8.37031 3.21826C9.08096 2.77011 9.9985 3.03709 10.4213 3.79036L10.5202 3.97153C11.3298 5.46852 12.6612 5.46852 13.4798 3.97153L13.5787 3.79036C14.0015 3.03709 14.919 2.77011 15.6297 3.21826L17.1859 4.16223C18.0045 4.65805 18.2834 5.77365 17.8156 6.6318C16.997 8.1288 17.6627 9.34928 19.2909 9.34928C20.2264 9.34928 21 10.1597 21 11.1609V12.8391C21 13.8307 20.2354 14.6507 19.2909 14.6507C17.6627 14.6507 16.997 15.8712 17.8156 17.3682C18.2834 18.2359 18.0045 19.342 17.1859 19.8378L15.6297 20.7817C14.919 21.2299 14.0015 20.9629 13.5787 20.2096L13.4798 20.0285C12.6702 18.5315 11.3388 18.5315 10.5202 20.0285L10.4213 20.2096C9.9985 20.9629 9.08096 21.2299 8.37031 20.7817L6.81409 19.8378C5.9955 19.342 5.71664 18.2264 6.18441 17.3682C7.003 15.8712 6.33733 14.6507 4.70915 14.6507C3.76462 14.6507 3 13.8307 3 12.8391Z"
-              stroke="#454545"
-              stroke-width="1.4"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </span>
+      <li style="margin-right: 15px">
+        <a
+          [routerLink]="isAdmin ? '/admin/tools' : '/admin/profile'"
+          style="background: transparent"
+        >
+          <span class="btn-notification">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                stroke="#454545"
+                stroke-width="1.4"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M3 12.8391V11.1609C3 10.1693 3.76462 9.34928 4.70915 9.34928C6.33733 9.34928 7.003 8.1288 6.18441 6.6318C5.71664 5.77365 5.9955 4.65805 6.81409 4.16223L8.37031 3.21826C9.08096 2.77011 9.9985 3.03709 10.4213 3.79036L10.5202 3.97153C11.3298 5.46852 12.6612 5.46852 13.4798 3.97153L13.5787 3.79036C14.0015 3.03709 14.919 2.77011 15.6297 3.21826L17.1859 4.16223C18.0045 4.65805 18.2834 5.77365 17.8156 6.6318C16.997 8.1288 17.6627 9.34928 19.2909 9.34928C20.2264 9.34928 21 10.1597 21 11.1609V12.8391C21 13.8307 20.2354 14.6507 19.2909 14.6507C17.6627 14.6507 16.997 15.8712 17.8156 17.3682C18.2834 18.2359 18.0045 19.342 17.1859 19.8378L15.6297 20.7817C14.919 21.2299 14.0015 20.9629 13.5787 20.2096L13.4798 20.0285C12.6702 18.5315 11.3388 18.5315 10.5202 20.0285L10.4213 20.2096C9.9985 20.9629 9.08096 21.2299 8.37031 20.7817L6.81409 19.8378C5.9955 19.342 5.71664 18.2264 6.18441 17.3682C7.003 15.8712 6.33733 14.6507 4.70915 14.6507C3.76462 14.6507 3 13.8307 3 12.8391Z"
+                stroke="#454545"
+                stroke-width="1.4"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+        </a>
       </li>
-      <li style="margin-right: 15px;">
-        <a ro></a>
+      <li style="margin-right: 15px">
         <span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -181,16 +185,27 @@
         </span>
       </li>
       <li class="dropdown">
-        <div class="d-flex align-items-center " style="padding-right: 20px;" >
-          <span class="" style="width: 32px; height: 32px; overflow: hidden; margin-right: 10px; border-radius: 5px;">
+        <div class="d-flex align-items-center" style="padding-right: 20px">
+          <span
+            class=""
+            style="
+              width: 32px;
+              height: 32px;
+              overflow: hidden;
+              margin-right: 10px;
+              border-radius: 5px;
+            "
+          >
             <img
               [src]="pathServer + (currentUser?.photo ?? '')"
               alt="Avatar"
               class="img-fluid"
-              >
+            />
           </span>
           <span class="">
-            <p class="m-0 fs-14 lh-1"><b>{{ currentUser?.name ?? "" }}</b></p>
+            <p class="m-0 fs-14 lh-1">
+              <b>{{ currentUser?.name ?? "" }}</b>
+            </p>
             <p class="m-0 fs-14 lh-1">Admin</p>
           </span>
         </div>

@@ -9,7 +9,7 @@ import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-profile-invited-modal',
   templateUrl: './profile-invited-modal.component.html',
-  styleUrls: ['./profile-invited-modal.component.scss']
+  styleUrls: ['./profile-invited-modal.component.scss'],
 })
 export class ProfileInvitedModalComponent implements OnInit {
   @Input() userModel: UserModel;
@@ -25,16 +25,15 @@ export class ProfileInvitedModalComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private modalRef: NzModalRef
-  ) { }
+    private modalRef: NzModalRef,
+  ) {}
 
   ngOnInit(): void {
-
-    this.linkInited = environment.serveUrl + "/guest/" + this.codeInvited
+    this.linkInited = environment.serveUrl + '/guest/' + this.codeInvited;
     this.loadData();
   }
 
-  copyMessage(val: string){
+  copyMessage(val: string) {
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
@@ -48,24 +47,25 @@ export class ProfileInvitedModalComponent implements OnInit {
     document.body.removeChild(selBox);
   }
 
-  loadData(): void{
-    forkJoin(
-      this.apiService.getUsersSearch({})
-    ).subscribe(
-      ([users]) => {
-        console.log(users)
-        this.listUsers = users.data.filter( u => u.payment == null );
-    })
+  loadData(): void {
+    forkJoin(this.apiService.getUsersSearch({})).subscribe(([users]) => {
+      console.log(users);
+      this.listUsers = users.data.filter((u) => u.payment == null);
+    });
   }
 
-  onSendEmail(): void{
+  onSendEmail(): void {
     this.loading = true;
-    this.apiService.getUsersSearch({users: this.multipleUsers.map( u => { return {code: u} } )}).subscribe(
-      (res) => {
+    this.apiService
+      .postInvitedEmail({
+        users: this.multipleUsers.map((u) => {
+          return { code: u };
+        }),
+      })
+      .subscribe((res) => {
         console.log(res);
         this.loading = false;
         this.modalRef.close();
-      }
-    )
+      });
   }
 }
