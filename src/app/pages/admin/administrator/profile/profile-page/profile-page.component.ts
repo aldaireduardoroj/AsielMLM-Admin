@@ -8,7 +8,10 @@ import { ApiService } from '@shared/services/api.service';
 import { AuthenticationService } from '@shared/services/authentication.service';
 import { PackModel } from '@shared/services/models/packs.interface';
 import { UserModel } from '@shared/services/models/user.interface';
-import { saveSessionStorage, saveSessionStoraheUser } from '@shared/utilities/functions';
+import {
+  saveSessionStorage,
+  saveSessionStoraheUser,
+} from '@shared/utilities/functions';
 import { ModalService } from '@shared/utilities/modal-services';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { ProfileInvitedModalComponent } from './profile-invited-modal/profile-invited-modal.component';
@@ -22,13 +25,15 @@ import { ChartConfiguration, ChartType } from 'chart.js';
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
-  styleUrls: ['./profile-page.component.scss']
+  styleUrls: ['./profile-page.component.scss'],
 })
 export class ProfilePageComponent implements OnInit {
-  @ViewChild('templatePointPersonal', { read: TemplateRef }) templatePointPersonal:TemplateRef<any>;
-  @ViewChild('templatePointAfiliado', { read: TemplateRef }) templatePointAfiliado:TemplateRef<any>;
+  @ViewChild('templatePointPersonal', { read: TemplateRef })
+  templatePointPersonal: TemplateRef<any>;
+  @ViewChild('templatePointAfiliado', { read: TemplateRef })
+  templatePointAfiliado: TemplateRef<any>;
 
-  @ViewChild('renewModal', { read: TemplateRef }) renewModal:TemplateRef<any>;
+  @ViewChild('renewModal', { read: TemplateRef }) renewModal: TemplateRef<any>;
 
   avatarUrl: string = CONSTANTS.IMAGE.FALLBACK;
   validateForm: FormGroup;
@@ -39,7 +44,7 @@ export class ProfilePageComponent implements OnInit {
   pointPatrocinio: number = 0;
   pointResudial: number = 0;
   pointCompra: number = 0;
-  userCode: string = "";
+  userCode: string = '';
   pointGroup: number = 0;
   pointInfinity: number = 0;
   pointPersonal: number = 0;
@@ -63,9 +68,8 @@ export class ProfilePageComponent implements OnInit {
 
   storySelected: any;
 
-  rdTab: number = 1;
+  rdTab: number = 2;
   sldPoints: number = 80;
-
 
   public lineChartData: ChartConfiguration['data'] = {
     labels: ['Jan', 'Feb', 'Mar', 'Jun', 'Jul', 'Aug', 'Sep'], // Fechas del eje X
@@ -77,7 +81,7 @@ export class ProfilePageComponent implements OnInit {
         backgroundColor: '#BCF328',
         tension: 0.4, // <-- Esto crea el efecto de curva (suavizado de Bezier)
         pointBackgroundColor: '#BCF328',
-        fill: false
+        fill: false,
       },
       {
         data: [5, 15, 4, 20, 12, 27, 25],
@@ -87,9 +91,9 @@ export class ProfilePageComponent implements OnInit {
         tension: 0.4, // <-- 0 hace que las líneas sean completamente rectas y generen ángulos
         borderDash: [5, 5],
         pointBackgroundColor: '#1A71F6',
-        fill: false
-      }
-    ]
+        fill: false,
+      },
+    ],
   };
 
   public lineChartOptions: ChartConfiguration['options'] = {
@@ -100,14 +104,14 @@ export class ProfilePageComponent implements OnInit {
       },
       y: {
         display: false, // <-- Esto oculta completamente el eje Y (valores, líneas y etiquetas)
-        beginAtZero: true
-      }
+        beginAtZero: true,
+      },
     },
     plugins: {
       legend: {
-        display: true // Muestra la leyenda arriba
-      }
-    }
+        display: true, // Muestra la leyenda arriba
+      },
+    },
   };
 
   public lineChartType: ChartType = 'line';
@@ -118,25 +122,25 @@ export class ProfilePageComponent implements OnInit {
     private modalService: ModalService,
     private nzModalService: NzModalService,
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
   ) {
     this.validateForm = this.fb.group({
       address: [null],
-      email: [{value: null , disabled: true}, [Validators.required]],
-      dni: [{value: null , disabled: true}, [Validators.required]],
+      email: [{ value: null, disabled: true }, [Validators.required]],
+      dni: [{ value: null, disabled: true }, [Validators.required]],
       phoneNumber: [null],
       city: [null],
       country: [null],
       gender: [null],
       fullName: [null],
-      password: [{value: "12345678" , disabled: true}, []],
-      dateCreation: [{value: null , disabled: true}, []]
+      password: [{ value: '12345678', disabled: true }, []],
+      dateCreation: [{ value: null, disabled: true }, []],
     });
 
     this.oneMonthAgo = new Date(
       this.currentDate.getFullYear(),
       this.currentDate.getMonth() - 1,
-      this.currentDate.getDate()
+      this.currentDate.getDate(),
     );
   }
 
@@ -145,42 +149,43 @@ export class ProfilePageComponent implements OnInit {
     this.loadStories();
   }
 
-  public loadOptions(): void{
-    this.apiService.getOptionsSearch({key: 'bono_global'}).subscribe(
+  public loadOptions(): void {
+    this.apiService.getOptionsSearch({ key: 'bono_global' }).subscribe(
       (res) => {
-        if( res.success ){
-          this.isPointPersonal = this.userModel?.payment?.payment_order.pack.id == res.data[0].option_value;
+        if (res.success) {
+          this.isPointPersonal =
+            this.userModel?.payment?.payment_order.pack.id ==
+            res.data[0].option_value;
         }
-      },(error) => {
-
-      }
-    )
+      },
+      (error) => {},
+    );
   }
 
-  public loadStories(): void{
+  public loadStories(): void {
     forkJoin(
-      this.apiService.getUserPublishVideoStory({story: 1}),
-      this.apiService.getUserPublishVideoStory({story: 0})
-    ).subscribe(
-      ([stories, images]) => {
-        this.videoStories = stories.data;
-        this.imageStories = images.data;
-      }
-    )
+      this.apiService.getUserPublishVideoStory({ story: 1 }),
+      this.apiService.getUserPublishVideoStory({ story: 0 }),
+    ).subscribe(([stories, images]) => {
+      this.videoStories = stories.data;
+      this.imageStories = images.data;
+    });
   }
 
-  get isStories(): boolean{
+  get isStories(): boolean {
     return this.videoStories.length > 0;
   }
-  get isImages(): boolean{
+  get isImages(): boolean {
     return this.imageStories.length > 0;
   }
 
-  public loadCurrentUser(): void{
+  public loadCurrentUser(): void {
     this.apiService.getAuthenticationUser().subscribe(
       (response) => {
         this.userModel = response.data;
-        this.avatarUrl = response.data.file?.path ? environment.hostUrl + '/storage/' + response.data.file?.path : CONSTANTS.IMAGE.FALLBACK;
+        this.avatarUrl = response.data.file?.path
+          ? environment.hostUrl + '/storage/' + response.data.file?.path
+          : CONSTANTS.IMAGE.FALLBACK;
 
         this.validateForm.patchValue({
           address: response.data.address,
@@ -191,7 +196,11 @@ export class ProfilePageComponent implements OnInit {
           country: response.data.country,
           dni: response.data.dni,
           fullName: response.data.name,
-          dateCreation: formatDate(new Date(response.data.created_at), 'dd/MM/yyyy', 'en-US' )
+          dateCreation: formatDate(
+            new Date(response.data.created_at),
+            'dd/MM/yyyy',
+            'en-US',
+          ),
         });
         this.userCode = response.data.uuid;
 
@@ -207,11 +216,11 @@ export class ProfilePageComponent implements OnInit {
         // this.listPointsPersonal();
 
         this.loadOptions();
-
-      }, ( error) => {
-        this.modalService.error( error?.message ?? "Hubo un error" )
-      }
-    )
+      },
+      (error) => {
+        this.modalService.error(error?.message ?? 'Hubo un error');
+      },
+    );
   }
 
   private command(): any {
@@ -221,144 +230,159 @@ export class ProfilePageComponent implements OnInit {
       city: this.validateForm.get('city').value,
       country: this.validateForm.get('country').value,
       gender: this.validateForm.get('gender').value,
-      name: this.validateForm.get('fullName').value
-    }
+      name: this.validateForm.get('fullName').value,
+    };
   }
 
   // get totalPointsPersonalGlobal(): number{
   //   return this.isPointPersonal == true? (this.pointPersonal == 0 ? 0 : (this.pointPersonal * 2/100)) : 0;
   // }
 
-  public onSubmit(): void{
+  public onSubmit(): void {
     this.isLoading = true;
-    this.apiService.putAuthenticationUpdate( this.command() ).subscribe(
-      (response) => {
+    this.apiService
+      .putAuthenticationUpdate(this.command())
+      .subscribe((response) => {
         this.isLoading = false;
-        this.modalService.success("Se guardo correctamente");
-      }
-    )
+        this.modalService.success('Se guardo correctamente');
+      });
   }
 
-  public listPoints(): void{
+  public listPoints(): void {
     this.apiService.getPointList({}).subscribe(
-      (response) =>{
-
+      (response) => {
         // && p?.state == 1
         // ====== PATROCINIO
-        let patrocinio = response.data.filter( p => p.sponsor_code?.toLowerCase() == this.userCode.toLowerCase()  && p.type == 'P')
+        let patrocinio = response.data.filter(
+          (p) =>
+            p.sponsor_code?.toLowerCase() == this.userCode.toLowerCase() &&
+            p.type == 'P',
+        );
 
-        if( patrocinio.length > 0 ){
-          this.pointPatrocinio = patrocinio.map( m => m.point ).reduce( (a, c) => a + c );
-        }else{
+        if (patrocinio.length > 0) {
+          this.pointPatrocinio = patrocinio
+            .map((m) => m.point)
+            .reduce((a, c) => a + c);
+        } else {
           this.pointPatrocinio = 0;
         }
 
         // ====== RESIDUAL
-        let residual = response.data.filter( p => p.sponsor_code?.toLowerCase() == this.userCode.toLowerCase()  && p.type == 'R')
+        let residual = response.data.filter(
+          (p) =>
+            p.sponsor_code?.toLowerCase() == this.userCode.toLowerCase() &&
+            p.type == 'R',
+        );
 
-        if( residual.length > 0 ){
-
-          this.pointResudial = residual.map( m => m.point ).reduce( (a, c) => a + c );
-        }else{
+        if (residual.length > 0) {
+          this.pointResudial = residual
+            .map((m) => m.point)
+            .reduce((a, c) => a + c);
+        } else {
           this.pointResudial = 0;
         }
 
-         // ====== PERSONALES
+        // ====== PERSONALES
 
-        let buy = response.data.filter( p => p.user_code?.toLowerCase() == this.userCode.toLowerCase()  && p.type == 'B')
+        let buy = response.data.filter(
+          (p) =>
+            p.user_code?.toLowerCase() == this.userCode.toLowerCase() &&
+            p.type == 'B',
+        );
 
-
-        if( buy.length > 0 ){
-
-          this.pointCompra = buy.map( m => m.point ).reduce( (a, c) => a + c );
-        }else{
+        if (buy.length > 0) {
+          this.pointCompra = buy.map((m) => m.point).reduce((a, c) => a + c);
+        } else {
           this.pointCompra = 0;
         }
 
         // ====== GRUPALES
 
-        let grupales = response.data.filter( p => p.sponsor_code?.toLowerCase() == this.userCode.toLowerCase()  && p.type == 'G');
+        let grupales = response.data.filter(
+          (p) =>
+            p.sponsor_code?.toLowerCase() == this.userCode.toLowerCase() &&
+            p.type == 'G',
+        );
 
-        if( grupales.length > 0 ){
-
-          this.pointGroup = grupales.map( m => m.point ).reduce( (a, c) => a + c );
-        }else{
+        if (grupales.length > 0) {
+          this.pointGroup = grupales
+            .map((m) => m.point)
+            .reduce((a, c) => a + c);
+        } else {
           this.pointGroup = 0;
         }
-
-      },(error) =>{
-
-        this.modalService.error( error?.message ?? "Hubo un error" )
-      }
-    )
+      },
+      (error) => {
+        this.modalService.error(error?.message ?? 'Hubo un error');
+      },
+    );
   }
 
-  public listPointsPersonal():void{
+  public listPointsPersonal(): void {
     this.apiService.getProductPaymnetPoints().subscribe(
       (response) => {
-        if( response.success ){
-          this.pointPersonal = response.data.map( p => p.points ).reduce( (a,b) => a+b );
+        if (response.success) {
+          this.pointPersonal = response.data
+            .map((p) => p.points)
+            .reduce((a, b) => a + b);
         }
-      }, (error) => {
-
-      }
-    )
+      },
+      (error) => {},
+    );
   }
 
   fileChangeEvent(event: any): void {
-
     let modal = this.nzModalService.create({
       nzContent: ImageCropperUploadComponent,
       nzTitle: 'Imagen para cortar',
       nzMaskClosable: false,
       nzComponentParams: {
-        file: event
+        file: event,
       },
-      nzFooter: null
+      nzFooter: null,
     });
 
-
-    modal.afterClose.subscribe( ( result ) => {
-      if( result.file != null ){
+    modal.afterClose.subscribe((result) => {
+      if (result.file != null) {
         let formData = new FormData();
-        formData.set('file' , result.file as any);
+        formData.set('file', result.file as any);
         this.apiService.postAuthenticationAvatar(formData).subscribe(
           (response) => {
-
-            saveSessionStoraheUser( { name: response.data.name, photo: response.data?.file?.path ?? "" } );
+            saveSessionStoraheUser({
+              name: response.data.name,
+              photo: response.data?.file?.path ?? '',
+            });
             // this.authenticationService.setCurrentUser( response.data );
 
-            if( response.data.photo != null )
-            {
-              this.avatarUrl = environment.hostUrl + '/storage/'  + response.data.file.path;
-            }else{
+            if (response.data.photo != null) {
+              this.avatarUrl =
+                environment.hostUrl + '/storage/' + response.data.file.path;
+            } else {
               this.avatarUrl = CONSTANTS.IMAGE.FALLBACK;
             }
-          }, ( error) => {
-            this.modalService.error( error?.message ?? 'Error al subir imagen')
-          }
-        )
+          },
+          (error) => {
+            this.modalService.error(error?.message ?? 'Error al subir imagen');
+          },
+        );
       }
     });
-
 
     // this.avatarUrl = CONSTANTS.IMAGE.FALLBACK;
   }
 
-  copyMessage(val: string){
-    this.apiService.postGenerateLinkInvited({}).subscribe(
-      (res) => {
-        this.nzModalService.create({
-          nzContent: ProfileInvitedModalComponent,
-          nzTitle: "Invitación",
-          nzFooter: null,
-          nzComponentParams: {
-            userModel: this.userModel,
-            codeInvited: res.data.code
-          }
-        })
-      }
-    )
+  copyMessage(val: string) {
+    this.apiService.postGenerateLinkInvited({}).subscribe((res) => {
+      this.nzModalService.create({
+        nzContent: ProfileInvitedModalComponent,
+        nzTitle: 'Invitación',
+        nzFooter: null,
+        nzComponentParams: {
+          userModel: this.userModel,
+          codeInvited: res.data.code,
+        },
+      });
+    });
 
     // const selBox = document.createElement('textarea');
     // selBox.style.position = 'fixed';
@@ -373,32 +397,31 @@ export class ProfilePageComponent implements OnInit {
     // document.body.removeChild(selBox);
   }
 
-  public onInfoPointPresonal(): void{
+  public onInfoPointPresonal(): void {
     this.nzModalService.create({
-      nzTitle: "",
+      nzTitle: '',
       nzFooter: null,
-      nzContent: this.templatePointPersonal
-    })
+      nzContent: this.templatePointPersonal,
+    });
   }
 
-  public onInfoPointAfiliado(): void{
+  public onInfoPointAfiliado(): void {
     this.nzModalService.create({
-      nzTitle: "",
+      nzTitle: '',
       nzFooter: null,
-      nzContent: this.templatePointAfiliado
-    })
+      nzContent: this.templatePointAfiliado,
+    });
   }
 
-
-  public onRenewModal(): void{
+  public onRenewModal(): void {
     this.nzModalService.create({
-      nzTitle: "",
+      nzTitle: '',
       nzFooter: null,
-      nzContent: this.renewModal
-    })
+      nzContent: this.renewModal,
+    });
   }
 
-  public onPaymentPlan(): void{
+  public onPaymentPlan(): void {
     let pack: PackModel = {
       id: this.userModel?.payment?.payment_order.pack.id,
       title: this.userModel?.payment?.payment_order.pack.title,
@@ -406,109 +429,106 @@ export class ProfilePageComponent implements OnInit {
       points: this.userModel?.payment?.payment_order.pack.points,
       state: true,
       image: 0,
-      file: null
-    }
+      file: null,
+    };
     let modal = this.nzModalService.create({
-      nzTitle: "Pagar",
+      nzTitle: 'Pagar',
       nzContent: PaymentReservationModalComponent,
       nzFooter: null,
-      nzComponentParams:{
+      nzComponentParams: {
         planSelected: pack,
-        userModel: this.userModel
+        userModel: this.userModel,
       },
-      nzMaskClosable: false
+      nzMaskClosable: false,
     });
 
-    modal.afterClose.subscribe( (r)=> {
-      console.log(r)
-    })
+    modal.afterClose.subscribe((r) => {
+      console.log(r);
+    });
   }
 
-  public onInfo(): void{
-    this.modalService.info("Para evitar saturación del sistema, el monto del bono infinito se actualiza a mediodía y medianoche de cada día");
+  public onInfo(): void {
+    this.modalService.info(
+      'Para evitar saturación del sistema, el monto del bono infinito se actualiza a mediodía y medianoche de cada día',
+    );
   }
 
-  public onDownloadPdfProfile(): void{
-    this.apiService.postUserPdfProfile({}).subscribe(
-      (response) => {
-        console.log(response)
+  public onDownloadPdfProfile(): void {
+    this.apiService.postUserPdfProfile({}).subscribe((response) => {
+      console.log(response);
 
-        const base64 = response.data.base64;
-        const byteCharacters = atob(base64);
-        const byteNumbers = Array.from(byteCharacters, char => char.charCodeAt(0));
-        const byteArray = new Uint8Array(byteNumbers);
-        const blob = new Blob([byteArray], { type: 'application/pdf' });
+      const base64 = response.data.base64;
+      const byteCharacters = atob(base64);
+      const byteNumbers = Array.from(byteCharacters, (char) =>
+        char.charCodeAt(0),
+      );
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: 'application/pdf' });
 
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = response.data.filename || 'archivo.pdf';
-        link.click();
-      }
-    )
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = response.data.filename || 'archivo.pdf';
+      link.click();
+    });
   }
 
-  public onPaymentMakerplace(): void{
+  public onPaymentMakerplace(): void {
     this.modalService.confirm(
-      "Usted ya tiene un paquete activo. Para cambiar de paquete de afiliación, por favor, póngase en contacto con soporte de Aziel Network.",
+      'Usted ya tiene un paquete activo. Para cambiar de paquete de afiliación, por favor, póngase en contacto con soporte de Aziel Network.',
       () => {
         this.nzModalService.closeAll();
         this.router.navigate(['/admin/marketplace']);
-
-      }
-    )
+      },
+    );
   }
 
-  onAddUser(): void{
+  onAddUser(): void {
     const modal = this.nzModalService.create({
-      nzTitle: "Agregar Usuario",
+      nzTitle: 'Agregar Usuario',
       nzContent: ToolsUserAddModalComponent,
       nzFooter: null,
-      nzWidth: "550px",
-      nzComponentParams: {
-
-      },
+      nzWidth: '550px',
+      nzComponentParams: {},
     });
 
-    modal.afterClose.subscribe( () => {
-
-    })
+    modal.afterClose.subscribe(() => {});
   }
 
-  public onCloseStory(): void{
+  public onCloseStory(): void {
     this.storySelected = null;
   }
 
-  public onSelectedStory(item: any): void{
+  public onSelectedStory(item: any): void {
     this.storySelected = item;
   }
 
-  public onDeleteVideo(id: number): void{
-    this.apiService.deleteUserPublishVideoStory({id}).subscribe(
-      (response) => {
+  public onDeleteVideo(id: number): void {
+    this.apiService
+      .deleteUserPublishVideoStory({ id })
+      .subscribe((response) => {
         this.storySelected = null;
-        this.loadStories()
-      }
-    )
+        this.loadStories();
+      });
   }
 
-  public onDownloadFinanceExcel(): void{
-    this.apiService.postUserExcelFinance({}).subscribe(
-      (response) => {
-        console.log(response)
+  public onDownloadFinanceExcel(): void {
+    this.apiService.postUserExcelFinance({}).subscribe((response) => {
+      console.log(response);
 
-        const base64 = response.data.base64;
-        const byteCharacters = atob(base64);
-        const byteNumbers = Array.from(byteCharacters, char => char.charCodeAt(0));
-        const byteArray = new Uint8Array(byteNumbers);
-        const blob = new Blob([byteArray], {
-          type: response.data.mime
-        });
+      const base64 = response.data.base64;
+      const byteCharacters = atob(base64);
+      const byteNumbers = Array.from(byteCharacters, (char) =>
+        char.charCodeAt(0),
+      );
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], {
+        type: response.data.mime,
+      });
 
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = response.data.filename;
-        link.click();
-      }
-    )
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = response.data.filename;
+      link.click();
+    });
   }
 }

@@ -1083,24 +1083,28 @@
 </div>
 
 <ng-template #templatePointAfiliado>
-  <p style="color: #505050; font-weight: 500">
-    Dentro de Bonos residual se incluye los siguientes puntos:
-  </p>
-  <ul style="color: #505050; padding-left: 15px; font-weight: 500">
-    <!-- <li>Puntos por compras personales de afiliados: {{ pointAfiliado }}</li> -->
-    <li>
-      Puntos por compras globales 2% :
-      {{ totalPointsPersonalGlobal | number: "1.2" }}
-    </li>
-  </ul>
+  <div class="m-t-20">
+    <p style="color: #505050; font-weight: 500">
+      Dentro de Bonos residual se incluye los siguientes puntos:
+    </p>
+    <ul style="color: #505050; padding-left: 15px; font-weight: 500">
+      <!-- <li>Puntos por compras personales de afiliados: {{ pointAfiliado }}</li> -->
+      <li>
+        Puntos por compras globales 2% :
+        {{ totalPointsPersonalGlobal | number: "1.2" }}
+      </li>
+    </ul>
+  </div>
 </ng-template>
 <ng-template #templatePointPersonal>
-  <p style="color: #505050; font-weight: 500">
-    Dentro de Puntos por plan Actual se incluye los siguientes puntos:
-  </p>
-  <ul style="color: #505050; padding-left: 15px; font-weight: 500">
-    <li>Puntos por compras personales: {{ pointPersonal }}</li>
-  </ul>
+  <div class="m-t-20">
+    <p style="color: #505050; font-weight: 500">
+      Dentro de Puntos por plan Actual se incluye los siguientes puntos:
+    </p>
+    <ul style="color: #505050; padding-left: 15px; font-weight: 500">
+      <li>Puntos por compras personales: {{ pointPersonal }}</li>
+    </ul>
+  </div>
 </ng-template>
 
 <ng-template #renewModal>
