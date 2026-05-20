@@ -206,7 +206,9 @@
             <p class="m-0 fs-14 lh-1">
               <b>{{ currentUser?.name ?? "" }}</b>
             </p>
-            <p class="m-0 fs-14 lh-1">Admin</p>
+            <p class="m-0 fs-14 lh-1">
+              {{ isAdmin ? "Administrador" : "Cliente" }}
+            </p>
           </span>
         </div>
       </li>

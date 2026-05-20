@@ -3,38 +3,77 @@
     <img src="assets/images/portada 2_1.png" alt="Dr. Kim 2" class="w-100" />
   </div>
 </div>
-<nz-card >
+<nz-card>
   <div class="row">
     <div class="col-md-6 col-12">
-      <p class="font-size-15 m-0 text-uppercase fw-800"> {{ userModel?.name ?? "" }}/
+      <p class="font-size-15 m-0 text-uppercase fw-800">
+        {{ userModel?.name ?? "" }}/
         <ng-container *ngIf="userModel?.payment?.payment_order != null">
           {{ userModel?.payment?.payment_order?.pack?.title }} -
           <span class="d-inline-flex align-items-center text-capitalize">
-            <span style="color: #215EE9;" *ngIf="userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.PAGADO">Activo</span>
-            <ng-container *ngIf="userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO">
-              <span class="text-gray-7" >Desactivo -</span>&nbsp;<a href="javascript: void(0);"><span style="color: #00B517;" >Renovar</span></a>
+            <span
+              style="color: #215ee9"
+              *ngIf="
+                userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.PAGADO
+              "
+              >Activo</span
+            >
+            <ng-container
+              *ngIf="
+                userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO
+              "
+            >
+              <span class="text-gray-7">Desactivo -</span>&nbsp;<a
+                href="javascript: void(0);"
+                ><span style="color: #00b517">Renovar</span></a
+              >
             </ng-container>
-            &nbsp;&nbsp;&nbsp;<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="4" cy="4" r="4" fill="#00B517"/>
-            </svg></span>
+            &nbsp;&nbsp;&nbsp;<svg
+              width="8"
+              height="8"
+              viewBox="0 0 8 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="4" cy="4" r="4" fill="#00B517" /></svg
+          ></span>
         </ng-container>
         <ng-container *ngIf="userModel?.payment?.payment_order == null">
           <span class="d-inline-flex align-items-center text-capitalize">
-            Sin Plan&nbsp;&nbsp;&nbsp;<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="4" cy="4" r="4" fill="#979797"/>
-              </svg>
+            Sin Plan&nbsp;&nbsp;&nbsp;<svg
+              width="8"
+              height="8"
+              viewBox="0 0 8 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="4" cy="4" r="4" fill="#979797" />
+            </svg>
           </span>
-
         </ng-container>
       </p>
       <p class="font-size-14 d-none d-md-block">
-        Compra nuestros productos naturales a precios especiales. Aziel Network ofrece descuentos exclusivos solo para Afiliados
+        Compra nuestros productos naturales a precios especiales. Aziel Network
+        ofrece descuentos exclusivos solo para Afiliados
       </p>
     </div>
     <div class="col-md-6 col-12">
-      <div class="d-flex flex-row align-items-center justify-content-between m-b-10">
-        <p class="text-gray-7 m-0 font-size-14 p-r-20">Puntos por compras personales:</p>
-        <span class="d-inline-block text-gray-8 border rounded-lg font-size-12 text-center" style="border-color: #E2E8F0 !important; padding: 0 6px; min-width: 30px; line-height: 1.9;">{{ totalPointsPersonal }}</span>
+      <div
+        class="d-flex flex-row align-items-center justify-content-between m-b-10"
+      >
+        <p class="text-gray-7 m-0 font-size-14 p-r-20">
+          Puntos por compras personales:
+        </p>
+        <span
+          class="d-inline-block text-gray-8 border rounded-lg font-size-12 text-center"
+          style="
+            border-color: #e2e8f0 !important;
+            padding: 0 6px;
+            min-width: 30px;
+            line-height: 1.9;
+          "
+          >{{ totalPointsPersonal }}</span
+        >
       </div>
     </div>
   </div>
@@ -42,26 +81,48 @@
 
 <div class="row">
   <div class="col-md-6 col-12">
-    <nz-card [nzSize]="'small'" >
-      <nz-radio-group [(ngModel)]="rdTab" nzButtonStyle="solid" class="tab--fill">
+    <nz-card [nzSize]="'small'">
+      <nz-radio-group
+        [(ngModel)]="rdTab"
+        nzButtonStyle="solid"
+        class="tab--fill"
+      >
         <label nz-radio-button [nzValue]="1">Tienda</label>
-        <label nz-radio-button [nzValue]="2">Pedidos</label>
+        <label nz-radio-button [nzValue]="2">Estadísticas</label>
         <label nz-radio-button [nzValue]="3">Últimas compras</label>
       </nz-radio-group>
     </nz-card>
-
   </div>
-  <div class="col-md-6 col-12 d-none d-md-block ">
+  <div class="col-md-6 col-12 d-none d-md-block">
     <div class="row justify-content-end">
       <div class="col-12 text-end">
-        <div class="d-inline-flex align-items-center justify-content-between pointer" (click)="quickViewToggle()"
-         style="background-color: rgba(26, 113, 246, 0.9); padding: 8px 15px; border-radius: 20px;">
-          <div style="border: 1px solid #FFFFFF; border-radius: 5px; padding: 5px 10px;">
-            <p class="m-0 text-white font-size-16 font-weight-bold"> {{countProduct}} </p>
+        <div
+          class="d-inline-flex align-items-center justify-content-between pointer"
+          (click)="quickViewToggle()"
+          style="
+            background-color: rgba(26, 113, 246, 0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+          "
+        >
+          <div
+            style="
+              border: 1px solid #ffffff;
+              border-radius: 5px;
+              padding: 5px 10px;
+            "
+          >
+            <p class="m-0 text-white font-size-16 font-weight-bold">
+              {{ countProduct }}
+            </p>
           </div>
           <div class="text-start p-l-10">
-            <p class="m-0 text-white fs-13 font-weight-bold">{{ totalBuy | number: '1.2' }} PEN</p>
-            <p class="m-0 text-white font-size-10 font-weight-regular">Carrito de compra</p>
+            <p class="m-0 text-white fs-13 font-weight-bold">
+              {{ totalBuy | number: "1.2" }} PEN
+            </p>
+            <p class="m-0 text-white font-size-10 font-weight-regular">
+              Carrito de compra
+            </p>
           </div>
           <div class="p-l-10">
             <p class="m-0 font-weight-bold fs-13 text-white">Pagar</p>
@@ -72,27 +133,71 @@
   </div>
 </div>
 
-
 <ng-container *ngIf="rdTab == 1">
   <nz-row class="m-b-20 justify-content-center card--products">
     <nz-col [nzXl]="20" [nzLg]="20" [nzSm]="24" [nzXs]="24" class="m-b-10">
-      <nz-row class="m-b-40 ">
-        <ng-container *ngFor="let product of productList; let i = index" >
-          <nz-col [nzXl]="8" [nzLg]="12" [nzSm]="12" [nzXs]="12" class="m-b-10 p-10">
-            <div class="bg-white p-20" style="border-radius: 20px;">
-              <img nz-image [nzSrc]="env.hostUrl + '/storage/' + product.file_image?.path" alt="" class="img-fluid shadow--product product--image m-b-20">
+      <nz-row class="m-b-40">
+        <ng-container *ngFor="let product of productList; let i = index">
+          <nz-col
+            [nzXl]="8"
+            [nzLg]="12"
+            [nzSm]="12"
+            [nzXs]="12"
+            class="m-b-10 p-10"
+          >
+            <div class="bg-white p-20" style="border-radius: 20px">
+              <img
+                nz-image
+                [nzSrc]="env.hostUrl + '/storage/' + product.file_image?.path"
+                alt=""
+                class="img-fluid shadow--product product--image m-b-20"
+              />
               <div class="m-b-10">
-                <p class="m-0 font-size-14 notranslate "><b>{{ product.title }}</b> - <span style="color: #A6A6A6;"><b>{{ product.points }} Ptos</b></span></p>
-                <p class="font-size-14"><span style="color: #A6A6A6;">Precio Regular :</span> &nbsp;&nbsp;<b>{{ product.price | number : '1.0'}} Soles</b></p>
+                <p class="m-0 font-size-14 notranslate">
+                  <b>{{ product.title }}</b> -
+                  <span style="color: #a6a6a6"
+                    ><b>{{ product.points }} Ptos</b></span
+                  >
+                </p>
+                <p class="font-size-14">
+                  <span style="color: #a6a6a6">Precio Regular :</span>
+                  &nbsp;&nbsp;<b
+                    >{{ product.priceNew | number: "1.0" }} Soles</b
+                  >
+                </p>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="text-black d-flex align-items-center p-10 btn--count-product" style="background-color: #F0F0F0; border-radius: 20px;">
-                  <i nz-icon nzType="minus" nzTheme="outline" (click)="onAddQuantity( i , -1 )" class="p-r-10 p-l-10 pointer"></i>
+                <div
+                  class="text-black d-flex align-items-center p-10 btn--count-product"
+                  style="background-color: #f0f0f0; border-radius: 20px"
+                >
+                  <i
+                    nz-icon
+                    nzType="minus"
+                    nzTheme="outline"
+                    (click)="onAddQuantity(i, -1)"
+                    class="p-r-10 p-l-10 pointer"
+                  ></i>
                   <span class="notranslate">{{ product?.quantity ?? 0 }}</span>
-                  <i nz-icon nzType="plus" nzTheme="outline" (click)="onAddQuantity( i , 1 )" class="p-r-10 p-l-10 pointer"></i>
+                  <i
+                    nz-icon
+                    nzType="plus"
+                    nzTheme="outline"
+                    (click)="onAddQuantity(i, 1)"
+                    class="p-r-10 p-l-10 pointer"
+                  ></i>
                 </div>
                 <div>
-                  <button nz-button nzType="primary" nzSize="small" class="bg-gray" style="border-radius: 20px;" (click)="onPayment()">&nbsp;&nbsp;Comprar&nbsp;&nbsp;</button>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzSize="small"
+                    class="bg-gray"
+                    style="border-radius: 20px"
+                    (click)="onPayment()"
+                  >
+                    &nbsp;&nbsp;Comprar&nbsp;&nbsp;
+                  </button>
                 </div>
               </div>
             </div>
@@ -100,21 +205,38 @@
         </ng-container>
       </nz-row>
     </nz-col>
-
-
   </nz-row>
 
   <div class="col-md-6 col-12 d-block d-md-none">
     <div class="row justify-content-center">
       <div class="col-11 text-end">
-        <div class="w-100 d-inline-flex align-items-center justify-content-between pointer" (click)="quickViewToggle()"
-         style="background-color: rgba(26, 113, 246, 0.9); padding: 8px 15px; border-radius: 20px;">
-          <div style="border: 1px solid #FFFFFF; border-radius: 5px; padding: 5px 10px;">
-            <p class="m-0 text-white font-size-16 font-weight-bold"> {{countProduct}} </p>
+        <div
+          class="w-100 d-inline-flex align-items-center justify-content-between pointer"
+          (click)="quickViewToggle()"
+          style="
+            background-color: rgba(26, 113, 246, 0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+          "
+        >
+          <div
+            style="
+              border: 1px solid #ffffff;
+              border-radius: 5px;
+              padding: 5px 10px;
+            "
+          >
+            <p class="m-0 text-white font-size-16 font-weight-bold">
+              {{ countProduct }}
+            </p>
           </div>
           <div class="text-start p-l-10">
-            <p class="m-0 text-white fs-13 font-weight-bold">{{ totalBuy | number: '1.2' }} PEN</p>
-            <p class="m-0 text-white font-size-10 font-weight-regular">Carrito de compra</p>
+            <p class="m-0 text-white fs-13 font-weight-bold">
+              {{ totalBuy | number: "1.2" }} PEN
+            </p>
+            <p class="m-0 text-white font-size-10 font-weight-regular">
+              Carrito de compra
+            </p>
           </div>
           <div class="p-l-10">
             <p class="m-0 font-weight-bold fs-13 text-white">Pagar</p>
@@ -126,64 +248,116 @@
 </ng-container>
 
 <ng-container *ngIf="rdTab == 2">
-  <app-table-payment-product-order [searchLoader]="eventSearch" [queryParams]="queryParams"></app-table-payment-product-order>
+  <app-table-payment-product-order
+    [searchLoader]="eventSearch"
+    [queryParams]="queryParams"
+  ></app-table-payment-product-order>
 </ng-container>
 
 <ng-container *ngIf="rdTab == 3">
-
+  <nz-row class="m-b-20 justify-content-center">
+    <nz-col
+      [nzXl]="20"
+      [nzLg]="20"
+      [nzSm]="24"
+      [nzXs]="24"
+      class="m-b-10 text-center"
+    >
+      <p><b>Datos de compras y estadísticas de consumo</b></p>
+    </nz-col>
+  </nz-row>
 </ng-container>
 
 <nz-row class="m-b-20 p-t-30">
-    <nz-col [nzXl]="20" [nzLg]="20" [nzSm]="24" [nzXs]="24" class="m-b-10">
-      <div class="text-center rounded-lg p-10" style="background-color: #F5F7FA;">
-        <h3 style="color: #717171;" class="fs-15">Si estás afiliado a algún plan de distribución aplicas a descuentos exclusivos</h3>
-        <a href="#" download target="_blank" class="fs-18"><h2>Mar información +</h2></a>
-      </div>
-    </nz-col>
+  <nz-col [nzXl]="20" [nzLg]="20" [nzSm]="24" [nzXs]="24" class="m-b-10">
+    <div class="text-center rounded-lg p-10" style="background-color: #f5f7fa">
+      <h3 style="color: #717171" class="fs-15">
+        Si estás afiliado a algún plan de distribución aplicas a descuentos
+        exclusivos
+      </h3>
+      <a href="#" download target="_blank" class="fs-18"
+        ><h2>Mar información +</h2></a
+      >
+    </div>
+  </nz-col>
 </nz-row>
 
-<nz-drawer [nzWidth]="280" nzTitle="Carrito" [nzClosable]="false"
+<nz-drawer
+  [nzWidth]="280"
+  nzTitle="Carrito"
+  [nzClosable]="false"
   [nzVisible]="quickViewVisible"
   nzPlacement="right"
   (nzOnClose)="quickViewToggle()"
-  [nzFooter]="footerDrawer">
+  [nzFooter]="footerDrawer"
+>
   <ng-container *nzDrawerContent>
     <nz-row class="m-b-20">
       <nz-col [nzXs]="24" class="m-b-20">
         <ng-container *ngFor="let product of cartList; let i = index">
-          <div class="d-flex align-items-center justify-content-between position-relative">
-            <div class="rounded bg-white shadow--product m-b-20" style="padding: 3px; width: 60px;">
-              <img [src]="env.hostUrl + '/storage/' + product.file_image?.path" alt="" class="img-fluid rounded">
+          <div
+            class="d-flex align-items-center justify-content-between position-relative"
+          >
+            <div
+              class="rounded bg-white shadow--product m-b-20"
+              style="padding: 3px; width: 60px"
+            >
+              <img
+                [src]="env.hostUrl + '/storage/' + product.file_image?.path"
+                alt=""
+                class="img-fluid rounded"
+              />
             </div>
             <div class="w-100 p-l-10">
-              <p class="m-0 p-r-20 notranslate"><b>{{ product.title }}</b></p>
-              <p class="m-0 notranslate"><span style="color: #A6A6A6;"><b>{{ product.points }} Ptos</b></span></p>
-              <p class="m-0 notranslate"><span style="color: #A6A6A6;">Cantidad :</span> &nbsp;&nbsp;<b>{{ product.quantity }}</b></p>
+              <p class="m-0 p-r-20 notranslate">
+                <b>{{ product.title }}</b>
+              </p>
+              <p class="m-0 notranslate">
+                <span style="color: #a6a6a6"
+                  ><b>{{ product.points }} Ptos</b></span
+                >
+              </p>
+              <p class="m-0 notranslate">
+                <span style="color: #a6a6a6">Cantidad :</span> &nbsp;&nbsp;<b>{{
+                  product.quantity
+                }}</b>
+              </p>
             </div>
-            <a href="javascript: void(0);" (click)="onRemove(i)" class="position-absolute" style="top: 0; right: 0;"><i nz-icon nzType="delete" nzTheme="fill" class="text-danger"></i></a>
+            <a
+              href="javascript: void(0);"
+              (click)="onRemove(i)"
+              class="position-absolute"
+              style="top: 0; right: 0"
+              ><i nz-icon nzType="delete" nzTheme="fill" class="text-danger"></i
+            ></a>
           </div>
           <div class="text-right">
-            <h4 class="notranslate"><b>S/. {{ (product.quantity * product.priceNew) | number: '1.2' }}</b></h4>
+            <h4 class="notranslate">
+              <b
+                >S/.
+                {{ product.quantity * product.priceNew | number: "1.2" }}</b
+              >
+            </h4>
           </div>
-          <hr style="margin: 0;">
+          <hr style="margin: 0" />
         </ng-container>
-
       </nz-col>
       <nz-col [nzXs]="24" class="m-b-10">
         <div class="text-right">
-          <h3><b>TOTAL: S/. {{ totalBuy | number: '1.2' }}</b></h3>
+          <h3>
+            <b>TOTAL: S/. {{ totalBuy | number: "1.2" }}</b>
+          </h3>
         </div>
       </nz-col>
-      <nz-col [nzXs]="24" class="m-b-10">
-
-      </nz-col>
-
+      <nz-col [nzXs]="24" class="m-b-10"> </nz-col>
     </nz-row>
   </ng-container>
 
   <ng-template #footerDrawer>
     <div class="w-100">
-      <button nz-button nzType="primary" nzBlock (click)="onPayment()">&nbsp;&nbsp;Pagar&nbsp;&nbsp;</button>
+      <button nz-button nzType="primary" nzBlock (click)="onPayment()">
+        &nbsp;&nbsp;Pagar&nbsp;&nbsp;
+      </button>
     </div>
   </ng-template>
 </nz-drawer>

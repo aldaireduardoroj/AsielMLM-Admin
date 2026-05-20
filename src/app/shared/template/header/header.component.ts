@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from '@env/environment';
+import { AuthenticationService } from '@shared/services/authentication.service';
 import { ThemeConstantService } from '@shared/services/theme-constant.service';
 
 @Component({
@@ -12,13 +13,21 @@ export class HeaderComponent {
   isFolded: boolean = false;
   isExpand: boolean = false;
 
-  currentUser = JSON.parse(localStorage.getItem('currentUser') ?? '{}');
-
+  // currentUser = JSON.parse(localStorage.getItem('currentUser') ?? '{}');
+  currentUser = { photo: '', name: '' };
   pathServer = environment.hostUrl + '/storage/';
 
   isAdmin: boolean;
 
-  constructor(private themeService: ThemeConstantService) {}
+  constructor(
+    private themeService: ThemeConstantService,
+    private authenticationService: AuthenticationService,
+  ) {
+    this.authenticationService.currentUser.subscribe((user) => {
+      this.currentUser = user;
+    });
+    console.log();
+  }
 
   ngOnInit(): void {
     this.themeService.isMenuFoldedChanges.subscribe(

@@ -245,6 +245,13 @@ export class ProfilePageComponent implements OnInit {
       .subscribe((response) => {
         this.isLoading = false;
         this.modalService.success('Se guardo correctamente');
+        this.userModel.name = this.validateForm.get('fullName').value;
+
+        let currentUser = JSON.parse(
+          localStorage.getItem('currentUser') ?? '{}',
+        );
+        currentUser.name = this.userModel.name;
+        this.authenticationService.updateCurrentUserData(currentUser);
       });
   }
 

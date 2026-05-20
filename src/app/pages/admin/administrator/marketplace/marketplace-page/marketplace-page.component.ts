@@ -15,15 +15,14 @@ import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-marketplace-page',
   templateUrl: './marketplace-page.component.html',
-  styleUrls: ['./marketplace-page.component.scss']
+  styleUrls: ['./marketplace-page.component.scss'],
 })
 export class MarketplacePageComponent implements OnInit {
-
   tabIndex: number = 0;
-  productList : Array<IProductModel> = [];
+  productList: Array<IProductModel> = [];
 
   env = environment;
-  quickViewVisible : boolean = false;
+  quickViewVisible: boolean = false;
 
   userModel: UserModel;
   totalPointsPersonal: number = 0;
@@ -44,72 +43,103 @@ export class MarketplacePageComponent implements OnInit {
     private nZmodal: NzModalService,
     private modalService: ModalService,
     private themeConstantService: ThemeConstantService,
-    private messageService: NzMessageService
+    private messageService: NzMessageService,
   ) {
-    this.themeConstantService.selectedCurrentCartList.subscribe( ( c) => this._cartList = c );
+    this.themeConstantService.selectedCurrentCartList.subscribe(
+      (c) => (this._cartList = c),
+    );
   }
 
   ngOnInit(): void {
     this.loadData();
   }
 
-  public onAddQuantity( index: number , suma: number ): void{
+  public onAddQuantity(index: number, suma: number): void {
+    if ((this.productList[index].quantity ?? 0) >= 0)
+      this.productList[index].quantity =
+        (this.productList[index].quantity ?? 0) + suma;
+    this.productList[index].quantity =
+      this.productList[index].quantity == -1
+        ? 0
+        : this.productList[index].quantity;
 
-    if( (this.productList[index].quantity??0) >= 0 ) this.productList[index].quantity = (this.productList[index].quantity??0) + suma;
-    this.productList[index].quantity = this.productList[index].quantity == -1 ? 0 : this.productList[index].quantity;
-
-    this._cartList =  this.productList.filter( p => p.quantity > 0 )
-    console.log( this._cartList )
-    this.themeConstantService.changeCurrentCartList(this._cartList );
+    this._cartList = this.productList.filter((p) => p.quantity > 0);
+    console.log(this._cartList);
+    this.themeConstantService.changeCurrentCartList(this._cartList);
   }
 
-  public getProductSearch(): void{
+  public getProductSearch(): void {
     this.apiService.getProductSearch({}).subscribe(
       (response) => {
-        if( response.success ){
-          this.productList = response.data.map( p => {
-            if( this._cartList.find( c => p.id == c.id ) ) p.quantity = this._cartList.find( c => c.id )?.quantity;
+        if (response.success) {
+          this.productList = response.data.map((p) => {
+            if (this._cartList.find((c) => p.id == c.id))
+              p.quantity = this._cartList.find((c) => c.id)?.quantity;
             return p;
           });
-
         }
-      },(error) => {
-
-      }
-    )
+      },
+      (error) => {},
+    );
   }
 
-  public loadData(): void{
+  public loadData(): void {
     forkJoin(
       this.apiService.getAuthenticationUser(),
       this.apiService.getProductSearch({}),
       this.apiService.getProductPaymnetPoints(),
       this.apiService.getProductPointSearch({}),
-      this.apiService.getOptionsSearch({key: 'bono_global'})
-    ).subscribe(
-      ([userModel, products, points, pointsSearch, options])=> {
-        this.userModel = userModel.data;
-        this.totalPointsPersonalGlobal = userModel.data.podints.personalGlobal;
-        if( products.success ){
-          this.productList = products.data.map( p => {
-            if( this._cartList.find( c => p.id == c.id ) ) p.quantity = this._cartList.find( c => c.id )?.quantity;
-            if( this.userModel?.payment?.payment_order == null ){
-              p.points = 0;
-            }else{
-              p.points = pointsSearch.data.find( x => x.pack_id == this.userModel?.payment?.payment_order.pack.id && x.product_id == p.id)?.point ?? 0;
+      this.apiService.getOptionsSearch({ key: 'bono_global' }),
+    ).subscribe(([userModel, products, points, pointsSearch, options]) => {
+      this.userModel = userModel.data;
+      this.queryParams = { codeuser: this.userModel.uuid };
+
+      this.totalPointsPersonalGlobal = userModel.data.podints.personalGlobal;
+      if (products.success) {
+        console.log(this.userModel?.payment?.payment_order.pack.discount);
+        this.productList = products.data.map((p) => {
+          if (this._cartList.find((c) => p.id == c.id))
+            p.quantity = this._cartList.find((c) => c.id)?.quantity;
+          if (this.userModel?.payment?.payment_order == null) {
+            // p.points = p.points;
+            p.priceNew = p.price;
+          } else {
+            p.points =
+              pointsSearch.data.find(
+                (x) =>
+                  x.pack_id == this.userModel?.payment?.payment_order.pack.id &&
+                  x.product_id == p.id,
+              )?.point ?? 0;
+            const discount = parseFloat(
+              p?.discounts?.find(
+                (d) =>
+                  d.pack_id == this.userModel?.payment?.payment_order?.pack?.id,
+              )?.discount ?? '0',
+            );
+            if (discount > 0) {
+              p.priceNew = p.price * (1 - discount / 100);
+            } else {
+              p.priceNew = p.price;
             }
-            return p;
-          });
-        }
-        if( points.success ) this.totalPointsPersonal = points.data.length == 0 ? 0 : (points.data?.map( p => p.points )?.reduce( (a,b) => a+b ) ?? 0);
-        if( options.success ){
-          this.isGlobalPersonal = this.userModel?.payment?.payment_order.pack.id == options.data[0].option_value;
-        }
+          }
+          return p;
+        });
       }
-    )
+      console.log('ddd');
+      if (points.success)
+        this.totalPointsPersonal =
+          points.data.length == 0
+            ? 0
+            : (points.data?.map((p) => p.points)?.reduce((a, b) => a + b) ?? 0);
+      if (options.success) {
+        this.isGlobalPersonal =
+          this.userModel?.payment?.payment_order.pack.id ==
+          options.data[0].option_value;
+      }
+    });
   }
 
-  get countProduct(): number{
+  get countProduct(): number {
     return this._cartList.length;
   }
 
@@ -118,71 +148,84 @@ export class MarketplacePageComponent implements OnInit {
   // }
 
   quickViewToggle(): void {
-
     this.quickViewVisible = !this.quickViewVisible;
   }
 
-  get cartList(): Array<IProductModel>{
-
-    return this._cartList.map( x => {
-      if( this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.PAGADO || this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO){
-        const discounts = x.discounts.find( y => y.pack_id == this.userModel?.payment?.payment_order.pack_id );
-        if(discounts){
-          x.priceNew = x.price * ((100 - Number.parseFloat(discounts.discount))/100 );
-        }else{
-          x.priceNew = x.price * ((100 - Number.parseFloat(this.userModel?.payment?.payment_order.pack?.discount))/100 );
+  get cartList(): Array<IProductModel> {
+    return this._cartList.map((x) => {
+      if (
+        this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.PAGADO ||
+        this.userModel?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO
+      ) {
+        const discounts = x.discounts.find(
+          (y) => y.pack_id == this.userModel?.payment?.payment_order.pack_id,
+        );
+        if (discounts) {
+          x.priceNew =
+            x.price * ((100 - Number.parseFloat(discounts.discount)) / 100);
+        } else {
+          x.priceNew =
+            x.price *
+            ((100 -
+              Number.parseFloat(
+                this.userModel?.payment?.payment_order.pack?.discount,
+              )) /
+              100);
         }
-      }else{
+      } else {
         x.priceNew = x.price;
       }
-      return x
+      return x;
     });
   }
 
-  get totalBuy(): number{
-    return this._cartList.filter( p => p.quantity > 0 ).length>0 ? this._cartList.filter( p => p.quantity > 0 )?.map( p => p.priceNew * p.quantity )?.reduce( (a,b) => a+b ) : 0;
+  get totalBuy(): number {
+    return this._cartList.filter((p) => p.quantity > 0).length > 0
+      ? this._cartList
+          .filter((p) => p.quantity > 0)
+          ?.map((p) => p.priceNew * p.quantity)
+          ?.reduce((a, b) => a + b)
+      : 0;
   }
 
-  public onPayment(): void{
-
-    if( this.cartList.length == 0 ){
-      this.modalService.info("Debe Seleccionar los productos")
+  public onPayment(): void {
+    if (this.cartList.length == 0) {
+      this.modalService.info('Debe Seleccionar los productos');
       return;
     }
     const modal = this.nZmodal.create({
       nzContent: PaymentProductsModalComponent,
       nzFooter: null,
-      nzTitle: "",
+      nzTitle: '',
       nzComponentParams: {
-        userModel : this.userModel,
-        cartList : this.cartList
-      }
-    })
+        userModel: this.userModel,
+        cartList: this.cartList,
+      },
+    });
 
-    modal.afterClose.subscribe( () => {
+    modal.afterClose.subscribe(() => {
       this.onSearch();
-      this.apiService.getProductPaymnetPoints().subscribe(
-        (response) => {
-          if( response.success ) this.totalPointsPersonal = response.data.map( p => p.points ).reduce( (a,b) => a+b );
-        }
-      )
-    } )
+      this.apiService.getProductPaymnetPoints().subscribe((response) => {
+        if (response.success)
+          this.totalPointsPersonal = response.data
+            .map((p) => p.points)
+            .reduce((a, b) => a + b);
+      });
+    });
   }
 
-  public onSearch(): void{
-    this.eventSearch = (new Date()).getTime();
+  public onSearch(): void {
+    this.eventSearch = new Date().getTime();
   }
 
-  public onRemove(index: number): void{
-    let cartId = this._cartList.find((_c , i) => i == index )?.id;
-    this._cartList = this._cartList.filter( (c, i) => i != index );
-    this.themeConstantService.changeCurrentCartList(this._cartList );
+  public onRemove(index: number): void {
+    let cartId = this._cartList.find((_c, i) => i == index)?.id;
+    this._cartList = this._cartList.filter((c, i) => i != index);
+    this.themeConstantService.changeCurrentCartList(this._cartList);
 
-
-    this.productList = this.productList.map( c => {
-      if( c.id == cartId ) c.quantity = 0;
+    this.productList = this.productList.map((c) => {
+      if (c.id == cartId) c.quantity = 0;
       return c;
-    })
+    });
   }
-
 }
