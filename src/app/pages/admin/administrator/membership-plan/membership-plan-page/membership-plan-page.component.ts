@@ -35,7 +35,7 @@ export class MembershipPlanPageComponent implements OnInit {
         items: 2,
       },
       900: {
-        items: 2,
+        items: 3,
       },
       1200: {
         items: 3,

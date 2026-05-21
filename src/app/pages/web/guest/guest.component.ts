@@ -23,7 +23,6 @@ export class GuestComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.codeToken);
     this.verifyData();
   }
 
@@ -45,7 +44,6 @@ export class GuestComponent implements OnInit {
         } else {
           this.status = 'error';
         }
-        console.log(res);
       },
       (error) => {
         this.loading = false;
@@ -65,7 +63,6 @@ export class GuestComponent implements OnInit {
         (res) => {
           this.loading = false;
           localStorage.removeItem('guest');
-          console.log(res);
           if (res.success) {
             this.router.navigate(['/auth/login']);
           }

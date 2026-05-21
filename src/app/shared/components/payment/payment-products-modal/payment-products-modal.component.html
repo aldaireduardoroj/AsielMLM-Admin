@@ -1,33 +1,47 @@
 <ng-container *ngIf="paymentSection == 0">
-  <nz-spin nzTip="Verificando..." [nzSpinning]="isSpinning" class="modal--payment-reservation">
+  <nz-spin
+    nzTip="Verificando..."
+    [nzSpinning]="isSpinning"
+    class="modal--payment-reservation"
+  >
     <nz-row class="m-b-10 p-t-20">
-      <nz-col [nzSm]="12" [nzXs]="12" >
+      <nz-col [nzSm]="12" [nzXs]="12">
         <p class="m-0 fs-14 text-gray-6 line-height-1">Tu plan actual:</p>
       </nz-col>
       <nz-col [nzSm]="12" [nzXs]="12" class="text-right">
         <ng-container *ngIf="userModel?.payment?.payment_order != null">
-          <p class="m-0 fs-14 text-gray-6 line-height-1"><b>{{ userModel?.payment?.payment_order?.pack?.title }}</b></p>
+          <p class="m-0 fs-14 text-gray-6 line-height-1">
+            <b>{{ userModel?.payment?.payment_order?.pack?.title }}</b>
+          </p>
         </ng-container>
         <ng-container *ngIf="userModel?.payment?.payment_order == null">
           <p class="m-0 fs-14 text-gray-6"><b>Desactivado</b></p>
         </ng-container>
-
       </nz-col>
     </nz-row>
 
     <nz-row class="m-b-10">
-      <nz-col [nzSm]="12" [nzXs]="12" >
-        <p class="m-0 fs-14 text-gray-6 line-height-1">Puntos ganados por compra :</p>
+      <nz-col [nzSm]="12" [nzXs]="12">
+        <p class="m-0 fs-14 text-gray-6 line-height-1">
+          Puntos ganados por compra :
+        </p>
       </nz-col>
       <nz-col [nzSm]="12" [nzXs]="12" class="text-right">
-        <p class="m-0 fs-14 text-gray-6">{{totalPoints}} puntos</p>
+        <p class="m-0 fs-14 text-gray-6">{{ totalPoints }} puntos</p>
       </nz-col>
     </nz-row>
 
-    <hr style="border-color: #E4E4E4; border-width: 2px; margin: 0; margin-bottom: 10px;">
+    <hr
+      style="
+        border-color: #e4e4e4;
+        border-width: 2px;
+        margin: 0;
+        margin-bottom: 10px;
+      "
+    />
 
     <nz-row class="m-b-10">
-      <nz-col [nzSm]="24" [nzXs]="24" >
+      <nz-col [nzSm]="24" [nzXs]="24">
         <h4>Detalle de Compra</h4>
       </nz-col>
     </nz-row>
@@ -35,29 +49,54 @@
       <nz-col [nzSm]="24" [nzXs]="24" class="m-b-10">
         <ng-container *ngFor="let product of cartList; let i = index">
           <div class="d-flex align-items-center justify-content-between">
-            <p class="m-0 fs-15 text-gray-6 notranslate"><b>{{ i + 1 }})</b>&nbsp;&nbsp;{{ product.title }} &nbsp;&nbsp; <b class="fs-12" style="color: #8E9FB9;">x{{ product.quantity }}</b></p>
-            <p class="m-0 fs-15 text-gray-6 notranslate"><del class="fs-12" style="color: #8E9FB9; ">{{ (product.quantity * product.price) }}</del>&nbsp;&nbsp;<b>S/{{ (product.quantity * product.priceNew) | number: '1.0-2' }}</b></p>
+            <p class="m-0 fs-15 text-gray-6 notranslate">
+              <b>{{ i + 1 }})</b>&nbsp;&nbsp;{{ product.title }} &nbsp;&nbsp;
+              <b class="fs-12" style="color: #8e9fb9"
+                >x{{ product.quantity }}</b
+              >
+            </p>
+            <p class="m-0 fs-15 text-gray-6 notranslate">
+              <del class="fs-12" style="color: #8e9fb9">{{
+                product.quantity * product.price
+              }}</del
+              >&nbsp;&nbsp;<b
+                >S/{{
+                  product.quantity * product.priceNew | number: "1.0-2"
+                }}</b
+              >
+            </p>
           </div>
         </ng-container>
-
       </nz-col>
       <nz-col [nzSm]="24" [nzXs]="24" class="m-b-10">
         <div class="d-flex align-items-center justify-content-between">
-          <p class="m-0 fs-14 text-gray-6 notranslate">Descuento por ser socio Distribuidor:</p> <b>39.40% - 43.35% Desc</b>
+          <p class="m-0 fs-14 text-gray-6 notranslate">
+            Descuento por ser socio Distribuidor:
+          </p>
+          <b>39.40% - 43.35% Desc</b>
         </div>
       </nz-col>
       <nz-col [nzSm]="24" [nzXs]="24" class="m-b-10">
         <div class="d-flex align-items-center justify-content-between">
           <p class="m-0 fs-14 text-gray-6 fs-22"><b>TOTAL:</b></p>
-          <p class="m-0 fs-14 text-gray-6 fs-22 notranslate"><b>S/. {{ totalBuy | number: '1.0-2' }}</b></p>
+          <p class="m-0 fs-14 text-gray-6 fs-22 notranslate">
+            <b>S/. {{ totalBuy | number: "1.0-2" }}</b>
+          </p>
         </div>
       </nz-col>
     </nz-row>
 
-    <hr style="border-color: #E4E4E4; border-width: 2px; margin: 0; margin-bottom: 10px;">
+    <hr
+      style="
+        border-color: #e4e4e4;
+        border-width: 2px;
+        margin: 0;
+        margin-bottom: 10px;
+      "
+    />
 
     <nz-row class="m-b-10">
-      <nz-col [nzSm]="24" [nzXs]="24" >
+      <nz-col [nzSm]="24" [nzXs]="24">
         <h4>DETALLES DE ENVÍO</h4>
       </nz-col>
     </nz-row>
@@ -68,16 +107,29 @@
       class="m-b-30"
     >
       <nz-form-item>
-        <nz-form-label >Escribir número de celular de contacto:</nz-form-label>
+        <nz-form-label>Escribir número de celular de contacto:</nz-form-label>
         <nz-form-control nzErrorTip="Campo requerido">
-          <input nz-input formControlName="phoneContact" placeholder="" class="bg--input"/>
+          <input
+            nz-input
+            formControlName="phoneContact"
+            placeholder=""
+            class="bg--input"
+          />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label >Escribir dirección de Envío, indicar Distrito, ciudad y país.:</nz-form-label>
+        <nz-form-label
+          >Escribir dirección de Envío, indicar Distrito, ciudad y
+          país.:</nz-form-label
+        >
         <nz-form-control nzErrorTip="Campo requerido">
-          <textarea [rows]="2" nz-input formControlName="addressContact" class="bg--input"></textarea>
+          <textarea
+            [rows]="2"
+            nz-input
+            formControlName="addressContact"
+            class="bg--input"
+          ></textarea>
         </nz-form-control>
       </nz-form-item>
     </form>
@@ -104,30 +156,40 @@
       <hr style="border-color: #E4E4E4; border-width: 2px;"><span>OR</span>
     </div> -->
 
-    <div class="m-b-20 text-center" >
-      <button nz-button nzType="primary" nzBlock class="btn-payment" (click)="onPaymentOffline()" [nzLoading]="isLoadingOffline">
+    <div class="m-b-20 text-center">
+      <button
+        nz-button
+        nzType="primary"
+        nzBlock
+        class="btn-payment"
+        (click)="onPaymentOffline()"
+        [nzLoading]="isLoadingOffline"
+      >
         <p class="mb-0 text-white">Confirmar pago</p>
         <p class="mb-0 text-white">pagué en efectivo en cuenta bancaria</p>
       </button>
     </div>
 
     <div class="text-center d-flex justify-content-between">
-        <img src="assets/images/tarjetas.png" alt="">
+      <img src="assets/images/tarjetas.png" alt="" class="img-fluid" />
     </div>
-
   </nz-spin>
-
 </ng-container>
 
 <ng-container *ngIf="paymentSection == 1">
   <nz-row class="m-b-20">
-    <nz-col [nzSm]="24" [nzXs]="24" class="m-b-20 text-center" >
-      <p class="m-0 fs-14 text-gray-6"><b>¡ Listo, se genero un link de pago!. </b></p>
-      <p class="m-0 fs-14 text-gray-6">Ingresar al link para poder realizar el pago de su plan.</p>
-
+    <nz-col [nzSm]="24" [nzXs]="24" class="m-b-20 text-center">
+      <p class="m-0 fs-14 text-gray-6">
+        <b>¡ Listo, se genero un link de pago!. </b>
+      </p>
+      <p class="m-0 fs-14 text-gray-6">
+        Ingresar al link para poder realizar el pago de su plan.
+      </p>
     </nz-col>
     <nz-col [nzSm]="24" [nzXs]="24" class="text-center">
-      <a [href]="linkPayment" target="_blank" class="btn btn-info text-white ">Ir a pagar</a>
+      <a [href]="linkPayment" target="_blank" class="btn btn-info text-white"
+        >Ir a pagar</a
+      >
     </nz-col>
   </nz-row>
 </ng-container>
@@ -135,7 +197,6 @@
 <ng-container *ngIf="paymentSection == 2">
   <nz-spin nzTip="Verificando..." [nzSpinning]="isSpinningPayment">
     <div class="form">
-
       <div class="container-form">
         <div class="text-center m-b-10">
           <img alt="Vue logo" src="assets/images/Logo-161x66.png" />
@@ -148,38 +209,65 @@
 
 <ng-container *ngIf="paymentSection == 3">
   <nz-row class="m-b-20">
-    <nz-col [nzSm]="24" [nzXs]="24" class="m-b-20 text-center" >
+    <nz-col [nzSm]="24" [nzXs]="24" class="m-b-20 text-center">
       <ng-container *ngIf="!isPaymentError">
-        <p style="font-size: 18px;">
+        <p style="font-size: 18px">
+          <b>¡ Listo, tu compra se realizó con éxito</b>
+        </p>
 
-        <b>¡ Listo, tu compra se realizó con éxito</b></p>
-
-          <p style="font-size: 18px;">
-            <b>Compraste tu productos!</b>&nbsp;&nbsp;&nbsp;<i nz-icon nzType="check" nzTheme="outline" style="color: #00B517; font-size: 26px;"></i> </p>
-          <p style="font-size: 18px;">Bienvenido a ImperioGlobal.net, compraste
-            correctamente tu productos.</p>
-        <button nz-button nzType="primary" class="btn-payment" nzSize="large" (click)="onCloseModal()">Listo</button>
+        <p style="font-size: 18px">
+          <b>Compraste tu productos!</b>&nbsp;&nbsp;&nbsp;<i
+            nz-icon
+            nzType="check"
+            nzTheme="outline"
+            style="color: #00b517; font-size: 26px"
+          ></i>
+        </p>
+        <p style="font-size: 18px">
+          Bienvenido a ImperioGlobal.net, compraste correctamente tu productos.
+        </p>
+        <button
+          nz-button
+          nzType="primary"
+          class="btn-payment"
+          nzSize="large"
+          (click)="onCloseModal()"
+        >
+          Listo
+        </button>
       </ng-container>
       <ng-container *ngIf="isPaymentError">
-        <p class="text-rojo" style="font-size: 18px;">
-          <i nz-icon nzType="close" nzTheme="outline" style="color: #FF3A44; font-size: 20px;"></i>
-        <b>¡ Un error en tu compra!</b></p>
-          <p style="font-size: 18px;">{{ messageError }}</p>
-        <button nz-button nzType="primary" class="btn-payment" nzSize="large" (click)="onCloseModal()">Listo</button>
+        <p class="text-rojo" style="font-size: 18px">
+          <i
+            nz-icon
+            nzType="close"
+            nzTheme="outline"
+            style="color: #ff3a44; font-size: 20px"
+          ></i>
+          <b>¡ Un error en tu compra!</b>
+        </p>
+        <p style="font-size: 18px">{{ messageError }}</p>
+        <button
+          nz-button
+          nzType="primary"
+          class="btn-payment"
+          nzSize="large"
+          (click)="onCloseModal()"
+        >
+          Listo
+        </button>
       </ng-container>
-
-
     </nz-col>
   </nz-row>
 </ng-container>
 
 <ng-container *ngIf="paymentSection == 4">
   <nz-row class="m-b-20">
-    <nz-col [nzSm]="24" [nzXs]="24" class="m-b-20 text-center" >
+    <nz-col [nzSm]="24" [nzXs]="24" class="m-b-20 text-center">
       <p class="m-0 fs-15 text-gray-6"><b>¡ Listo, pago offline!. </b></p>
-      <p class="m-0 fs-15 text-gray-6">Ingresar al link para poder realizar el pago de su plan.</p>
-
+      <p class="m-0 fs-15 text-gray-6">
+        Ingresar al link para poder realizar el pago de su plan.
+      </p>
     </nz-col>
-
   </nz-row>
 </ng-container>
