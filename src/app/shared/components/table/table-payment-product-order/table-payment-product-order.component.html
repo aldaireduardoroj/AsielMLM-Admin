@@ -17,6 +17,7 @@
       <th [nzAlign]="'center'">Código ID</th>
       <th [nzAlign]="'center'">Correo electrónico</th>
       <th [nzAlign]="'center'">Vaucher de Venta</th>
+      <th [nzAlign]="'center'">Comprobante</th>
       <th [nzAlign]="'center'">Número de contacto</th>
       <th [nzAlign]="'center'">Estado de envío</th>
     </tr>
@@ -57,6 +58,20 @@
           (click)="onSeletedVaucher(item)"
           >VER</nz-tag
         >
+      </td>
+      <td nzAlign="center">
+        <ng-container *ngIf="item.file_image != null">
+          <a
+            nz-button
+            [href]="pathServe + item.file_image?.path"
+            download
+            target="_blank"
+            [nzSize]="'small'"
+            nzShape="circle"
+          >
+            <i nz-icon nzType="download"></i>
+          </a>
+        </ng-container>
       </td>
       <td nzAlign="center">
         {{ item?.phone }}

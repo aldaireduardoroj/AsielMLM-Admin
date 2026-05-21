@@ -14,15 +14,14 @@ import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { forkJoin } from 'rxjs';
 import { ToolsUserAddModalComponent } from './tools-user-add-modal/tools-user-add-modal.component';
 
-const titleModalGeneral = "Selecciona qué deseas modificar";
+const titleModalGeneral = 'Selecciona qué deseas modificar';
 
 @Component({
   selector: 'app-tools-users-page',
   templateUrl: './tools-users-page.component.html',
-  styleUrls: ['./tools-users-page.component.scss']
+  styleUrls: ['./tools-users-page.component.scss'],
 })
 export class ToolsUsersPageComponent implements OnInit {
-
   pageIndex: number = CONSTANTS.PAGINATION.PAGE_INDEX;
   pageSize: number = CONSTANTS.PAGINATION.PAGE_SIZE;
   sortProperty: string = '';
@@ -34,8 +33,8 @@ export class ToolsUsersPageComponent implements OnInit {
 
   CONSTANTS = CONSTANTS;
   environment = environment;
-  codeUser: string = "";
-  nameUser: string = "";
+  codeUser: string = '';
+  nameUser: string = '';
   initLoad: boolean = true;
 
   _listPoints: Array<any> = [];
@@ -48,63 +47,71 @@ export class ToolsUsersPageComponent implements OnInit {
 
   planList: Array<any> = [];
   loadingDesactive: boolean = false;
+
+  pathServe = environment.hostUrl + '/storage/';
+
   constructor(
     private apiService: ApiService,
     private modalService: ModalService,
     private nzModalService: NzModalService,
-    private fb : FormBuilder
-  ) {
-
-  }
+    private fb: FormBuilder,
+  ) {}
 
   ngOnInit(): void {
-
     this.loadData();
   }
 
-  public onSearch(): void{
+  public onSearch(): void {
     this.tableProductLoading = true;
-    this.apiService.getUsersFindAll({
-      code: this.codeUser.trim(),
-      name: this.nameUser.trim() ,
-      plan: this.planSelected ?? "",
-      bot: this.isBot ? 1 : 0,
-      limit: this.pageSize , page: this.pageIndex }).subscribe(
-      (response) =>{
-        if( response.success ){
-          this.totalRecord = response.data.pagination.total;
-          this.tableProducts = response.data.items;
-        }
-        this.tableProductLoading = false;
-
-      }, (error) =>{
-        this.modalService.error(error.message ?? "")
-        this.tableProductLoading = false;
-      }
-    )
+    this.apiService
+      .getUsersFindAll({
+        code: this.codeUser.trim(),
+        name: this.nameUser.trim(),
+        plan: this.planSelected ?? '',
+        bot: this.isBot ? 1 : 0,
+        limit: this.pageSize,
+        page: this.pageIndex,
+      })
+      .subscribe(
+        (response) => {
+          if (response.success) {
+            this.totalRecord = response.data.pagination.total;
+            this.tableProducts = response.data.items;
+          }
+          this.tableProductLoading = false;
+        },
+        (error) => {
+          this.modalService.error(error.message ?? '');
+          this.tableProductLoading = false;
+        },
+      );
   }
 
-  public loadData(): void{
+  public loadData(): void {
     this.tableProductLoading = true;
     forkJoin(
       this.apiService.getPointList({}),
-      this.apiService.getUsersFindAll({code: this.codeUser.trim(), name: this.nameUser.trim() , plan: this.planSelected ?? "" , limit: this.pageSize , page: this.pageIndex }),
+      this.apiService.getUsersFindAll({
+        code: this.codeUser.trim(),
+        name: this.nameUser.trim(),
+        plan: this.planSelected ?? '',
+        limit: this.pageSize,
+        page: this.pageIndex,
+      }),
       this.apiService.getPlansSearch({}),
-    ).subscribe(
-      ([listPoints, usersList, planList])=>{
-        this._listPoints = listPoints.data;
+    ).subscribe(([listPoints, usersList, planList]) => {
+      this._listPoints = listPoints.data;
 
-        if( usersList.success ){
-          this.totalRecord = usersList.data.pagination.total;
-          this.tableProducts = usersList.data.items;
-        }
-        this.tableProductLoading = false;
-
-        this.planList = planList.data
-
-        this.initLoad = false;
+      if (usersList.success) {
+        this.totalRecord = usersList.data.pagination.total;
+        this.tableProducts = usersList.data.items;
       }
-    )
+      this.tableProductLoading = false;
+
+      this.planList = planList.data;
+
+      this.initLoad = false;
+    });
   }
 
   onQueryParamsChange(params: NzTableQueryParams): void {
@@ -117,17 +124,15 @@ export class ToolsUsersPageComponent implements OnInit {
       if (sort[0]?.value == 'descend') sortOrder = 'DESC';
 
       if (sort[0]?.key === 'name') this.sortProperty = 'name ' + sortOrder;
-
     }
 
-    console.log( pageSize, pageIndex, sort, filter )
+    console.log(pageSize, pageIndex, sort, filter);
 
-    if( !this.initLoad ) this.onSearch();
+    if (!this.initLoad) this.onSearch();
   }
 
-  public onSeletedUSer(usercode: string, userModel: any): void{
-
-    if( usercode == "-1" ) return;
+  public onSeletedUSer(usercode: string, userModel: any): void {
+    if (usercode == '-1') return;
 
     this.nzModalService.create({
       nzTitle: 'Detalle',
@@ -137,72 +142,88 @@ export class ToolsUsersPageComponent implements OnInit {
         userModel: userModel,
         listPoints: this._listPoints,
         paymentOrder: userModel?.payment,
-        pointTotal: userModel?.points?.pointGroup ?? 0
-      }
-    })
+        pointTotal: userModel?.points?.pointGroup ?? 0,
+      },
+    });
   }
 
-  public listPoints(): void{
+  public listPoints(): void {
     this.tableProductLoading = true;
     this.apiService.getPointList({}).subscribe(
-      (response) =>{
+      (response) => {
         this._listPoints = response.data;
         this.onSearch();
-      },(error) =>{
-      }
-    )
+      },
+      (error) => {},
+    );
   }
 
-  public calculatePoints( userCode: string ): number{
+  public calculatePoints(userCode: string): number {
     let total: number = 0;
-    let pointPatrocinio = 0, pointResudial = 0, pointCompra = 0, pointGroup = 0;
+    let pointPatrocinio = 0,
+      pointResudial = 0,
+      pointCompra = 0,
+      pointGroup = 0;
     // ====== PATROCINIO
-    let patrocinio = this._listPoints.filter( p => p.sponsor_code?.toLowerCase() == userCode.toLowerCase()  && p.type == 'P')
-    if( patrocinio.length > 0 ){
-      pointPatrocinio = patrocinio.map( m => m.point ).reduce( (a, c) => a + c );
-    }else{
+    let patrocinio = this._listPoints.filter(
+      (p) =>
+        p.sponsor_code?.toLowerCase() == userCode.toLowerCase() &&
+        p.type == 'P',
+    );
+    if (patrocinio.length > 0) {
+      pointPatrocinio = patrocinio.map((m) => m.point).reduce((a, c) => a + c);
+    } else {
       pointPatrocinio = 0;
     }
 
     // ====== RESIDUAL
-    let residual = this._listPoints.filter( p => p.sponsor_code?.toLowerCase() == userCode.toLowerCase()  && p.type == 'R')
-    if( residual.length > 0 ){
-      pointResudial = residual.map( m => m.point ).reduce( (a, c) => a + c );
-    }else{
+    let residual = this._listPoints.filter(
+      (p) =>
+        p.sponsor_code?.toLowerCase() == userCode.toLowerCase() &&
+        p.type == 'R',
+    );
+    if (residual.length > 0) {
+      pointResudial = residual.map((m) => m.point).reduce((a, c) => a + c);
+    } else {
       pointResudial = 0;
     }
 
-     // ====== PERSONALES
+    // ====== PERSONALES
 
-    let buy = this._listPoints.filter( p => p.user_code?.toLowerCase() == userCode.toLowerCase()  && p.type == 'B')
-    if( buy.length > 0 ){
-      pointCompra = buy.map( m => m.point ).reduce( (a, c) => a + c );
-    }else{
+    let buy = this._listPoints.filter(
+      (p) =>
+        p.user_code?.toLowerCase() == userCode.toLowerCase() && p.type == 'B',
+    );
+    if (buy.length > 0) {
+      pointCompra = buy.map((m) => m.point).reduce((a, c) => a + c);
+    } else {
       pointCompra = 0;
     }
 
     // ====== GRUPALES
-    let grupales = this._listPoints.filter( p => p.sponsor_code?.toLowerCase() == userCode.toLowerCase()  && p.type == 'G');
-    if( grupales.length > 0 ){
-      pointGroup = grupales.map( m => m.point ).reduce( (a, c) => a + c );
-    }else{
+    let grupales = this._listPoints.filter(
+      (p) =>
+        p.sponsor_code?.toLowerCase() == userCode.toLowerCase() &&
+        p.type == 'G',
+    );
+    if (grupales.length > 0) {
+      pointGroup = grupales.map((m) => m.point).reduce((a, c) => a + c);
+    } else {
       pointGroup = 0;
     }
 
     return pointPatrocinio + pointResudial + pointCompra + pointGroup;
   }
 
-  public onDetailUser(userModel: UserModel , tplContent: TemplateRef<{}>): void{
+  public onDetailUser(userModel: UserModel, tplContent: TemplateRef<{}>): void {
     const modal = this.nzModalService.create({
       nzTitle: null,
       nzContent: tplContent,
       nzFooter: null,
       nzMaskClosable: false,
       nzClosable: false,
-      nzWidth: "450px",
-      nzComponentParams: {
-
-      },
+      nzWidth: '450px',
+      nzComponentParams: {},
     });
 
     this.userModel = userModel;
@@ -216,15 +237,15 @@ export class ToolsUsersPageComponent implements OnInit {
     //   this.userModel = userModel;
     // })
 
-    modal.afterClose.subscribe( () => this.onSearch() )
+    modal.afterClose.subscribe(() => this.onSearch());
   }
 
-  public modalDesactive(): void{
-    this.modalService.confirm(
-      "¿Desea activar este usuario?",
-      () => {
-        this.loadingDesactive = true;
-        this.apiService.postUsercodeActiveResidual({userCode : this.userModel?.uuid}).subscribe(
+  public modalDesactive(): void {
+    this.modalService.confirm('¿Desea activar este usuario?', () => {
+      this.loadingDesactive = true;
+      this.apiService
+        .postUsercodeActiveResidual({ userCode: this.userModel?.uuid })
+        .subscribe(
           (res) => {
             this.onSearch();
             this.nzModalService.closeAll();
@@ -232,79 +253,85 @@ export class ToolsUsersPageComponent implements OnInit {
           },
           (error) => {
             this.loadingDesactive = false;
-          }
-        )
-      }
-    )
+          },
+        );
+    });
   }
 
-  public modalUserOptions(tab: number): void{
-    if( tab == 2 ){
-      if( this.userModel?.payment == null){
-        this.modalService.warning("Este usuario debe de tener un plan comprado, para continuar.")
+  public modalUserOptions(tab: number): void {
+    if (tab == 2) {
+      if (this.userModel?.payment == null) {
+        this.modalService.warning(
+          'Este usuario debe de tener un plan comprado, para continuar.',
+        );
         return;
       }
     }
 
     switch (tab) {
-      case 1: this.tabTitle = "Modificar Datos de Usuario";
+      case 1:
+        this.tabTitle = 'Modificar Datos de Usuario';
         break;
-      case 2: this.tabTitle = "Modificar Patrocinador de Usuario";
+      case 2:
+        this.tabTitle = 'Modificar Patrocinador de Usuario';
         break;
-      case 3: this.tabTitle = "Eliminar a usuario (Reseat)";
+      case 3:
+        this.tabTitle = 'Eliminar a usuario (Reseat)';
         break;
-      case 4: this.tabTitle = "Reactivar usuario: Generando residual";
+      case 4:
+        this.tabTitle = 'Reactivar usuario: Generando residual';
         break;
-      default: this.tabTitle = titleModalGeneral;
+      default:
+        this.tabTitle = titleModalGeneral;
         break;
     }
     this.tabModal = tab;
   }
 
-  public onClose(): void{
+  public onClose(): void {
     this.modalUserOptions(0);
     this.nzModalService.closeAll();
   }
 
-  public onBack(time: number): void{
-    this.modalUserOptions(0)
+  public onBack(time: number): void {
+    this.modalUserOptions(0);
   }
 
-  public onChangePlan(plan: any): void{
+  public onChangePlan(plan: any): void {
     this.onSearch();
   }
 
-  public onPaymentOfflineConfirm(uuid: string): void{
-    this.modalService.confirm("¿Desea activar la invitacion del usuario?" ,
+  public onPaymentOfflineConfirm(uuid: string): void {
+    this.modalService.confirm(
+      '¿Desea activar la invitacion del usuario?',
       () => {
-        this.apiService.postPaymentConfirmOffline({sponsorId: uuid}).subscribe(
-          (response) => {
-            this.nzModalService.closeAll();
-            this.modalService.success("Usuario aceptado");
-          },
-          (error) => {
-            this.modalService.error( error?.message ?? "Error");
-            this.nzModalService.closeAll();
-          }
-        )
-      }
-    )
+        this.apiService
+          .postPaymentConfirmOffline({ sponsorId: uuid })
+          .subscribe(
+            (response) => {
+              this.nzModalService.closeAll();
+              this.modalService.success('Usuario aceptado');
+            },
+            (error) => {
+              this.modalService.error(error?.message ?? 'Error');
+              this.nzModalService.closeAll();
+            },
+          );
+      },
+    );
   }
 
-  onAddUser(): void{
+  onAddUser(): void {
     const modal = this.nzModalService.create({
-      nzTitle: "Agregar Usuario",
+      nzTitle: 'Agregar Usuario',
       nzContent: ToolsUserAddModalComponent,
       nzFooter: null,
-      nzWidth: "550px",
-      nzComponentParams: {
-
-      },
+      nzWidth: '550px',
+      nzComponentParams: {},
     });
 
-    modal.afterClose.subscribe( () => {
+    modal.afterClose.subscribe(() => {
       this.onSearch();
-    })
+    });
   }
-
 }

@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { environment } from '@env/environment';
 import { PaymentViewVoucherModalComponent } from '@shared/components/payment/payment-view-voucher-modal/payment-view-voucher-modal.component';
 import { UserTreeDetailComponent } from '@shared/components/user-tree-detail/user-tree-detail.component';
@@ -14,15 +23,14 @@ import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-table-payment-product-order',
   templateUrl: './table-payment-product-order.component.html',
-  styleUrls: ['./table-payment-product-order.component.scss']
+  styleUrls: ['./table-payment-product-order.component.scss'],
 })
 export class TablePaymentProductOrderComponent implements OnInit {
-
-  @ViewChild('templateChangeState', { read: TemplateRef }) templateChangeState:TemplateRef<any>;
+  @ViewChild('templateChangeState', { read: TemplateRef })
+  templateChangeState: TemplateRef<any>;
 
   @Input() searchLoader: number = 0;
   @Input() queryParams: any = {};
-
 
   tablePaymentProductLoading: boolean = false;
   tablePaymentProducts: Array<IProductPaymentOrder> = [];
@@ -43,15 +51,17 @@ export class TablePaymentProductOrderComponent implements OnInit {
   orderIdSelected: string;
 
   isAdmin: boolean = false;
+
+  pathServe = environment.hostUrl + '/storage/';
   constructor(
     private apiService: ApiService,
     private modalService: ModalService,
     private nzModalService: NzModalService,
-    private themeConstantService: ThemeConstantService
+    private themeConstantService: ThemeConstantService,
   ) {
-    this.themeConstantService.isAdminUserChanges.subscribe( (r) => {
-      this.isAdmin = r
-    } );
+    this.themeConstantService.isAdminUserChanges.subscribe((r) => {
+      this.isAdmin = r;
+    });
   }
 
   ngOnInit(): void {
@@ -59,26 +69,30 @@ export class TablePaymentProductOrderComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if( this.searchLoader > 0 ) this.onSearch();
+    if (this.searchLoader > 0) this.onSearch();
   }
 
-  public onSearch(): void{
+  public onSearch(): void {
     this.tablePaymentProductLoading = true;
-    this.apiService.getUsersPaymnetFindAll({
-      limit: this.pageSize , page: this.pageIndex,
-      ...this.queryParams
-    }).subscribe(
-      (response) => {
-        if( response.success ){
-          this.tablePaymentProducts = response.data.items;
-          this.totalRecord = response.data.pagination.total;
-        }
-        this.tablePaymentProductLoading = false;
-        this.initLoad = false;
-      },(error) => {
-        this.tablePaymentProductLoading = false;
-      }
-    )
+    this.apiService
+      .getUsersPaymnetFindAll({
+        limit: this.pageSize,
+        page: this.pageIndex,
+        ...this.queryParams,
+      })
+      .subscribe(
+        (response) => {
+          if (response.success) {
+            this.tablePaymentProducts = response.data.items;
+            this.totalRecord = response.data.pagination.total;
+          }
+          this.tablePaymentProductLoading = false;
+          this.initLoad = false;
+        },
+        (error) => {
+          this.tablePaymentProductLoading = false;
+        },
+      );
   }
 
   onQueryParamsChange(params: NzTableQueryParams): void {
@@ -91,15 +105,13 @@ export class TablePaymentProductOrderComponent implements OnInit {
       if (sort[0]?.value == 'descend') sortOrder = 'DESC';
 
       if (sort[0]?.key === 'name') this.sortProperty = 'name ' + sortOrder;
-
     }
 
-    if( !this.initLoad ) this.onSearch();
+    if (!this.initLoad) this.onSearch();
   }
 
-  public onSeletedUSer(usercode: string, userModel: any): void{
-
-    if( usercode == "-1" ) return;
+  public onSeletedUSer(usercode: string, userModel: any): void {
+    if (usercode == '-1') return;
 
     this.nzModalService.create({
       nzTitle: 'Detalle',
@@ -108,76 +120,84 @@ export class TablePaymentProductOrderComponent implements OnInit {
       nzComponentParams: {
         userModel: userModel,
         listPoints: this._listPoints,
-        paymentOrder: userModel?.payment?.payment_order
-      }
-    })
+        paymentOrder: userModel?.payment?.payment_order,
+      },
+    });
   }
 
-  public onSeletedVaucher(payment: IProductPaymentOrder): void{
-    console.log(payment)
+  public onSeletedVaucher(payment: IProductPaymentOrder): void {
+    console.log(payment);
     this.nzModalService.create({
       nzTitle: '',
       nzContent: PaymentViewVoucherModalComponent,
       nzFooter: null,
       nzComponentParams: {
-        iProductPaymentOrder: payment
-      }
-    })
+        iProductPaymentOrder: payment,
+      },
+    });
   }
 
-  public onCancel( ): void{
+  public onCancel(): void {
     this.nzModalService.closeAll();
   }
 
-  public onChange( orderId: string ): void{
-    if( this.isAdmin == false ){
-      this.modalService.info("Este usuario no tiene permisos para esta acción");
+  public onChange(orderId: string): void {
+    if (this.isAdmin == false) {
+      this.modalService.info('Este usuario no tiene permisos para esta acción');
       return;
     }
     this.orderIdSelected = orderId;
     this.nzModalService.create({
       nzContent: this.templateChangeState,
       nzFooter: null,
-      nzTitle: ""
-    })
+      nzTitle: '',
+    });
   }
 
-  public onChangeState(): void{
+  public onChangeState(): void {
     this.loadingState = true;
-    this.modalService.confirm( "¿Estás seguro de modificar Estado de Envío ¿Estás realmente seguro?" , () => {
-      this.apiService.postProductPaymentChangeState({
-        orderId: this.orderIdSelected,
-        state: 3
-      }).subscribe(
-        (response) => {
-          this.onCancel();
-          this.onSearch();
-          this.loadingState = false;
-        }, (error) => {
-          this.loadingState = false;
-        }
-      )
-    } ,  () => {
-      this.loadingState = false;
-    })
-
-  }
-
-  public onConfirmCash(paymentId: string): void{
-    this.modalService.confirm("¿Desea confirmar el pago de los productos?" ,
+    this.modalService.confirm(
+      '¿Estás seguro de modificar Estado de Envío ¿Estás realmente seguro?',
       () => {
-        this.apiService.postPaymentProductConfirmOffline({paymentId: paymentId}).subscribe(
-          (response) => {
-            this.nzModalService.closeAll();
-            this.modalService.success("Compra confirmada");
-          },
-          (error) => {
-            this.modalService.error( error?.message ?? "Error");
-            this.nzModalService.closeAll();
-          }
-        )
-      }
-    )
+        this.apiService
+          .postProductPaymentChangeState({
+            orderId: this.orderIdSelected,
+            state: 3,
+          })
+          .subscribe(
+            (response) => {
+              this.onCancel();
+              this.onSearch();
+              this.loadingState = false;
+            },
+            (error) => {
+              this.loadingState = false;
+            },
+          );
+      },
+      () => {
+        this.loadingState = false;
+      },
+    );
   }
 
+  public onConfirmCash(paymentId: string): void {
+    this.modalService.confirm(
+      '¿Desea confirmar el pago de los productos?',
+      () => {
+        this.apiService
+          .postPaymentProductConfirmOffline({ paymentId: paymentId })
+          .subscribe(
+            (response) => {
+              this.nzModalService.closeAll();
+              this.modalService.success('Compra confirmada');
+            },
+            (error) => {
+              this.modalService.error(error?.message ?? 'Error');
+              this.nzModalService.closeAll();
+            },
+          );
+      },
+    );
+  }
 }

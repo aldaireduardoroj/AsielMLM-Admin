@@ -1,5 +1,5 @@
-import { PackModel } from "./packs.interface";
-import { UserModel } from "./user.interface";
+import { PackModel } from './packs.interface';
+import { UserModel } from './user.interface';
 
 export interface IProductPaymentOrder {
   id: number;
@@ -18,9 +18,10 @@ export interface IProductPaymentOrder {
   pack: PackModel;
   details: Array<IProductPaymentOrderDetail>;
   plan?: number;
+  file_image: any;
 }
 
-export interface IProductPaymentOrderDetail{
+export interface IProductPaymentOrderDetail {
   id: number;
   payment_product_order_id: string;
   points: number;
