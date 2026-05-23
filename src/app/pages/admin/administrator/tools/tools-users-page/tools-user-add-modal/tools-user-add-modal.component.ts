@@ -16,14 +16,13 @@ import { IProductModel } from '@shared/services/models/product.interface';
 @Component({
   selector: 'app-tools-user-add-modal',
   templateUrl: './tools-user-add-modal.component.html',
-  styleUrls: ['./tools-user-add-modal.component.scss']
+  styleUrls: ['./tools-user-add-modal.component.scss'],
 })
 export class ToolsUserAddModalComponent implements OnInit {
-
   frmRegister!: FormGroup;
   loadingSubmit: boolean = false;
   planList: Array<PackModel> = [];
-  isAdmin : boolean;
+  isAdmin: boolean;
 
   avatarUrlNewSponsor: string = CONSTANTS.IMAGE.FALLBACK;
 
@@ -53,16 +52,17 @@ export class ToolsUserAddModalComponent implements OnInit {
       password: [null, [Validators.required, Validators.minLength(8)]],
       sponsor: [null, []],
       plan: [null, []],
+      address: [null, []],
+      phone: [null, []],
     });
 
-    this.themeService.isAdminUserChanges.subscribe(isAdmin => {
-        this.isAdmin = isAdmin;
-        if( !isAdmin ){
-          this.frmRegister.get('sponsor').setValue(localStorage.getItem("uuid"));
-          this.frmRegister.get('sponsor').disable();
-
-        }
-    } );
+    this.themeService.isAdminUserChanges.subscribe((isAdmin) => {
+      this.isAdmin = isAdmin;
+      if (!isAdmin) {
+        this.frmRegister.get('sponsor').setValue(localStorage.getItem('uuid'));
+        this.frmRegister.get('sponsor').disable();
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -75,81 +75,91 @@ export class ToolsUserAddModalComponent implements OnInit {
       email: this.frmRegister.get('email')?.value,
       dni: this.frmRegister.get('dni')?.value,
       password: this.frmRegister.get('password')?.value,
+      address: this.frmRegister.get('address')?.value,
+      phone: this.frmRegister.get('phone')?.value,
       sponsor: this.frmRegister.get('sponsor')?.value,
       plan: this.frmRegister.get('plan')?.value,
-      products: this.cartList.map( p => {
+      products: this.cartList.map((p) => {
         return {
           id: p.id,
           quantity: p.quantity,
           title: p.title,
-        }
-      } )
-    }
+        };
+      }),
+    };
   }
 
-  onSubmit():void{
-    if( this.formValidator.validForm( this.frmRegister ) ){
+  onSubmit(): void {
+    if (this.formValidator.validForm(this.frmRegister)) {
       this.loadingSubmit = true;
-      this.apiService.postUserCreate( this.command() ).subscribe(
+      this.apiService.postUserCreate(this.command()).subscribe(
         (response) => {
           this.nzModalService.closeAll();
-          this.modalService.success("Se creo el usuario correctamente");
+          this.modalService.success('Se creo el usuario correctamente');
           this.loadingSubmit = false;
-        }, (error) => {
-          console.log(error)
+        },
+        (error) => {
+          console.log(error);
           this.nzModalService.closeAll();
-          this.modalService.error(error.message ?? "Ocurrio un error!!!");
+          this.modalService.error(error.message ?? 'Ocurrio un error!!!');
           this.loadingSubmit = false;
-        }
-      )
+        },
+      );
     }
   }
 
-  public onSearchSponsor(): void{
-      this.loadingSearch = true;
-      this.isSponsorNew = false;
-      this.apiService.getUsersSearch({code: this.frmRegister.get('sponsor').value ?? ""}).subscribe(
+  public onSearchSponsor(): void {
+    this.loadingSearch = true;
+    this.isSponsorNew = false;
+    this.apiService
+      .getUsersSearch({ code: this.frmRegister.get('sponsor').value ?? '' })
+      .subscribe(
         (response) => {
           this.loadingSearch = false;
           this.newSponsor = null;
-          if( response.success ){
-            if( response.data.length > 0 ){
+          if (response.success) {
+            if (response.data.length > 0) {
               this.isSponsorNew = true;
               this.newSponsor = response.data[0];
-              this.avatarUrlNewSponsor = response.data[0]?.file?.path ? environment.hostUrl + '/storage/' + response.data[0]?.file?.path : CONSTANTS.IMAGE.FALLBACK;
+              this.avatarUrlNewSponsor = response.data[0]?.file?.path
+                ? environment.hostUrl +
+                  '/storage/' +
+                  response.data[0]?.file?.path
+                : CONSTANTS.IMAGE.FALLBACK;
             }
           }
-
         },
         (error) => {
           this.loadingSearch = false;
-        }
-      )
-    }
-
-  loadPlans(): void{
-    this.apiService.getPlansSearch({}).subscribe(
-      (response) => {
-        this.planList = response.data;
-      }
-    )
+        },
+      );
   }
 
-  onChangePlan(planId?: string): void{
-    if( planId != null ){
-      this.planSelected = this.planList.find( x => x.id === planId );
-    }else{
+  loadPlans(): void {
+    this.apiService.getPlansSearch({}).subscribe((response) => {
+      this.planList = response.data;
+    });
+  }
+
+  onChangePlan(planId?: string): void {
+    if (planId != null) {
+      this.planSelected = this.planList.find((x) => x.id === planId);
+    } else {
       this.planSelected = null;
     }
   }
 
-  public onCartChange( cartList: Array<IProductModel> ): void{
+  public onCartChange(cartList: Array<IProductModel>): void {
     this.cartList = cartList;
   }
 
-  get totalPayment(): number{
-    const cartAmount = this.cartList.length == 0 ? 0 : this.cartList.map( c => c.price * (c?.quantity ?? 0 ) ).reduce( (a, b) => a + b );
+  get totalPayment(): number {
+    const cartAmount =
+      this.cartList.length == 0
+        ? 0
+        : this.cartList
+            .map((c) => c.price * (c?.quantity ?? 0))
+            .reduce((a, b) => a + b);
     return cartAmount;
   }
-
 }
