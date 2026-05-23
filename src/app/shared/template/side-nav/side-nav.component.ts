@@ -5,60 +5,79 @@ import { Router } from '@angular/router';
 import { ModalService } from '@shared/utilities/modal-services';
 import { removeSessionLocalAll } from '@shared/utilities/functions';
 import { MESSAGES } from '@shared/constants/messages';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { ToolsUserAddModalComponent } from '../../../pages/admin/administrator/tools/tools-users-page/tools-user-add-modal/tools-user-add-modal.component';
 
 @Component({
-    selector: 'app-sidenav',
-    templateUrl: './side-nav.component.html'
+  selector: 'app-sidenav',
+  templateUrl: './side-nav.component.html',
 })
+export class SideNavComponent {
+  public menuItems: any[];
+  isFolded: boolean;
+  isSideNavDark: boolean;
+  isExpand: boolean;
+  MESSAGES = MESSAGES;
+  isAdmin: boolean;
+  constructor(
+    private themeService: ThemeConstantService,
+    private router: Router,
+    private nzModalService: NzModalService,
+  ) {}
 
-export class SideNavComponent{
+  ngOnInit(): void {
+    this.themeService.isMenuFoldedChanges.subscribe((isFolded) => {
+      console.log(isFolded);
+      this.isFolded = isFolded;
+    });
+    this.themeService.isExpandChanges.subscribe(
+      (isExpand) => (this.isExpand = isExpand),
+    );
+    this.themeService.isSideNavDarkChanges.subscribe(
+      (isDark) => (this.isSideNavDark = isDark),
+    );
+    this.themeService.isAdminUserChanges.subscribe((isAdmin) => {
+      this.isAdmin = isAdmin;
+      this.menuItems = ROUTES.filter((menuItem) => menuItem).map((m) => {
+        if (
+          m.path == '/admin/tools' ||
+          m.path == '/admin/finance' ||
+          m.path == '/admin/multimedia'
+        )
+          m.show = this.isAdmin;
+        return m;
+      });
+    });
+  }
 
-    public menuItems: any[]
-    isFolded : boolean;
-    isSideNavDark : boolean;
-    isExpand : boolean;
-    MESSAGES = MESSAGES;
-    isAdmin : boolean;
-    constructor(
-      private themeService: ThemeConstantService,
-      private router: Router,
-      private modalService: ModalService
-    ) {}
-
-    ngOnInit(): void {
-
-        this.themeService.isMenuFoldedChanges.subscribe(isFolded => {
-          console.log( isFolded )
-          this.isFolded = isFolded
-        });
-        this.themeService.isExpandChanges.subscribe(isExpand => this.isExpand = isExpand);
-        this.themeService.isSideNavDarkChanges.subscribe(isDark => this.isSideNavDark = isDark);
-        this.themeService.isAdminUserChanges.subscribe(isAdmin => {
-          this.isAdmin = isAdmin;
-          this.menuItems = ROUTES.filter(menuItem => menuItem).map(  m => { if( m.path == "/admin/tools" || m.path == "/admin/finance" || m.path == "/admin/multimedia" ) m.show = this.isAdmin; return m } );
-        } );
-
-
+  closeMobileMenu(): void {
+    if (window.innerWidth < 992) {
+      this.isFolded = false;
+      this.isExpand = !this.isExpand;
+      this.themeService.toggleExpand(this.isExpand);
+      this.themeService.toggleFold(this.isFolded);
     }
+  }
 
-    closeMobileMenu(): void {
-        if (window.innerWidth < 992) {
-            this.isFolded = false;
-            this.isExpand = !this.isExpand;
-            this.themeService.toggleExpand(this.isExpand);
-            this.themeService.toggleFold(this.isFolded);
-        }
-    }
+  onLogout(): void {
+    removeSessionLocalAll();
+    this.themeService.changeCurrentCartList([]);
+    this.router.navigate(['/home']);
+    // this.modalService.confirm( this.MESSAGES.LOG_OUT , () => {
+    //   removeSessionLocalAll();
+    //   this.router.navigate(['/admin/auth/login'])
+    // } )
+  }
 
-    onLogout(): void{
-      removeSessionLocalAll();
-      this.themeService.changeCurrentCartList([]);
-      this.router.navigate(['/home']);
-      // this.modalService.confirm( this.MESSAGES.LOG_OUT , () => {
-      //   removeSessionLocalAll();
-      //   this.router.navigate(['/admin/auth/login'])
-      // } )
+  onAddUser(): void {
+    const modal = this.nzModalService.create({
+      nzTitle: 'Agregar Usuario',
+      nzContent: ToolsUserAddModalComponent,
+      nzFooter: null,
+      nzWidth: '550px',
+      nzComponentParams: {},
+    });
 
-
-    }
+    modal.afterClose.subscribe(() => {});
+  }
 }

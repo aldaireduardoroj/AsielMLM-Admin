@@ -25,6 +25,8 @@ export class PaymentOfflineEfectivoComponent implements OnInit {
 
   loading: boolean = false;
 
+  isVoucher: boolean = true;
+
   constructor(
     private apiService: ApiService,
     private messageService: NzMessageService,
@@ -37,6 +39,7 @@ export class PaymentOfflineEfectivoComponent implements OnInit {
   handleUpload = (item: any) => {
     const file: File = item.file;
     this.fileSelected = null;
+    this.isVoucher = true;
     if (!file) {
       return;
     }
@@ -50,6 +53,7 @@ export class PaymentOfflineEfectivoComponent implements OnInit {
       );
       return;
     }
+    this.isVoucher = false;
     this.fileSelected = file;
   };
 
