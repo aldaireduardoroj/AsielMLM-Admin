@@ -32,6 +32,7 @@ export class UserTreeDetailComponent implements OnInit {
   ngOnInit(): void {
 
     let image = CONSTANTS.IMAGE.FALLBACK;
+    console.log(this.userModel);
 
     if( this.userModel.file != null ) image = environment.hostUrl + '/storage/'  + this.userModel.file.path;
 

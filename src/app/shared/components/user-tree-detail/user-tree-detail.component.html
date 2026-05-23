@@ -5,7 +5,7 @@
         <img [src]="avatarUrl" alt="" class="rounded-circle img-fluid" style="width: 120px; height: 120px;">
       </label>
       <div class="p-l-20">
-        <h3>{{ userModel?.name }}</h3>
+        <h3 class="line-height-1">{{ userModel?.name }}</h3>
         <p class="m-0" style="font-size: 12.5px;">ID: <span class="text-uppercase">{{ userModel?.uuid }}</span> - {{ packTitle }} -
           <ng-container *ngIf="paymentOrder?.payment_order"><span>{{ pointTotal }} P. Grupales -
             <ng-container *ngIf="paymentOrder.state == 2"><span style="color: #00B517;">Activo</span></ng-container>
@@ -39,7 +39,7 @@
 
 
 <nz-row class=""  >
-  <nz-col  [nzXs]="24" class="">
+  <nz-col [nzMd]="24" [nzXs]="24" class="">
     <p class="text-uppercase text-gray-7 font-weight-bold notranslate" [style]="userModel?.range != null? 'margin-bottom: 7px;' : ''">RANGO ACTUAL: {{ userModel?.range == null ? 'SIN RANGO' : userModel?.range.range.title }} <span class="d-inline-block text-center text-gray-8 border rounded-lg font-size-12 m-l-10 notranslate" style="border-color: #E2E8F0 !important; padding: 0 6px; min-width: 30px;">{{ userModel?.range == null ? 0 : 1 }}</span> &nbsp;&nbsp;
       <ng-container *ngIf="userModel?.range != null">
         <img [src]="env.hostUrl + '/storage/' + userModel?.range.range.file.path" alt="" style="width: 32px;">
@@ -48,4 +48,7 @@
       </p>
 
   </nz-col>
+  <!-- <nz-col [nzMd]="12" [nzXs]="24" class="">
+    <p class="text-uppercase text-gray-7 font-weight-bold notranslate">PUNTOS RESIDUALES </p>
+  </nz-col> -->
 </nz-row>
