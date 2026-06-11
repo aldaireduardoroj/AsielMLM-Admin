@@ -303,6 +303,136 @@
   </nz-card>
 
   <nz-card class="m-b-20">
+    <p class="m-0 fw-700 fs-16 text-black-3">Mis datos de Facturación</p>
+    <nz-row class="m-b-20 align-items-center justify-content-center">
+      <nz-col [nzSm]="24" [nzXs]="24" class="m-0">
+        <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
+          <nz-row class="">
+            <nz-col [nzMd]="8" [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-10">
+              <nz-form-item>
+                <nz-form-label nzFor="fullName" nzRequired
+                  >Nombre de Banco</nz-form-label
+                >
+                <nz-form-control nzErrorTip="">
+                  <input
+                    formControlName="fullName"
+                    id="fullName"
+                    nz-input
+                    class="input__h-50 bg--input"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+  
+            <nz-col [nzMd]="8" [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-10">
+              <nz-form-item>
+                <nz-form-label nzFor="fullName" nzRequired
+                  >Número de cuenta</nz-form-label
+                >
+                <nz-form-control nzErrorTip="">
+                  <input
+                    formControlName="fullName"
+                    id="fullName"
+                    nz-input
+                    class="input__h-50 bg--input"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+  
+            <nz-col [nzMd]="8" [nzSm]="12" [nzXs]="24" class="p-l-10">
+              <nz-form-item>
+                <nz-form-label nzFor="city">Número de cuenta Interbancario</nz-form-label>
+                <nz-form-control nzErrorTip="">
+                  <input
+                    formControlName="city"
+                    id="city"
+                    nz-input
+                    class="input__h-50 bg--input"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+  
+            <nz-col [nzMd]="8" [nzSm]="12" [nzXs]="24" class="p-l-10">
+              <nz-form-item>
+                <nz-form-label nzFor="city">RUC</nz-form-label>
+                <nz-form-control nzErrorTip="">
+                  <input
+                    formControlName="city"
+                    id="city"
+                    nz-input
+                    class="input__h-50 bg--input"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+  
+            <nz-col [nzMd]="8" [nzSm]="12" [nzXs]="24" class="p-l-10">
+              <nz-form-item>
+                <nz-form-label nzFor="address"
+                  >Razón social</nz-form-label
+                >
+                <nz-form-control nzErrorTip="">
+                  <input
+                    formControlName="address"
+                    id="address"
+                    nz-input
+                    class="input__h-50 bg--input"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+  
+            <nz-col [nzMd]="8" [nzSm]="12" [nzXs]="24" class="p-l-10">
+              <nz-form-item>
+                <nz-form-label nzFor="phoneNumber"
+                  >Paypal</nz-form-label
+                >
+                <nz-form-control nzErrorTip="">
+                  <input
+                    formControlName="phoneNumber"
+                    id="phoneNumber"
+                    nz-input
+                    class="input__h-50 bg--input"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+          </nz-row>
+          <nz-row class="m-b-20">
+            <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-10">
+              <button
+                nz-button
+                nzType="primary"
+                (click)="onAddUser()"
+                style="
+                  margin-bottom: 10px;
+                  background-color: #a6a6a6;
+                  border-color: #a6a6a6;
+                "
+              >
+                Agregar Usuario
+              </button>
+            </nz-col>
+          </nz-row>
+        </form>
+      </nz-col>
+      <nz-col [nzLg]="24" [nzXs]="24" class="" style="text-align: right">
+        <button
+          nz-button
+          class=""
+          [nzType]="'primary'"
+          [nzLoading]="isLoading"
+          (click)="onSubmit()"
+        >
+          Guardar
+        </button>
+      </nz-col>
+    </nz-row>
+  </nz-card>
+
+  <nz-card class="m-b-20">
     <p class="m-0 fw-700 fs-16 text-black-3">Datos Intangibles</p>
     <nz-row class="align-items-center justify-content-center">
       <nz-col [nzSm]="24" [nzXs]="24" class="m-b-30">
