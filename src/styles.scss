@@ -1177,3 +1177,37 @@ button.bg-gray {
       height: 100% !important;
   }
 }
+label.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 17px;
+    margin-left: 15px;
+}
+label.switch input {
+    display: none;
+}
+label.switch input:checked + .slider {
+    background: #1677ff;
+}
+label.switch input:checked + .slider:before {
+    transform: translateX(18px);
+}
+span.slider {
+  position: absolute;
+  inset: 0;
+  background: #d9d9d9;
+  border-radius: 22px;
+  transition: .3s;
+}
+span.slider:before {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 11px;
+    left: 6px;
+    top: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: .3s;
+}
