@@ -803,8 +803,7 @@ button.bg-gray {
   padding: 15px;
   display: block;
   max-width: 200px;
-  padding-top: 20px;
-  padding-bottom: 7px;
+  padding: 30px 20px;
   flex: 1;
   &.card--bonus--total {
     background-color: #1a71f6;
@@ -1169,4 +1168,12 @@ button.bg-gray {
 .owl-carousel.owl-drag .owl-item {
   display: flex;
   justify-content: center;
+}
+.basecanvas canvas {
+  width: 100% !important;
+}
+@include screen-tablet {
+  .basecanvas canvas {
+      height: 100% !important;
+  }
 }
