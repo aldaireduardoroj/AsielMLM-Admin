@@ -73,6 +73,15 @@
         </li>
       </ng-container>
       <li [ngClass]="['ant-menu-item']">
+        <a><i nz-icon nzType="credit-card" nzTheme="outline"></i>
+          <span>Cambio a divisa</span>
+          <label class="switch">
+            <input type="checkbox" checked="">
+            <span class="slider"></span>
+          </label>
+        </a>
+      </li>
+      <li [ngClass]="['ant-menu-item']">
         <a href="javascript:void(0);" (click)="onAddUser()"><i nz-icon nzType="user-add" nzTheme="outline"></i>
           <span>Agregar Usuario</span></a>
       </li>
