@@ -932,6 +932,9 @@ button.bg-gray {
   .card--bonus {
     max-width: 160px;
   }
+  .points-flex-container-mb .card--bonus {
+    max-width: 100% !important;
+  }
   .navbar.border-bottom {
     border: 0 !important;
   }
