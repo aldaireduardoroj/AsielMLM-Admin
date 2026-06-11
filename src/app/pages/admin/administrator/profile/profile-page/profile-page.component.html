@@ -591,7 +591,12 @@
           <p class="text-black-3 font-size-16">
             <b class="notranslate">Tus puntos residuales en el año</b>
           </p>
-          <div style="display: block; width: 100%; max-height: 400px">
+          <style>
+              .basecanvas canvas {
+                  width: 100% !important;
+              }
+          </style>
+          <div class="basecanvas" style="display: block; width: 100%; max-height: 400px">
             <canvas
               baseChart
               [data]="lineChartData"
