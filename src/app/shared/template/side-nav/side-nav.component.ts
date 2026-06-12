@@ -48,6 +48,24 @@ export class SideNavComponent {
         return m;
       });
     });
+
+    this.cargarEstadoDivisa();
+  }
+
+  guardarEstadoDivisa(event: any) {
+    const estaActivado = event.target.checked;
+    localStorage.setItem('divisaActiva', JSON.stringify(estaActivado));
+  }
+
+  cargarEstadoDivisa() {
+    const guardado = localStorage.getItem('divisaActiva');
+    if (guardado !== null) {
+      const estaActivado = JSON.parse(guardado);
+      const toggle = document.getElementById('toggleDivisa') as HTMLInputElement;
+      if (toggle) {
+        toggle.checked = estaActivado;
+      }
+    }
   }
 
   closeMobileMenu(): void {
