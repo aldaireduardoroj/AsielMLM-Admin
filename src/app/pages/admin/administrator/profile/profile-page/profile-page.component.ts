@@ -144,9 +144,23 @@ export class ProfilePageComponent implements OnInit {
     );
   }
 
+  divisaActiva: boolean = false;
+
   ngOnInit(): void {
     this.loadCurrentUser();
     this.loadStories();
+    this.cargarEstadoDivisa();
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'divisaActiva') {
+        this.divisaActiva = JSON.parse(e.key + '');
+      }
+    });
+  }
+
+  cargarEstadoDivisa() {
+    const guardado = localStorage.getItem('divisaActiva');
+    this.divisaActiva = guardado ? JSON.parse(guardado) : false;
   }
 
   public loadOptions(): void {
