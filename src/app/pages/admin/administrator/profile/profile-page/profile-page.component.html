@@ -354,7 +354,7 @@
   <style>
     .form-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 16px;
         margin-bottom: 24px;
     }
@@ -839,7 +839,7 @@
               </div>
               <div>
                 <h1 class="m-b-18 line-height-1 fs-18 fw-bold notranslate">
-                  <span style="display: none;" class="solesdata">S/ </span> {{ pointPatrocinio }} <span class="puntodata">puntos</span>
+                  <span *ngIf="divisaActiva" class="solesdata">S/ </span> {{ pointPatrocinio }} <span *ngIf="!divisaActiva" class="puntodata">puntos</span>
                 </h1>
               </div>
               <div>
@@ -910,7 +910,7 @@
               </div>
               <div>
                 <h1 class="m-b-20 line-height-1 fs-18 fw-bold notranslate">
-                  <span style="display: none;" class="solesdata">S/ </span> {{ pointGroup }} <span class="puntodata">puntos</span>
+                  <span *ngIf="divisaActiva" class="solesdata">S/ </span> {{ pointGroup }} <span *ngIf="!divisaActiva" class="puntodata">puntos</span>
                 </h1>
               </div>
               <div>
@@ -984,10 +984,10 @@
               </div>
               <div>
                 <h1 class="m-b-20 line-height-1 fs-18 fw-bold notranslate">
-                  <span style="display: none;" class="solesdata">S/ </span>  {{
+                  <span *ngIf="divisaActiva" class="solesdata">S/ </span>  {{
                     pointResudial + pointAfiliado + totalPointsPersonalGlobal
                   }}
-                  <span class="puntodata">puntos</span> &nbsp;
+                  <span *ngIf="!divisaActiva" class="puntodata">puntos</span> &nbsp;
                   <i
                     nz-icon
                     nzType="info-circle"
@@ -1103,7 +1103,7 @@
               </div>
               <div>
                 <h1 class="m-b-20 line-height-1 fs-18 fw-bold notranslate">
-                  <span style="display: none;" class="solesdata">S/ </span> {{ pointCompra + pointPersonal }} <span class="puntodata">puntos</span> &nbsp;
+                  <span *ngIf="divisaActiva" class="solesdata">S/ </span> {{ pointCompra + pointPersonal }} <span *ngIf="!divisaActiva" class="puntodata">puntos</span> &nbsp;
                   <i
                     nz-icon
                     nzType="info-circle"
@@ -1179,13 +1179,13 @@
               </div>
               <div>
                 <h1 class="m-b-20 line-height-1 fs-18 fw-bold notranslate">
-                  <span style="display: none;" class="solesdata">S/ </span>  {{
+                  <span *ngIf="divisaActiva" class="solesdata">S/ </span>  {{
                     pointPatrocinio +
                       pointResudial +
                       pointAfiliado +
                       totalPointsPersonalGlobal
                   }}
-                  <span class="puntodata">puntos</span>
+                  <span *ngIf="!divisaActiva" class="puntodata">puntos</span>
                 </h1>
               </div>
               <div>
@@ -1253,7 +1253,7 @@
                 <h1
                   class="m-b-20 line-height-1 fs-18 fw-bold notranslate text-white"
                 >
-                  <span style="display: none;" class="solesdata">S/ </span>  {{
+                  <span *ngIf="divisaActiva" class="solesdata">S/ </span>  {{
                     pointPatrocinio +
                       pointResudial +
                       pointGroup +
@@ -1263,7 +1263,7 @@
                       pointInfinity +
                       totalPointsPersonalGlobal
                   }}
-                  <span class="puntodata">puntos</span>
+                  <span *ngIf="!divisaActiva" class="puntodata">puntos</span>
                 </h1>
               </div>
               <div>

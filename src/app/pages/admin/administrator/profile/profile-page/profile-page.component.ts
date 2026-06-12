@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
 import { ImageCropperUploadComponent } from '@shared/components/image-cropper-upload/image-cropper-upload.component';
@@ -144,9 +144,55 @@ export class ProfilePageComponent implements OnInit {
     );
   }
 
+  divisaActiva: boolean = false;
+
   ngOnInit(): void {
     this.loadCurrentUser();
     this.loadStories();
+    this.cargarEstadoDivisa();
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'divisaActiva') {
+        this.divisaActiva = JSON.parse(e.key + '');
+      }
+    });
+  }
+
+  cargarEstadoDivisa() {
+    const guardado = localStorage.getItem('divisaActiva');
+    this.divisaActiva = guardado ? JSON.parse(guardado) : false;
+  }
+
+  private readonly STORAGE_KEY = 'bank_data';
+
+  ngAfterViewInit() {
+  // Cargar datos guardados
+  const saved = localStorage.getItem('bank_data');
+  if (saved) {
+    const data = JSON.parse(saved);
+    (document.getElementById('bankName') as any)?.value = data.bankName || '';
+    (document.getElementById('accountNumber') as any)?.value = data.accountNumber || '';
+    (document.getElementById('interbankNumber') as any)?.value = data.interbankNumber || '';
+    (document.getElementById('ruc') as any)?.value = data.ruc || '';
+    (document.getElementById('businessName') as any)?.value = data.businessName || '';
+    (document.getElementById('paypal') as any)?.value = data.paypal || '';
+  }
+
+  // Guardar al hacer submit
+  const form = document.getElementById('bankForm');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = {
+        bankName: (document.getElementById('bankName') as any).value,
+        accountNumber: (document.getElementById('accountNumber') as any).value,
+        interbankNumber: (document.getElementById('interbankNumber') as any).value,
+        ruc: (document.getElementById('ruc') as any).value,
+        businessName: (document.getElementById('businessName') as any).value,
+        paypal: (document.getElementById('paypal') as any).value,
+      };
+      localStorage.setItem('bank_data', JSON.stringify(data));
+      alert('Datos guardados');
+    });
   }
 
   public loadOptions(): void {
