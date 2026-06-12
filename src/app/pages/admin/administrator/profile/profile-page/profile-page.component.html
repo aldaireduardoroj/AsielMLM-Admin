@@ -304,133 +304,326 @@
 
   <nz-card class="m-b-20">
     <p class="m-0 fw-700 fs-16 text-black-3">Mis datos de Facturación</p>
-    <nz-row class="m-b-20 align-items-center justify-content-center">
-      <nz-col [nzSm]="24" [nzXs]="24" class="m-0">
-        <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
-          <nz-row class="">
-            <nz-col [nzMd]="8" [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-10">
-              <nz-form-item>
-                <nz-form-label nzFor="fullName" nzRequired
-                  >Nombre de Banco</nz-form-label
-                >
-                <nz-form-control nzErrorTip="">
-                  <input
-                    formControlName="fullName"
-                    id="fullName"
-                    nz-input
-                    class="input__h-50 bg--input"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </nz-col>
-  
-            <nz-col [nzMd]="8" [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-10">
-              <nz-form-item>
-                <nz-form-label nzFor="fullName" nzRequired
-                  >Número de cuenta</nz-form-label
-                >
-                <nz-form-control nzErrorTip="">
-                  <input
-                    formControlName="fullName"
-                    id="fullName"
-                    nz-input
-                    class="input__h-50 bg--input"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </nz-col>
-  
-            <nz-col [nzMd]="8" [nzSm]="12" [nzXs]="24" class="p-l-10">
-              <nz-form-item>
-                <nz-form-label nzFor="city">Número de cuenta Interbancario</nz-form-label>
-                <nz-form-control nzErrorTip="">
-                  <input
-                    formControlName="city"
-                    id="city"
-                    nz-input
-                    class="input__h-50 bg--input"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </nz-col>
-  
-            <nz-col [nzMd]="8" [nzSm]="12" [nzXs]="24" class="p-l-10">
-              <nz-form-item>
-                <nz-form-label nzFor="city">RUC</nz-form-label>
-                <nz-form-control nzErrorTip="">
-                  <input
-                    formControlName="city"
-                    id="city"
-                    nz-input
-                    class="input__h-50 bg--input"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </nz-col>
-  
-            <nz-col [nzMd]="8" [nzSm]="12" [nzXs]="24" class="p-l-10">
-              <nz-form-item>
-                <nz-form-label nzFor="address"
-                  >Razón social</nz-form-label
-                >
-                <nz-form-control nzErrorTip="">
-                  <input
-                    formControlName="address"
-                    id="address"
-                    nz-input
-                    class="input__h-50 bg--input"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </nz-col>
-  
-            <nz-col [nzMd]="8" [nzSm]="12" [nzXs]="24" class="p-l-10">
-              <nz-form-item>
-                <nz-form-label nzFor="phoneNumber"
-                  >Paypal</nz-form-label
-                >
-                <nz-form-control nzErrorTip="">
-                  <input
-                    formControlName="phoneNumber"
-                    id="phoneNumber"
-                    nz-input
-                    class="input__h-50 bg--input"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </nz-col>
-          </nz-row>
-          <nz-row class="m-b-20">
-            <nz-col [nzSm]="12" [nzXs]="24" class="p-l-10 p-r-10">
-              <button
-                nz-button
-                nzType="primary"
-                (click)="onAddUser()"
-                style="
-                  margin-bottom: 10px;
-                  background-color: #a6a6a6;
-                  border-color: #a6a6a6;
-                "
-              >
-                Agregar Usuario
-              </button>
-            </nz-col>
-          </nz-row>
-        </form>
-      </nz-col>
-      <nz-col [nzLg]="24" [nzXs]="24" class="" style="text-align: right">
-        <button
-          nz-button
-          class=""
-          [nzType]="'primary'"
-          [nzLoading]="isLoading"
-          (click)="onSubmit()"
-        >
-          Guardar
-        </button>
-      </nz-col>
-    </nz-row>
+
+    <form id="bankForm">
+        <div class="form-grid">
+            <div class="form-group">
+                <label class="required">Nombre de Banco</label>
+                <input type="text" id="bankName" autocomplete="off">
+                <div class="error-message" id="bankNameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Número de cuenta</label>
+                <input type="text" id="accountNumber" autocomplete="off">
+                <div class="error-message" id="accountNumberError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Número de cuenta Interbancario</label>
+                <input type="text" id="interbankNumber" autocomplete="off">
+                <div class="error-message" id="interbankNumberError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>RUC</label>
+                <input type="text" id="ruc" maxlength="11" autocomplete="off">
+                <div class="error-message" id="rucError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Razón social</label>
+                <input type="text" id="businessName" autocomplete="off">
+                <div class="error-message" id="businessNameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Paypal</label>
+                <input type="email" id="paypal" autocomplete="off">
+                <div class="error-message" id="paypalError"></div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button type="button" class="btn btn-default" id="clearBtn">Limpiar</button>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Guardar</button>
+        </div>
+    </form>
   </nz-card>
+
+  <style>
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #1f1f1f;
+    }
+
+    .form-group label.required::after {
+        content: '*';
+        color: #ff4d4f;
+        margin-left: 4px;
+    }
+
+    .form-group input {
+        height: 50px;
+        padding: 8px 12px;
+        border: 1px solid #d9d9d9;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.3s;
+        background-color: #fafafa;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #1677ff;
+        box-shadow: 0 0 0 2px rgba(22,119,255,0.2);
+    }
+
+    .form-group input.error {
+        border-color: #ff4d4f;
+    }
+
+    .error-message {
+        color: #ff4d4f;
+        font-size: 12px;
+        margin-top: 4px;
+        min-height: 20px;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+    }
+
+    button#submitBtn {
+      background-color: #215ee9;
+      border-color: #215ee9;
+      color: #fff;
+      font-size: .875rem;
+      padding: .65rem 1.25rem !important;
+      line-height: 1.25;
+      height: 2.5rem;
+      border-radius: 11px !important;
+    }
+
+    .btn-primary {
+        background-color: #1677ff;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #4096ff;
+    }
+
+    .btn-default {
+        background-color: #ffffff;
+        border: 1px solid #d9d9d9;
+        color: #1f1f1f;
+    }
+
+    .btn-default:hover {
+        border-color: #4096ff;
+        color: #4096ff;
+    }
+
+    .message {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 3px 6px -4px rgba(0,0,0,0.12);
+        z-index: 1000;
+        animation: slideIn 0.3s ease;
+    }
+
+    .message-success {
+        border-left: 4px solid #52c41a;
+    }
+
+    .message-error {
+        border-left: 4px solid #ff4d4f;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .loading {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+  </style>
+
+  <script>
+        const STORAGE_KEY = 'bank_data';
+        
+        // Elementos
+        const form = document.getElementById('bankForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        
+        const fields = {
+            bankName: document.getElementById('bankName'),
+            accountNumber: document.getElementById('accountNumber'),
+            interbankNumber: document.getElementById('interbankNumber'),
+            ruc: document.getElementById('ruc'),
+            businessName: document.getElementById('businessName'),
+            paypal: document.getElementById('paypal')
+        };
+        
+        // Mostrar mensaje
+        function showMessage(message, type = 'success') {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message message-${type}`;
+            msgDiv.textContent = message;
+            document.body.appendChild(msgDiv);
+            setTimeout(() => msgDiv.remove(), 3000);
+        }
+        
+        // Mostrar error en campo
+        function showFieldError(fieldName, message) {
+            const errorEl = document.getElementById(`${fieldName}Error`);
+            if (errorEl) errorEl.textContent = message;
+            if (fields[fieldName]) fields[fieldName].classList.add('error');
+        }
+        
+        // Limpiar errores
+        function clearErrors() {
+            Object.keys(fields).forEach(field => {
+                const errorEl = document.getElementById(`${field}Error`);
+                if (errorEl) errorEl.textContent = '';
+                if (fields[field]) fields[field].classList.remove('error');
+            });
+        }
+        
+        // Validar formulario
+        function validateForm() {
+            let isValid = true;
+            clearErrors();
+            
+            if (!fields.bankName.value.trim()) {
+                showFieldError('bankName', 'El nombre del banco es requerido');
+                isValid = false;
+            }
+            
+            if (!fields.accountNumber.value.trim()) {
+                showFieldError('accountNumber', 'El número de cuenta es requerido');
+                isValid = false;
+            }
+            
+            if (fields.ruc.value.trim() && !/^\d{11}$/.test(fields.ruc.value.trim())) {
+                showFieldError('ruc', 'El RUC debe tener 11 dígitos');
+                isValid = false;
+            }
+            
+            if (fields.paypal.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.paypal.value.trim())) {
+                showFieldError('paypal', 'Ingrese un email válido');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        // Guardar datos en localStorage
+        function saveToLocalStorage() {
+            const data = {
+                bankName: fields.bankName.value.trim(),
+                accountNumber: fields.accountNumber.value.trim(),
+                interbankNumber: fields.interbankNumber.value.trim(),
+                ruc: fields.ruc.value.trim(),
+                businessName: fields.businessName.value.trim(),
+                paypal: fields.paypal.value.trim(),
+                updatedAt: new Date().toISOString()
+            };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+        
+        // Cargar datos desde localStorage
+        function loadFromLocalStorage() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    fields.bankName.value = data.bankName || '';
+                    fields.accountNumber.value = data.accountNumber || '';
+                    fields.interbankNumber.value = data.interbankNumber || '';
+                    fields.ruc.value = data.ruc || '';
+                    fields.businessName.value = data.businessName || '';
+                    fields.paypal.value = data.paypal || '';
+                } catch (e) {
+                    console.error('Error al cargar datos', e);
+                }
+            }
+        }
+        
+        // Limpiar formulario
+        function clearForm() {
+            form.reset();
+            clearErrors();
+            showMessage('Formulario limpiado', 'success');
+        }
+        
+        // Submit
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                showMessage('Por favor, complete los campos correctamente', 'error');
+                return;
+            }
+            
+            // Simular pequeño delay para el loading
+            submitBtn.classList.add('loading');
+            submitBtn.textContent = 'Guardando...';
+            
+            setTimeout(() => {
+                saveToLocalStorage();
+                submitBtn.classList.remove('loading');
+                submitBtn.textContent = 'Guardar';
+                showMessage('Datos guardados correctamente', 'success');
+            }, 300);
+        });
+        
+        // Limpiar formulario
+        clearBtn.addEventListener('click', clearForm);
+        
+        // Limpiar error al escribir
+        Object.keys(fields).forEach(fieldName => {
+            if (fields[fieldName]) {
+                fields[fieldName].addEventListener('input', () => {
+                    fields[fieldName].classList.remove('error');
+                    const errorEl = document.getElementById(`${fieldName}Error`);
+                    if (errorEl) errorEl.textContent = '';
+                });
+            }
+        });
+        
+        // Cargar datos guardados al iniciar
+        loadFromLocalStorage();
+    </script>
 
   <nz-card class="m-b-20">
     <p class="m-0 fw-700 fs-16 text-black-3">Datos Intangibles</p>
@@ -646,7 +839,7 @@
               </div>
               <div>
                 <h1 class="m-b-18 line-height-1 fs-18 fw-bold notranslate">
-                  {{ pointPatrocinio }} puntos
+                  <span style="display: none;" class="solesdata">S/ </span> {{ pointPatrocinio }} <span class="puntodata">puntos</span>
                 </h1>
               </div>
               <div>
@@ -717,7 +910,7 @@
               </div>
               <div>
                 <h1 class="m-b-20 line-height-1 fs-18 fw-bold notranslate">
-                  {{ pointGroup }} puntos
+                  <span style="display: none;" class="solesdata">S/ </span> {{ pointGroup }} <span class="puntodata">puntos</span>
                 </h1>
               </div>
               <div>
@@ -791,10 +984,10 @@
               </div>
               <div>
                 <h1 class="m-b-20 line-height-1 fs-18 fw-bold notranslate">
-                  {{
+                  <span style="display: none;" class="solesdata">S/ </span>  {{
                     pointResudial + pointAfiliado + totalPointsPersonalGlobal
                   }}
-                  puntos &nbsp;
+                  <span class="puntodata">puntos</span> &nbsp;
                   <i
                     nz-icon
                     nzType="info-circle"
@@ -910,7 +1103,7 @@
               </div>
               <div>
                 <h1 class="m-b-20 line-height-1 fs-18 fw-bold notranslate">
-                  {{ pointCompra + pointPersonal }} puntos &nbsp;
+                  <span style="display: none;" class="solesdata">S/ </span> {{ pointCompra + pointPersonal }} <span class="puntodata">puntos</span> &nbsp;
                   <i
                     nz-icon
                     nzType="info-circle"
@@ -986,13 +1179,13 @@
               </div>
               <div>
                 <h1 class="m-b-20 line-height-1 fs-18 fw-bold notranslate">
-                  {{
+                  <span style="display: none;" class="solesdata">S/ </span>  {{
                     pointPatrocinio +
                       pointResudial +
                       pointAfiliado +
                       totalPointsPersonalGlobal
                   }}
-                  puntos
+                  <span class="puntodata">puntos</span>
                 </h1>
               </div>
               <div>
@@ -1060,7 +1253,7 @@
                 <h1
                   class="m-b-20 line-height-1 fs-18 fw-bold notranslate text-white"
                 >
-                  {{
+                  <span style="display: none;" class="solesdata">S/ </span>  {{
                     pointPatrocinio +
                       pointResudial +
                       pointGroup +
@@ -1070,7 +1263,7 @@
                       pointInfinity +
                       totalPointsPersonalGlobal
                   }}
-                  puntos
+                  <span class="puntodata">puntos</span>
                 </h1>
               </div>
               <div>
