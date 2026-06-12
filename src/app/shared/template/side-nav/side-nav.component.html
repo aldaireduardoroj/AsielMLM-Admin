@@ -73,29 +73,15 @@
         </li>
       </ng-container>
       <li [ngClass]="['ant-menu-item']">
-        <a><i nz-icon nzType="credit-card" nzTheme="outline"></i>
+        <a>
+          <i nz-icon nzType="credit-card" nzTheme="outline"></i>
           <span>Cambio a divisa</span>
           <label class="switch">
-            <input type="checkbox" id="toggleDivisa">
+            <input type="checkbox" id="toggleDivisa" (change)="guardarEstadoDivisa($event)">
             <span class="slider"></span>
           </label>
         </a>
       </li>
-      <script>
-        const toggle = document.getElementById('toggleDivisa');
-        const solesData = document.querySelector('.solesdata');
-        const puntodata = document.querySelector('.puntodata');
-        
-        toggle.addEventListener('change', function() {
-          if(this.checked) {
-            solesData.style.display = 'inline';
-            puntodata.style.display = 'none';
-          } else {
-            solesData.style.display = 'none';
-            puntodata.style.display = 'inline';
-          }
-        });
-      </script>
       <li [ngClass]="['ant-menu-item']">
         <a href="javascript:void(0);" (click)="onAddUser()"><i nz-icon nzType="user-add" nzTheme="outline"></i>
           <span>Agregar Usuario</span></a>
