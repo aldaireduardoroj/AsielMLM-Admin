@@ -55,6 +55,11 @@ export class SideNavComponent {
   guardarEstadoDivisa(event: any) {
     const estaActivado = event.target.checked;
     localStorage.setItem('divisaActiva', JSON.stringify(estaActivado));
+    
+    // Disparar un evento personalizado que cualquier componente puede escuchar
+    window.dispatchEvent(new CustomEvent('divisaCambiada', { 
+      detail: { activa: estaActivado } 
+    }));
   }
 
   cargarEstadoDivisa() {
