@@ -150,11 +150,10 @@ export class ProfilePageComponent implements OnInit {
     this.loadCurrentUser();
     this.loadStories();
     this.cargarEstadoDivisa();
-
-    window.addEventListener('storage', (e) => {
-      if (e.key === 'divisaActiva') {
-        this.divisaActiva = JSON.parse(e.key + '');
-      }
+  
+    // Escuchar el evento personalizado
+    window.addEventListener('divisaCambiada', (event: any) => {
+      this.divisaActiva = event.detail.activa;
     });
   }
 
