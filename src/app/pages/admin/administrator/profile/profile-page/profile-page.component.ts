@@ -170,12 +170,19 @@ export class ProfilePageComponent implements OnInit {
   const saved = localStorage.getItem('bank_data');
   if (saved) {
     const data = JSON.parse(saved);
-    (document.getElementById('bankName') as any)?.value = data.bankName || '';
-    (document.getElementById('accountNumber') as any)?.value = data.accountNumber || '';
-    (document.getElementById('interbankNumber') as any)?.value = data.interbankNumber || '';
-    (document.getElementById('ruc') as any)?.value = data.ruc || '';
-    (document.getElementById('businessName') as any)?.value = data.businessName || '';
-    (document.getElementById('paypal') as any)?.value = data.paypal || '';
+    const bankName = document.getElementById('bankName') as HTMLInputElement;
+    const accountNumber = document.getElementById('accountNumber') as HTMLInputElement;
+    const interbankNumber = document.getElementById('interbankNumber') as HTMLInputElement;
+    const ruc = document.getElementById('ruc') as HTMLInputElement;
+    const businessName = document.getElementById('businessName') as HTMLInputElement;
+    const paypal = document.getElementById('paypal') as HTMLInputElement;
+    
+    if (bankName) bankName.value = data.bankName || '';
+    if (accountNumber) accountNumber.value = data.accountNumber || '';
+    if (interbankNumber) interbankNumber.value = data.interbankNumber || '';
+    if (ruc) ruc.value = data.ruc || '';
+    if (businessName) businessName.value = data.businessName || '';
+    if (paypal) paypal.value = data.paypal || '';
   }
 
   // Guardar al hacer submit
