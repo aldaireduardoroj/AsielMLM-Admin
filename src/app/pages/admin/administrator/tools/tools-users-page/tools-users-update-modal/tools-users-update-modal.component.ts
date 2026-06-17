@@ -50,7 +50,8 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
     this.validateForm = this.fb.group({
       fullname: [null, [Validators.required]],
       packActive: [null],
-      sponsorNew: [""]
+      sponsorNew: [""],
+      password: [""]
     })
   }
 
@@ -170,6 +171,7 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
         userFullName: this.validateForm.get('fullname')?.value,
         packId: this.validateForm.get('packActive')?.value,
         sponsorNew: this.validateForm.get('sponsorNew')?.value ?? "",
+        password: this.validateForm.get('password')?.value ?? "",
         cartList: this.cartList.map( p => {
           return {
             id: p.id,
