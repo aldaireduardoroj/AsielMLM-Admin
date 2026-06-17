@@ -86,6 +86,18 @@
     </nz-form-control>
   </nz-form-item>
 
+  <nz-form-item>
+    <nz-form-label [nzSpan]="24">Cambiar ID - 0/10</nz-form-label>
+    <nz-form-control [nzSpan]="24">
+      <input
+        nz-input
+        formControlName="dni"
+        maxlength="10"
+        placeholder=""
+      />
+    </nz-form-control>
+  </nz-form-item>
+
   <ng-container *ngIf="isSponsordata">
     <p style="color: #606060">
       * Activarle 1er plan de Afiliación: Este será su primer paquete comprado y
