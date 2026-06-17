@@ -74,6 +74,18 @@
     </nz-form-control>
   </nz-form-item>
 
+  <nz-form-item>
+    <nz-form-label [nzSpan]="24">Cambiar contraseña (escribir nueva contraseña)</nz-form-label>
+    <nz-form-control [nzSpan]="24">
+      <input
+        nz-input
+        type="password"
+        formControlName="password"
+        placeholder=""
+      />
+    </nz-form-control>
+  </nz-form-item>
+
   <ng-container *ngIf="isSponsordata">
     <p style="color: #606060">
       * Activarle 1er plan de Afiliación: Este será su primer paquete comprado y
