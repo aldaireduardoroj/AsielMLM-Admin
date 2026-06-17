@@ -51,7 +51,8 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
       fullname: [null, [Validators.required]],
       packActive: [null],
       sponsorNew: [""],
-      password: [""]
+      password: [""],
+      dni: [null, [Validators.required]]
     })
   }
 
@@ -73,6 +74,7 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
         this.avatarUrl = this.userModel.file?.path ? environment.hostUrl + '/storage/' + this.userModel.file?.path : CONSTANTS.IMAGE.FALLBACK;
         this.validateForm.patchValue({
           fullname: this.userModel.name,
+          dni: this.userModel.uuid,
           packActive: this.userModel?.payment?.payment_order?.pack?.id ?? "0"
         });
 
