@@ -171,6 +171,7 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
       this.apiService.postUserModify({
         userCode: this.userModel.uuid,
         userFullName: this.validateForm.get('fullname')?.value,
+        userDni: this.validateForm.get('dni')?.value,
         packId: this.validateForm.get('packActive')?.value,
         sponsorNew: this.validateForm.get('sponsorNew')?.value ?? "",
         password: this.validateForm.get('password')?.value ?? "",
