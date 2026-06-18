@@ -50,7 +50,9 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
     this.validateForm = this.fb.group({
       fullname: [null, [Validators.required]],
       packActive: [null],
-      sponsorNew: [""]
+      sponsorNew: [""],
+      password: [""],
+      dni: [null, [Validators.required]]
     })
   }
 
@@ -72,6 +74,7 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
         this.avatarUrl = this.userModel.file?.path ? environment.hostUrl + '/storage/' + this.userModel.file?.path : CONSTANTS.IMAGE.FALLBACK;
         this.validateForm.patchValue({
           fullname: this.userModel.name,
+          dni: this.userModel.uuid,
           packActive: this.userModel?.payment?.payment_order?.pack?.id ?? "0"
         });
 
@@ -168,8 +171,10 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
       this.apiService.postUserModify({
         userCode: this.userModel.uuid,
         userFullName: this.validateForm.get('fullname')?.value,
+        userDni: this.validateForm.get('dni')?.value,
         packId: this.validateForm.get('packActive')?.value,
         sponsorNew: this.validateForm.get('sponsorNew')?.value ?? "",
+        password: this.validateForm.get('password')?.value ?? "",
         cartList: this.cartList.map( p => {
           return {
             id: p.id,

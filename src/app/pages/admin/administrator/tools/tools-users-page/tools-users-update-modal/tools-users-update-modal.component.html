@@ -47,7 +47,7 @@
   [formGroup]="validateForm"
   class="m-b-30 modal--auth-buttons"
 >
-  <nz-form-item>
+  <nz-form-item class="m-b-20">
     <nz-form-label [nzSpan]="24">Nombres y Apellidos de Registro</nz-form-label>
     <nz-form-control [nzSpan]="24" nzErrorTip="Este dato es requerido">
       <input nz-input formControlName="fullname" placeholder="" />
@@ -71,6 +71,30 @@
           *ngFor="let item of planList"
         ></nz-option>
       </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="24">Cambiar contraseña (escribir nueva contraseña)</nz-form-label>
+    <nz-form-control [nzSpan]="24">
+      <input
+        nz-input
+        type="password"
+        formControlName="password"
+        placeholder=""
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="24">Cambiar ID - 0/8</nz-form-label>
+    <nz-form-control [nzSpan]="24">
+      <input
+        nz-input
+        formControlName="dni"
+        maxlength="10"
+        placeholder=""
+      />
     </nz-form-control>
   </nz-form-item>
 
