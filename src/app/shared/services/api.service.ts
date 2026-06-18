@@ -38,6 +38,10 @@ export class ApiService {
     return this.httpService.put<IResponse<any>>( '/auth/update' , command).pipe(tap( res => res ));
   }
 
+  public postAuthenticationUpdateBilling( command: any ): Observable<IResponse<any>>{
+    return this.httpService.post<IResponse<any>>( '/auth/update-bank' , command).pipe(tap( res => res ));
+  }
+
   public postAuthenticationAvatar( command: any ): Observable<IResponse<any>>{
     let options = { contentType: false, mimeType: 'multiplart/form-data' };
     return this.httpService.post<IResponse<any>>( '/auth/update/avatar' , command , options).pipe(tap( res => res ));
@@ -99,7 +103,7 @@ export class ApiService {
     // let options = { contentType: false, mimeType: 'multiplart/form-data' };
     return this.httpService.post<IResponse<any>>( '/payment/cash-pre' , command ).pipe(tap( res => res ));
   }
-  
+
 
   public postPaymentConfirmOffline( command: any): Observable<IResponse<any>>{
     // let options = { contentType: false, mimeType: 'multiplart/form-data' };

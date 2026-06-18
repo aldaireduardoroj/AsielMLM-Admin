@@ -37,6 +37,7 @@ export class ProfilePageComponent implements OnInit {
 
   avatarUrl: string = CONSTANTS.IMAGE.FALLBACK;
   validateForm: FormGroup;
+  billingForm: FormGroup;
   userModel: UserModel;
 
   isLoading: boolean = false;
@@ -50,6 +51,7 @@ export class ProfilePageComponent implements OnInit {
   pointPersonal: number = 0;
   pointAfiliado: number = 0;
   totalPointsPersonalGlobal: number = 0;
+  isLoadingBilling: boolean = false;
 
   CONSTANTS = CONSTANTS;
 
@@ -137,6 +139,15 @@ export class ProfilePageComponent implements OnInit {
       dateCreation: [{ value: null, disabled: true }, []],
     });
 
+    this.billingForm = this.fb.group({
+      bankName: [null],
+      numberAccountBank: [null],
+      numberAccountInterBank: [null],
+      ruc: [null],
+      companyName: [null],
+      paypal: [null],
+    });
+
     this.oneMonthAgo = new Date(
       this.currentDate.getFullYear(),
       this.currentDate.getMonth() - 1,
@@ -150,7 +161,7 @@ export class ProfilePageComponent implements OnInit {
     this.loadCurrentUser();
     this.loadStories();
     this.cargarEstadoDivisa();
-  
+
     // Escuchar el evento personalizado
     window.addEventListener('divisaCambiada', (event: any) => {
       this.divisaActiva = event.detail.activa;
@@ -165,40 +176,7 @@ export class ProfilePageComponent implements OnInit {
   private readonly STORAGE_KEY = 'bank_data';
 
   ngAfterViewInit() {
-  // Cargar datos guardados
-  const saved = localStorage.getItem('bank_data');
-  if (saved) {
-    const data = JSON.parse(saved);
-    const bankName = document.getElementById('bankName') as HTMLInputElement;
-    const accountNumber = document.getElementById('accountNumber') as HTMLInputElement;
-    const interbankNumber = document.getElementById('interbankNumber') as HTMLInputElement;
-    const ruc = document.getElementById('ruc') as HTMLInputElement;
-    const businessName = document.getElementById('businessName') as HTMLInputElement;
-    const paypal = document.getElementById('paypal') as HTMLInputElement;
-    
-    if (bankName) bankName.value = data.bankName || '';
-    if (accountNumber) accountNumber.value = data.accountNumber || '';
-    if (interbankNumber) interbankNumber.value = data.interbankNumber || '';
-    if (ruc) ruc.value = data.ruc || '';
-    if (businessName) businessName.value = data.businessName || '';
-    if (paypal) paypal.value = data.paypal || '';
-  }
 
-  // Guardar al hacer submit
-  const form = document.getElementById('bankForm');
-    form?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = {
-        bankName: (document.getElementById('bankName') as any).value,
-        accountNumber: (document.getElementById('accountNumber') as any).value,
-        interbankNumber: (document.getElementById('interbankNumber') as any).value,
-        ruc: (document.getElementById('ruc') as any).value,
-        businessName: (document.getElementById('businessName') as any).value,
-        paypal: (document.getElementById('paypal') as any).value,
-      };
-      localStorage.setItem('bank_data', JSON.stringify(data));
-      alert('Datos guardados');
-    });
   }
 
   public loadOptions(): void {
@@ -253,6 +231,14 @@ export class ProfilePageComponent implements OnInit {
             'dd/MM/yyyy',
             'en-US',
           ),
+        });
+        this.billingForm.patchValue({
+          bankName: response.data.bank_name,
+          numberAccountBank: response.data.number_account_bank,
+          numberAccountInterBank: response.data.number_account_interbank,
+          ruc: response.data.ruc,
+          companyName: response.data.company_name,
+          paypal: response.data.paypal,
         });
         this.userCode = response.data.uuid;
 
@@ -589,5 +575,31 @@ export class ProfilePageComponent implements OnInit {
       link.download = response.data.filename;
       link.click();
     });
+  }
+
+  private commandBilling(): any{
+    return {
+      bankName: this.billingForm.get('bankName')?.value,
+      numberAccountBank: this.billingForm.get('numberAccountBank')?.value,
+      numberAccountInterBank: this.billingForm.get('numberAccountInterBank')?.value,
+      ruc: this.billingForm.get('ruc')?.value,
+      companyName: this.billingForm.get('companyName')?.value,
+      paypal: this.billingForm.get('paypal')?.value,
+    }
+  }
+
+  public onClearBilling(): void{
+
+  }
+
+  public onSubmitBilling(): void{
+    this.isLoadingBilling = true;
+    this.apiService
+      .postAuthenticationUpdateBilling(this.commandBilling())
+      .subscribe((response) => {
+        this.isLoadingBilling = false;
+        this.modalService.success('Se guardo correctamente');
+
+      });
   }
 }

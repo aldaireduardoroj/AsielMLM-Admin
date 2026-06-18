@@ -20,6 +20,12 @@ export interface UserModel {
   creatxlssed: string;
   is_admin?: boolean;
   is_bot?: boolean;
+  bank_name?: string;
+  company_name?: string;
+  number_account_bank?: string;
+  number_account_interbank?: string;
+  paypal?: string;
+  ruc?: string;
 }
 
 export interface AuthModel{
