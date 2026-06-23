@@ -204,7 +204,7 @@ export class ECONode {
         break;
 
       case Orientation.RO_RIGHT:
-        xa = this.XPosition;
+        xa = this.XPosition ;
         ya = this.YPosition + this.h / 2;
         break;
 

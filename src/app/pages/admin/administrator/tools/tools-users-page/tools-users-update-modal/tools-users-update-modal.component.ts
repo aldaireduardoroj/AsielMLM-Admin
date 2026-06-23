@@ -72,10 +72,11 @@ export class ToolsUsersUpdateModalComponent implements OnInit {
 
         this.planList = planList.data;
         this.avatarUrl = this.userModel.file?.path ? environment.hostUrl + '/storage/' + this.userModel.file?.path : CONSTANTS.IMAGE.FALLBACK;
+        console.log(this.userModel)
         this.validateForm.patchValue({
           fullname: this.userModel.name,
           dni: this.userModel.uuid,
-          packActive: this.userModel?.payment?.payment_order?.pack?.id ?? "0"
+          packActive: this.userModel?.payment?.state == 2 ? this.userModel?.payment?.payment_order?.pack?.id ?? "0" : "0"
         });
 
       }

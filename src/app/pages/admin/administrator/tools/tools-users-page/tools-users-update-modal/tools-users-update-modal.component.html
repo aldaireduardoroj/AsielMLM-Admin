@@ -137,14 +137,12 @@
     </nz-form-item>
   </ng-container>
 
-  <ng-container *ngIf="isSponsordata">
-    <ng-container *ngIf="planSelected != null">
-      <app-list-products
-        [userModel]="null"
-        [planSelected]="planSelected"
-        (onCart)="onCartChange($event)"
-      ></app-list-products>
-    </ng-container>
+  <ng-container *ngIf="planSelected != null">
+    <app-list-products
+      [userModel]="null"
+      [planSelected]="planSelected"
+      (onCart)="onCartChange($event)"
+    ></app-list-products>
   </ng-container>
 </form>
 

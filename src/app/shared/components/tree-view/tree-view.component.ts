@@ -20,8 +20,6 @@ export class TreeViewComponent implements OnInit {
      this.addNodes( this.tree, this.data );
      this.tree.UpdateTree();
 
-
-
      this.tree.nDatabaseNodes.forEach( node => {
       node.paths = node._drawChildrenLinks(this.tree)
      });

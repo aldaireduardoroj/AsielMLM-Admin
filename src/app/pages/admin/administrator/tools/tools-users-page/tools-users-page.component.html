@@ -165,7 +165,7 @@
               >
               <ng-container
                 *ngIf="
-                  item?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO
+                  item?.payment?.state == CONSTANTS.PAYMENT_ORDER.TERMINADO || item?.payment?.state == 10
                 "
                 >Inactivo</ng-container
               >
