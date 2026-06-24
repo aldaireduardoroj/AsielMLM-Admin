@@ -119,7 +119,7 @@
             <th [nzAlign]="'center'" nzWidth="100px">Image</th>
             <th [nzAlign]="'center'" nzWidth="250px">Nombre y Apellidos</th>
             <th [nzAlign]="'center'" nzWidth="100px">Código ID</th>
-            <th [nzAlign]="'center'" nzWidth="150px">Plan Actual</th>
+            <th [nzAlign]="'center'" nzWidth="150px" class="notranslate">Plan Actual</th>
             <th [nzAlign]="'center'" nzWidth="120px">Estado</th>
             <th [nzAlign]="'center'" nzWidth="100px">Rango</th>
             <th [nzAlign]="'center'" nzWidth="100px">Totales en tu red</th>
@@ -155,7 +155,7 @@
             <td nzAlign="center">
               <span class="text-uppercase">{{ item.uuid }}</span>
             </td>
-            <td nzAlign="center">
+            <td nzAlign="center" class="notranslate">
               {{ item?.payment?.payment_order?.pack?.title ?? "Sin Plan" }}
             </td>
             <td nzAlign="center">
