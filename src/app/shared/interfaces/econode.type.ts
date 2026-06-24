@@ -702,6 +702,33 @@ export class ECOTree {
         x.XPosition = x.XPosition + this.width;
       });
     }
+
+    //
+    // Encontramos el valor mínimo de X e Y en todo el árbol generado
+    const minX = Math.min(...this.nDatabaseNodes.map(x => x.XPosition));
+    const minY = Math.min(...this.nDatabaseNodes.map(x => x.YPosition));
+
+    // Definimos un margen para que no quede pegado al borde exacto de la pantalla
+    const margin = 20;
+
+    // Si el nodo más a la izquierda tiene una posición X menor al margen (ej. negativa),
+    // calculamos cuánto debemos empujar todos los nodos hacia la derecha.
+    const shiftX = minX < margin ? Math.abs(minX) + margin : 0;
+
+    // Hacemos lo mismo para el eje Y por si se corta por arriba
+    const shiftY = minY < margin ? Math.abs(minY) + margin : 0;
+
+    // Aplicamos el desplazamiento a todos los nodos
+    if (shiftX > 0 || shiftY > 0) {
+      this.nDatabaseNodes.forEach(node => {
+        node.XPosition += shiftX;
+        node.YPosition += shiftY;
+      });
+
+      // Actualizamos el ancho y alto final del contenedor para que no se corte por la derecha
+      this.width += shiftX;
+      this.height += shiftY;
+    }
   }
 
   add(id, pid, dsc, w, h, c, bc, lc, meta,selected=false, active=false) {
